@@ -1,0 +1,31 @@
+{
+  "name": "quiet-fx",
+  "version": "0.4.0",
+  "description": "Gentle procedural sounds for interfaces and motion",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipeafns/quiet-fx.git",
+    "directory": "packages/quiet-sounds"
+  },
+  "homepage": "https://quiet-fx.vercel.app",
+  "bugs": {
+    "url": "https://github.com/filipeafns/quiet-fx/issues"
+  }
+}

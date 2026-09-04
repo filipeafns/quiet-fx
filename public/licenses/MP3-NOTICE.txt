@@ -1,0 +1,10 @@
+MP3 export uses unmodified @breezystack/lamejs version 1.2.7 (Alex Zhukov and contributors), a JavaScript port of LAME, under LGPL-3.0. https://lame.sourceforge.net/
+
+The encoder is loaded as a separate, replaceable JavaScript module. It is not part of the MIT Quiet synthesis package and its license does not apply to sounds you export.
+
+Exact upstream release source: commit 1fb0ef5fa177413107e2e107d054a9b994e3f79c
+https://github.com/gideonstele/lamejs/tree/1fb0ef5fa177413107e2e107d054a9b994e3f79c
+Corresponding source is supplied at /licenses/lamejs-1.2.7-source.tar.gz.
+License copies are at /licenses/LGPL-3.0.txt and /licenses/GPL-3.0.txt.
+
+To replace or modify the encoder: extract the supplied source, run npm install and npm run build in that folder. In the Quiet app source, replace @breezystack/lamejs in package.json with file:/path/to/your/lamejs folder, run npm install, then npm run build. lib/audio/export.ts uses Mp3Encoder and the resulting build loads it through a dynamic import. You may modify or reverse-engineer this combined work to debug modifications to the LGPL library. No encoder modifications are included in this release.

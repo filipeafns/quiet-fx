@@ -1,0 +1,88 @@
+{
+  "name": "quiet-fx",
+  "version": "0.4.0",
+  "private": false,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "QUIET_STATIC_EXPORT=1 vinext dev",
+    "build": "vinext build",
+    "start": "wrangler dev --config dist/server/wrangler.json",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "prebuild": "node scripts/build-runtime.mjs",
+    "typecheck": "tsc --noEmit",
+    "test:audio": "node scripts/test-audio.mjs",
+    "test:sequences": "node scripts/test-sequences.mjs",
+    "build:package": "node scripts/build-runtime.mjs",
+    "build:static": "QUIET_STATIC_EXPORT=1 npm run build",
+    "test": "npm run test:audio && npm run test:sequences"
+  },
+  "devDependencies": {
+    "@base-ui/react": "1.7.0",
+    "@breezystack/lamejs": "1.2.7",
+    "@shadcn/react": "0.3.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "cmdk": "1.1.1",
+    "date-fns": "4.1.0",
+    "dialkit": "^1.4.3",
+    "embla-carousel-react": "8.5.2",
+    "fflate": "^0.8.3",
+    "input-otp": "1.4.2",
+    "lucide-react": "1.31.0",
+    "react": "19.2.6",
+    "react-day-picker": "9.8.1",
+    "react-dom": "19.2.6",
+    "react-resizable-panels": "4.5.8",
+    "react-server-dom-webpack": "19.2.6",
+    "recharts": "3.8.0",
+    "shadcn": "4.18.0",
+    "tailwind-merge": "3.6.0",
+    "tw-animate-css": "1.4.0",
+    "vinext": "1.0.0-beta.5",
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260515.1",
+    "@openai/sites-vite-plugin": "0.2.0",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "oxfmt": "0.61.0",
+    "oxlint": "1.76.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module",
+  "description": "Gentle procedural sounds for interfaces and motion",
+  "license": "MIT",
+  "main": "./packages/quiet-sounds/dist/index.js",
+  "types": "./packages/quiet-sounds/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./packages/quiet-sounds/dist/index.d.ts",
+      "import": "./packages/quiet-sounds/dist/index.js"
+    }
+  },
+  "files": [
+    "packages/quiet-sounds/dist",
+    "packages/quiet-sounds/src",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipeafns/quiet-fx.git"
+  },
+  "homepage": "https://quiet-fx.vercel.app",
+  "bugs": {
+    "url": "https://github.com/filipeafns/quiet-fx/issues"
+  }
+}

@@ -94,6 +94,8 @@ npm run build:static
 
 The static website is written to `dist/client`. The included Vercel configuration builds and hosts it with clean URLs. Any static host supporting `/studio` → `studio.html` can serve it. The public website retains noindex metadata until indexing is deliberately enabled.
 
+See the [deployment and release guide](docs/DEPLOYMENT.md) for Vercel previews and publishing new library versions.
+
 ## Repository layout
 
 ```text

@@ -1,23 +1,21 @@
 {
   "name": "quiet-fx",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": false,
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "QUIET_STATIC_EXPORT=1 vinext dev",
-    "build": "vinext build",
-    "start": "wrangler dev --config dist/server/wrangler.json",
+    "dev": "vinext dev",
     "lint": "oxlint",
     "format": "oxfmt",
-    "prebuild": "node scripts/build-runtime.mjs",
     "typecheck": "tsc --noEmit",
     "test:audio": "node scripts/test-audio.mjs",
     "test:sequences": "node scripts/test-sequences.mjs",
     "build:package": "node scripts/build-runtime.mjs",
-    "build:static": "QUIET_STATIC_EXPORT=1 npm run build",
-    "test": "npm run test:audio && npm run test:sequences"
+    "build:static": "npm run build:package && npm run build:studio",
+    "test": "npm run test:audio && npm run test:sequences",
+    "build:studio": "vinext build"
   },
   "devDependencies": {
     "@base-ui/react": "1.7.0",

@@ -15,7 +15,7 @@ An open-source library of gentle sounds for interfaces and motion. Explore the s
 ## Install
 
 ```sh
-npm install github:filipeafns/quiet-fx#v0.4.0
+npm install github:filipeafns/quiet-fx#v0.4.1
 ```
 
 This installs the prepared sound library directly from the GitHub release tag. It is not an npm-registry package. The repository includes the full website for contributors; the installed package contains the synthesis modules, source and type definitions.

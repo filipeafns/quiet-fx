@@ -15,7 +15,7 @@ import { CUES, DEFAULTS, makePatch } from '@/lib/audio/catalog';
 import { SoundPlayer, renderPatch, type Rendered } from '@/lib/audio/engine';
 
 const REPO = 'https://github.com/filipeafns/quiet-fx';
-const INSTALL = 'npm install github:filipeafns/quiet-fx#v0.4.0';
+const INSTALL = 'npm install github:filipeafns/quiet-fx#v0.4.1';
 const EXAMPLE = `import { CUES, DEFAULTS, makePatch, renderPatch, SoundPlayer } from 'quiet-fx';
 
 const button = document.createElement('button');

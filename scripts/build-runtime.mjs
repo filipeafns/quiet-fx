@@ -47,7 +47,7 @@ writeFileSync(
   JSON.stringify(
     {
       name: 'quiet-fx',
-      version: '0.4.0',
+      version: '0.4.1',
       description: 'Gentle procedural sounds for interfaces and motion',
       type: 'module',
       main: './dist/index.js',

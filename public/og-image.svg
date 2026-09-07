@@ -9,6 +9,6 @@
   <text x="76" y="282" font-family="Arial, Helvetica, sans-serif" font-size="45" letter-spacing="-1.6" fill="#292929">UI sound, with a lighter touch.</text>
   <text x="78" y="332" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#777">72 gentle sounds. 432 variations. Open source.</text>
   <rect x="0" y="388" width="1200" height="138" fill="url(#dots)"/>
-  <text x="78" y="586" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#555">quiefx.dev</text>
+  <text x="78" y="586" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#555">quietfx.dev</text>
   <text x="1122" y="586" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#888">JavaScript · WAV · MP3</text>
 </svg>

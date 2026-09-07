@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_URL = 'https://quiefx.dev';
+export const SITE_URL = 'https://quietfx.dev';
 export const REPOSITORY = 'https://github.com/filipeafns/quiet-fx';
 export const SITE_TITLE = 'Quiet FX | Free Open-Source UI Sound Effects';
 export const SITE_DESCRIPTION =

@@ -4,7 +4,7 @@
 
 An open-source library of gentle sounds for interfaces and motion. Explore the sound field, tune a cue in the studio, or bring the procedural engine into your own app.
 
-[Try Quiet FX](https://quiefx.dev) · [Open the studio](https://quiefx.dev/studio) · [Contribute](CONTRIBUTING.md)
+[Try Quiet FX](https://quietfx.dev) · [Open the studio](https://quietfx.dev/studio) · [Contribute](CONTRIBUTING.md)
 
 - **72 original cues**, with six variations each: Light, Normal, Deep, Short, Long and Airy.
 - **12 keys, three scales and four voices**, plus five envelope shapes and editable duration, softness and texture.
@@ -94,7 +94,7 @@ npm test
 npm run build:static
 ```
 
-The static website is written to `dist/client`. The included Vercel configuration builds and hosts it with clean URLs. Any static host supporting `/studio` → `studio.html` can serve it. The public website permits indexing and uses canonical URLs on `quiefx.dev`. Search metadata, structured data, a sitemap and AI-readable documentation are included.
+The static website is written to `dist/client`. The included Vercel configuration builds and hosts it with clean URLs. Any static host supporting `/studio` → `studio.html` can serve it. The public website permits indexing and uses canonical URLs on `quietfx.dev`. Search metadata, structured data, a sitemap and AI-readable documentation are included.
 
 See the [deployment and release guide](docs/DEPLOYMENT.md) for Vercel previews and publishing new library versions. [Search and assistant discovery](docs/DISCOVERY.md) describes the public metadata, crawl rules and generated documentation.
 

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "name": "Quiet FX",
-  "url": "https://quiefx.dev",
+  "url": "https://quietfx.dev",
   "repository": "https://github.com/filipeafns/quiet-fx",
   "version": "0.4.1",
   "license": "MIT",
-  "licenseUrl": "https://quiefx.dev/licenses/QUIET-MIT.txt",
+  "licenseUrl": "https://quietfx.dev/licenses/QUIET-MIT.txt",
   "install": "npm install github:filipeafns/quiet-fx#v0.4.1",
   "count": 72,
   "variationCount": 432,

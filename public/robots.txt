@@ -13,4 +13,4 @@ Allow: /
 User-agent: Claude-User
 Allow: /
 
-Sitemap: https://quiefx.dev/sitemap.xml
+Sitemap: https://quietfx.dev/sitemap.xml

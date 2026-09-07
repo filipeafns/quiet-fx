@@ -9,7 +9,7 @@ import {
   DEFAULTS,
 } from '../packages/quiet-sounds/dist/index.js';
 
-const site = 'https://quiefx.dev';
+const site = 'https://quietfx.dev';
 const repo = 'https://github.com/filipeafns/quiet-fx';
 const { version } = JSON.parse(readFileSync('package.json', 'utf8'));
 const install = `npm install github:filipeafns/quiet-fx#v${version}`;

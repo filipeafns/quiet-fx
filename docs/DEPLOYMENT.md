@@ -1,19 +1,25 @@
 # Deploy Quiet FX
 
-The public website is [quiefx.dev](https://quiefx.dev), with the library and motion sandbox at `/studio`. The original `quiet-fx.vercel.app` address remains available.
+The canonical website is [quietfx.dev](https://quietfx.dev), with the library and motion sandbox at `/studio`.
 
 ## Custom domain
 
-Verified September 6, 2026: `quiefx.dev` is attached to the production environment of the `quiet-fx` Vercel project. `www.quiefx.dev` permanently redirects to the apex with status 308. Vercel manages HTTPS certificates for both hostnames.
+Use `quietfx.dev` for the production environment of the `quiet-fx` Vercel project. Configure `www.quietfx.dev` to redirect permanently to the apex. The checked-in redirects also send the former `quiefx.dev`, `www.quiefx.dev` and `quiet-fx.vercel.app` hostnames directly to the new canonical domain, preserving paths and query strings. Keep legacy domains attached to the project with working DNS and HTTPS so those redirects remain reachable.
 
-DNS remains at GoDaddy, using `ns35.domaincontrol.com` and `ns36.domaincontrol.com`. These existing records already matched Vercel's project configuration, so connecting the domain required no DNS edits:
+DNS is managed at GoDaddy. Use Vercel's current recommended records for each hostname, preserve unrelated mail and verification records, and verify DNS plus trusted public HTTPS for the apex and `www` before promoting the migration. Confirm `/` and `/studio` return 200 on the canonical hostname, and check each alias redirects without a loop.
 
-| Type | Name | Value |
-| --- | --- | --- |
-| A | `@` | `216.198.79.1` |
-| CNAME | `www` | `3da4a081662cf48e.vercel-dns-017.com` |
+### Verified DNS, September 7, 2026
 
-Both names passed `vercel domains verify` for this project. Trusted public HTTPS returned 200 for `/` and `/studio`, and 308 from `www` to the apex. Recheck Vercel's current recommended records before future DNS changes; values above are a dated configuration record. Preserve unrelated mail and verification records.
+`quietfx.dev` and `www.quietfx.dev` are attached to the production environment of the `quiet-fx` Vercel project. The apex serves the site, and `www` redirects permanently to the apex with status 308. Vercel manages HTTPS certificates for both hostnames.
+
+GoDaddy retains the existing nameservers, `ns35.domaincontrol.com` and `ns36.domaincontrol.com`. The parking records were replaced with Vercel's recommended values:
+
+| Type | Name | Value | TTL |
+| --- | --- | --- | --- |
+| A | `@` | `216.198.79.1` | 600 seconds |
+| CNAME | `www` | `3da4a081662cf48e.vercel-dns-017.com` | 1 hour |
+
+Both authoritative nameservers and public resolvers at Cloudflare and Google returned the new records. Trusted public HTTPS returned 200 from the apex and 308 from `www`, preserving paths and query strings. Recheck Vercel's current recommendations before future DNS changes. Other DNS records were preserved.
 
 ## Vercel
 
@@ -32,7 +38,7 @@ npm run build:static
 
 The exported files are in `dist/client`. The homepage is `index.html`; the studio is `studio.html`. Vercel's `cleanUrls` setting serves `/studio` without an extension. Other static hosts need the equivalent route mapping. The two pages use document navigation so a static host does not need an RSC response adapter.
 
-No application secrets or runtime services are needed. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quiefx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
+No application secrets or runtime services are needed. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quietfx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
 
 ## Release the library
 

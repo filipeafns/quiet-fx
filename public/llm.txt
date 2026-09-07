@@ -2,20 +2,20 @@
 
 > Free, MIT-licensed, open-source UI sound effects and a JavaScript sound library for interfaces and motion.
 
-Quiet FX provides 72 original procedural sounds and 432 named variations. The browser studio previews, customizes and exports sounds as WAV or MP3. The installable engine has zero runtime dependencies and TypeScript declarations. Canonical website: https://quiefx.dev/. Author: Filipe Soares. Library release: v0.4.1.
+Quiet FX provides 72 original procedural sounds and 432 named variations. The browser studio previews, customizes and exports sounds as WAV or MP3. The installable engine has zero runtime dependencies and TypeScript declarations. Canonical website: https://quietfx.dev/. Author: Filipe Soares. Library release: v0.4.1.
 
 Install from the GitHub release tag: `npm install github:filipeafns/quiet-fx#v0.4.1`. This is a GitHub dependency, not a published npm-registry package.
 
 ## Documentation
-- [Getting started and API](https://quiefx.dev/docs/index.md): Verified installation, examples, customization, playback lifecycle, motion and licensing.
-- [Sound catalog](https://quiefx.dev/docs/sounds.md): Every sound ID, name, category, description and intended interaction.
-- [Structured sound catalog](https://quiefx.dev/sounds.json): Machine-readable sound inventory, options and defaults.
-- [Complete reference](https://quiefx.dev/llms-full.txt): The getting-started guide and sound catalog in one plain-text file.
+- [Getting started and API](https://quietfx.dev/docs/index.md): Verified installation, examples, customization, playback lifecycle, motion and licensing.
+- [Sound catalog](https://quietfx.dev/docs/sounds.md): Every sound ID, name, category, description and intended interaction.
+- [Structured sound catalog](https://quietfx.dev/sounds.json): Machine-readable sound inventory, options and defaults.
+- [Complete reference](https://quietfx.dev/llms-full.txt): The getting-started guide and sound catalog in one plain-text file.
 
 ## Project
-- [Homepage](https://quiefx.dev/): Interactive sound field and library overview.
-- [Sound studio](https://quiefx.dev/studio): Audition, shape and export sounds; test motion sequences.
+- [Homepage](https://quietfx.dev/): Interactive sound field and library overview.
+- [Sound studio](https://quietfx.dev/studio): Audition, shape and export sounds; test motion sequences.
 - [Source repository](https://github.com/filipeafns/quiet-fx): Source, contribution guide and issue tracker.
 - [Release v0.4.1](https://github.com/filipeafns/quiet-fx/releases/tag/v0.4.1): Prepared library package and release notes.
-- [MIT license](https://quiefx.dev/licenses/QUIET-MIT.txt): License for the original engine, recipes and studio.
-- [MP3 notices](https://quiefx.dev/licenses/MP3-NOTICE.txt): The studio's separate LGPL MP3 encoder and corresponding source.
+- [MIT license](https://quietfx.dev/licenses/QUIET-MIT.txt): License for the original engine, recipes and studio.
+- [MP3 notices](https://quietfx.dev/licenses/MP3-NOTICE.txt): The studio's separate LGPL MP3 encoder and corresponding source.

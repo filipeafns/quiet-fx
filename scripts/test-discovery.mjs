@@ -23,7 +23,7 @@ for (const [file, path] of [
   const links = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => attrs(m[0]));
   assert.deepEqual(
     links.filter((a) => a.rel === 'canonical').map((a) => new URL(a.href).href),
-    [`https://quiefx.dev${path}`],
+    [`https://quietfx.dev${path}`],
   );
   assert.equal(meta.filter((a) => a.name === 'description').length, 1);
   const description = meta.find((a) => a.name === 'description')?.content;
@@ -43,7 +43,7 @@ for (const [file, path] of [
   );
   assert.equal(
     new URL(meta.find((a) => a.property === 'og:url')?.content).href,
-    `https://quiefx.dev${path}`,
+    `https://quietfx.dev${path}`,
   );
   assert.equal(
     meta.find((a) => a.name === 'twitter:card')?.content,
@@ -53,7 +53,7 @@ for (const [file, path] of [
     meta.some(
       (a) =>
         a.property === 'og:image' &&
-        a.content === 'https://quiefx.dev/og-image.png',
+        a.content === 'https://quietfx.dev/og-image.png',
     ),
   );
   assert.ok(
@@ -68,7 +68,7 @@ for (const [file, path] of [
   const graph = JSON.parse(json[0][1])['@graph'];
   assert.ok(
     graph.some(
-      (n) => n['@type'] === 'WebSite' && n.url === 'https://quiefx.dev/',
+      (n) => n['@type'] === 'WebSite' && n.url === 'https://quietfx.dev/',
     ),
   );
   assert.ok(
@@ -82,7 +82,7 @@ for (const [file, path] of [
     graph.some(
       (n) =>
         n['@type'] === 'WebApplication' &&
-        n.url === 'https://quiefx.dev/studio',
+        n.url === 'https://quietfx.dev/studio',
     ),
   );
 }
@@ -93,7 +93,7 @@ assert.equal(
 );
 const robots = read('robots.txt');
 assert.doesNotMatch(robots, /Disallow:\s*\//i);
-assert.match(robots, /Sitemap: https:\/\/quiefx.dev\/sitemap.xml/);
+assert.match(robots, /Sitemap: https:\/\/quietfx.dev\/sitemap.xml/);
 for (const bot of [
   '*',
   'OAI-SearchBot',
@@ -105,7 +105,10 @@ for (const bot of [
 const sitemap = [...read('sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(
   (m) => m[1],
 );
-assert.deepEqual(sitemap, ['https://quiefx.dev/', 'https://quiefx.dev/studio']);
+assert.deepEqual(sitemap, [
+  'https://quietfx.dev/',
+  'https://quietfx.dev/studio',
+]);
 assert.equal(read('llm.txt'), read('llms.txt'));
 for (const file of ['llms.txt', 'llms-full.txt', 'docs/index.md'])
   assert.match(read(file), /npm install github:filipeafns\/quiet-fx#v0\.4\.1/);
@@ -121,6 +124,59 @@ assert.equal(image.toString('hex', 0, 8), '89504e470d0a1a0a');
 assert.equal(image.readUInt32BE(16), 1200);
 assert.equal(image.readUInt32BE(20), 630);
 const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
+const aliases = [
+  'www.quietfx.dev',
+  'quiefx.dev',
+  'www.quiefx.dev',
+  'quiet-fx.vercel.app',
+];
+for (const hostname of aliases) {
+  const redirects = config.redirects.filter((rule) =>
+    rule.has?.some(
+      (condition) => condition.type === 'host' && condition.value === hostname,
+    ),
+  );
+  assert.equal(
+    redirects.length,
+    1,
+    `${hostname}: exactly one canonical redirect`,
+  );
+  assert.equal(
+    redirects[0].source,
+    '/:path*',
+    'Alias redirects preserve nested paths',
+  );
+  assert.equal(redirects[0].destination, 'https://quietfx.dev/:path*');
+  assert.equal(redirects[0].permanent, true);
+}
+assert.ok(
+  config.redirects.every((rule) =>
+    rule.has?.some(
+      (condition) =>
+        condition.type === 'host' && aliases.includes(condition.value),
+    ),
+  ),
+  'Canonical redirects must only match known aliases, never the destination hostname',
+);
+for (const file of [
+  'index.html',
+  'studio.html',
+  'robots.txt',
+  'sitemap.xml',
+  'llm.txt',
+  'llms.txt',
+  'llms-full.txt',
+  'docs/index.md',
+  'docs/sounds.md',
+  'sounds.json',
+  'og-image.svg',
+]) {
+  assert.doesNotMatch(
+    read(file),
+    /quiefx\.dev/,
+    `${file}: no former canonical domain`,
+  );
+}
 assert.ok(
   !config.headers.some((rule) =>
     rule.headers.some(

@@ -1,6 +1,6 @@
 # Search and assistant discovery
 
-Public indexing was explicitly enabled on September 6, 2026 for [quiefx.dev](https://quiefx.dev). Production serves crawlable static HTML with unique titles, descriptions and canonical URLs for `/` and `/studio`.
+Public indexing was explicitly enabled on September 6, 2026. The canonical website is [quietfx.dev](https://quietfx.dev). Production serves crawlable static HTML with the Quiet FX title, distinct page descriptions and canonical URLs for `/` and `/studio`.
 
 ## Published surfaces
 
@@ -11,7 +11,7 @@ Public indexing was explicitly enabled on September 6, 2026 for [quiefx.dev](htt
 - `/docs/index.md` documents installation, API examples, suitable use cases, playback requirements, exports and licensing.
 - `/docs/sounds.md` and `/sounds.json` expose every sound's actual ID, name, category, description and intended use, plus supported settings and defaults in JSON.
 - HTML and HTTP `Link` discovery point to `/llms.txt`.
-- The original public Vercel hostname redirects permanently to the custom domain; its paths and query strings remain usable.
+- The `www` hostname, the previous custom-domain spellings and the original public Vercel hostname redirect permanently to the canonical domain; their paths and query strings remain usable.
 
 `npm run build:discovery` generates documentation from the prepared engine package. `npm run build:static` regenerates it before export. Keep `build:package` first so the inventory matches the authoritative catalog. `npm run test:discovery` validates the exported metadata and files; CI runs it after the static build.
 

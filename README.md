@@ -45,6 +45,8 @@ button.addEventListener('click', async () => {
 });
 ```
 
+The studio’s **Use in your app** panel copies runnable JavaScript or a Codex/Claude integration prompt using the selected sound and every current setting. **Copy library JSON** includes all 72 sounds with per-sound edits in `library.patches`, ready for `renderPatch(library.patches[0])`. In Motion sandbox, it uses the shared key, scale, voice and variant. The install command stays pinned to the release; the copied setup carries your configuration.
+
 Create one player per app. Render and cache sounds on demand. Call `player.stop()` when leaving an interaction, hiding the page or unmounting the host view. Close `player.context` when you no longer need the player. Browser audio requires an initial user gesture; discard blocked hover requests rather than replaying them later.
 
 The default monitor gain is 35%. Use `player.setVolume(0.35)` to set the monitor level, and `player.mute()` for host-app sound preferences. `player.play(sound, 0, false, 0.55)` overlaps a quieter voice; the host should limit polyphony. Ordinary `player.play(sound)` interrupts previous voices.

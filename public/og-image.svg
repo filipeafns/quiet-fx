@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="2.2" fill="#eaeaea"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#fff"/>
+  <g stroke="#292929" stroke-width="6" stroke-linecap="round">
+    <path d="M78 144v12m16-30v48m16-64v80m16-60v40m16-28v16"/>
+  </g>
+  <text x="168" y="183" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="112" letter-spacing="-7" fill="#292929">quiet<tspan fill="#999">.</tspan></text>
+  <text x="430" y="108" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="2" fill="#888">FX</text>
+  <text x="76" y="282" font-family="Arial, Helvetica, sans-serif" font-size="45" letter-spacing="-1.6" fill="#292929">UI sound, with a lighter touch.</text>
+  <text x="78" y="332" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#777">72 gentle sounds. 432 variations. Open source.</text>
+  <rect x="0" y="388" width="1200" height="138" fill="url(#dots)"/>
+  <text x="78" y="586" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#555">quiefx.dev</text>
+  <text x="1122" y="586" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#888">JavaScript · WAV · MP3</text>
+</svg>

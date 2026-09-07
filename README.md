@@ -51,7 +51,7 @@ The default monitor gain is 35%. Use `player.setVolume(0.35)` to set the monitor
 
 ## Shape and export
 
-`makePatch(cue, settings)` returns an editable, deterministic recipe. `renderPatch(patch)` returns mono PCM, duration, peak, RMS and tonal-energy share. `wavBytes(rendered)` encodes a 48 kHz, 16-bit mono WAV.
+`makePatch(cue, settings)` returns an editable, deterministic recipe. `renderPatch(patch)` returns mono PCM, duration, peak, RMS and tonal-energy share. `wavBytes(rendered)` encodes a 16-bit mono WAV at the rendered sample rate, 48 kHz by default.
 
 The studio exposes Natural, Taper, Swell, Ripple and Double envelopes. Its waveform heights are normalized for comparison; color uses a fixed digital-level scale and tonal character. Color is a design encoding, not a measurement of perceived loudness or physical temperature. Pure friction is unpitched, and scale changes only affect notes that differ between those scales. Tactile effects are synthesized interpretations, not recorded foley.
 
@@ -92,9 +92,9 @@ npm test
 npm run build:static
 ```
 
-The static website is written to `dist/client`. The included Vercel configuration builds and hosts it with clean URLs. Any static host supporting `/studio` → `studio.html` can serve it. The public website retains noindex metadata until indexing is deliberately enabled.
+The static website is written to `dist/client`. The included Vercel configuration builds and hosts it with clean URLs. Any static host supporting `/studio` → `studio.html` can serve it. The public website permits indexing and uses canonical URLs on `quiefx.dev`. Search metadata, structured data, a sitemap and AI-readable documentation are included.
 
-See the [deployment and release guide](docs/DEPLOYMENT.md) for Vercel previews and publishing new library versions.
+See the [deployment and release guide](docs/DEPLOYMENT.md) for Vercel previews and publishing new library versions. [Search and assistant discovery](docs/DISCOVERY.md) describes the public metadata, crawl rules and generated documentation.
 
 ## Repository layout
 

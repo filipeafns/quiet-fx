@@ -167,7 +167,7 @@ export function Homepage() {
           <div className="landing-intro-copy">
             <h1>Sound, with a lighter touch.</h1>
             <p>
-              An open-source collection of little sounds
+              Gentle, open-source UI sound effects
               <br className="wide-break" /> for interfaces that feel good to
               use.
             </p>
@@ -217,7 +217,7 @@ export function Homepage() {
             <p>
               Procedural audio. No recordings to load.
               <br />
-              No runtime dependencies. Just a little JavaScript.
+              A JavaScript library with no runtime dependencies.
             </p>
             <a className="landing-text-link" href={`${REPO}#readme`}>
               Read the documentation <ArrowUpRight size={15} />

@@ -32,7 +32,7 @@ npm run build:static
 
 The exported files are in `dist/client`. The homepage is `index.html`; the studio is `studio.html`. Vercel's `cleanUrls` setting serves `/studio` without an extension. Other static hosts need the equivalent route mapping. The two pages use document navigation so a static host does not need an RSC response adapter.
 
-No application secrets or runtime services are needed. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. The existing noindex metadata and `X-Robots-Tag` header are intentional; change them only when search indexing is approved.
+No application secrets or runtime services are needed. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quiefx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
 
 ## Release the library
 

@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 1,
+  "name": "Quiet FX",
+  "url": "https://quiefx.dev",
+  "repository": "https://github.com/filipeafns/quiet-fx",
+  "version": "0.4.1",
+  "license": "MIT",
+  "licenseUrl": "https://quiefx.dev/licenses/QUIET-MIT.txt",
+  "install": "npm install github:filipeafns/quiet-fx#v0.4.1",
+  "count": 72,
+  "variationCount": 432,
+  "runtimeDependencies": [],
+  "options": {
+    "keys": [
+      "C",
+      "C♯",
+      "D",
+      "E♭",
+      "E",
+      "F",
+      "F♯",
+      "G",
+      "A♭",
+      "A",
+      "B♭",
+      "B"
+    ],
+    "scales": [
+      "Major",
+      "Minor",
+      "Pentatonic"
+    ],
+    "voices": [
+      "Soft",
+      "Felt",
+      "Glass",
+      "Pluck"
+    ],
+    "variants": [
+      "Light",
+      "Normal",
+      "Deep",
+      "Short",
+      "Long",
+      "Airy"
+    ],
+    "envelopes": [
+      "Natural",
+      "Taper",
+      "Swell",
+      "Ripple",
+      "Double"
+    ]
+  },
+  "defaults": {
+    "key": "C",
+    "mode": "Major",
+    "voice": "Soft",
+    "variant": "Normal",
+    "shape": "Natural",
+    "softness": 32,
+    "brightness": 45,
+    "duration": 1,
+    "texture": 42,
+    "seed": 1
+  },
+  "sounds": [
+    {
+      "id": "sparkle",
+      "name": "Sparkle",
+      "category": "Tonal",
+      "description": "A scattered glimmer that gathers into one clear point.",
+      "use": "A tiny moment of delight."
+    },
+    {
+      "id": "halo",
+      "name": "Halo",
+      "category": "Tonal",
+      "description": "A rounded tone with a slowly opening harmonic edge.",
+      "use": "A reveal or welcome."
+    },
+    {
+      "id": "glint",
+      "name": "Glint",
+      "category": "Tonal",
+      "description": "A brief point of glass with an offset overtone.",
+      "use": "A small highlight."
+    },
+    {
+      "id": "mist",
+      "name": "Mist",
+      "category": "Tonal",
+      "description": "A soft root carried on a breath of air.",
+      "use": "An unobtrusive arrival."
+    },
+    {
+      "id": "pearl",
+      "name": "Pearl",
+      "category": "Tonal",
+      "description": "A rounded pluck and a quiet octave reply.",
+      "use": "A selection coming to rest."
+    },
+    {
+      "id": "orbit",
+      "name": "Orbit",
+      "category": "Tonal",
+      "description": "A root, a sixth, and a return to the root.",
+      "use": "A cyclical action finishing."
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "category": "Tonal",
+      "description": "Three gentle voices unfold across a wide register.",
+      "use": "A larger reveal."
+    },
+    {
+      "id": "drift",
+      "name": "Drift",
+      "category": "Tonal",
+      "description": "An open fifth folds into a lower register.",
+      "use": "A relaxed transition."
+    },
+    {
+      "id": "ripple",
+      "name": "Ripple",
+      "category": "Tonal",
+      "description": "Three soft contacts spreading outward.",
+      "use": "A change moving through a group."
+    },
+    {
+      "id": "ember",
+      "name": "Ember",
+      "category": "Tonal",
+      "description": "A low warm body, with a delicate rough edge.",
+      "use": "Quiet ambient feedback."
+    },
+    {
+      "id": "prism",
+      "name": "Prism",
+      "category": "Tonal",
+      "description": "A compact spread of upper harmonics.",
+      "use": "A focused highlight."
+    },
+    {
+      "id": "lilt",
+      "name": "Lilt",
+      "category": "Tonal",
+      "description": "A dotted, upward two-step with a soft landing.",
+      "use": "A small positive state change."
+    },
+    {
+      "id": "tap",
+      "name": "Tap",
+      "category": "Interface",
+      "description": "A short rounded tap, with a fine edge.",
+      "use": "A deliberate button action."
+    },
+    {
+      "id": "touch",
+      "name": "Touch",
+      "category": "Interface",
+      "description": "A padded fingertip impression.",
+      "use": "A soft press."
+    },
+    {
+      "id": "lift",
+      "name": "Lift",
+      "category": "Interface",
+      "description": "A thin click with a small upward spring.",
+      "use": "Releasing a pressed control."
+    },
+    {
+      "id": "notch",
+      "name": "Notch",
+      "category": "Interface",
+      "description": "A dry pair of close mechanical edges.",
+      "use": "Stepping through a scale."
+    },
+    {
+      "id": "hover",
+      "name": "Hover",
+      "category": "Interface",
+      "description": "A fine breath at the edge of a tone.",
+      "use": "A deliberate preview."
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "category": "Interface",
+      "description": "A low contact followed by a clear tiny note.",
+      "use": "Selecting an item."
+    },
+    {
+      "id": "deselect",
+      "name": "Deselect",
+      "category": "Interface",
+      "description": "A small note retracts into a muted edge.",
+      "use": "Clearing a selection."
+    },
+    {
+      "id": "expand",
+      "name": "Expand",
+      "category": "Interface",
+      "description": "Air opens around a gentle rising body.",
+      "use": "Expanding a control."
+    },
+    {
+      "id": "collapse",
+      "name": "Collapse",
+      "category": "Interface",
+      "description": "A soft inward fold with a low endpoint.",
+      "use": "Collapsing a control."
+    },
+    {
+      "id": "drag",
+      "name": "Drag",
+      "category": "Interface",
+      "description": "A short friction grip.",
+      "use": "Picking up a draggable object."
+    },
+    {
+      "id": "dock",
+      "name": "Dock",
+      "category": "Interface",
+      "description": "A low seat and a quiet latch.",
+      "use": "A dragged object docking."
+    },
+    {
+      "id": "soft-key",
+      "name": "Soft key",
+      "category": "Interface",
+      "description": "A padded strike and delicate key return.",
+      "use": "Typing or repeated input."
+    },
+    {
+      "id": "confirm",
+      "name": "Confirm",
+      "category": "Signals",
+      "description": "A fifth opens into a rounded tonic.",
+      "use": "Confirming a successful action."
+    },
+    {
+      "id": "decline",
+      "name": "Decline",
+      "category": "Signals",
+      "description": "A compact descending third, without alarm.",
+      "use": "A recoverable refusal."
+    },
+    {
+      "id": "send",
+      "name": "Send",
+      "category": "Signals",
+      "description": "A quick lift with a small air trail.",
+      "use": "Sending a message."
+    },
+    {
+      "id": "receive",
+      "name": "Receive",
+      "category": "Signals",
+      "description": "A bright point settles into a warmer note.",
+      "use": "Receiving a message."
+    },
+    {
+      "id": "begin",
+      "name": "Begin",
+      "category": "Signals",
+      "description": "A small open interval, ready to continue.",
+      "use": "Starting user-initiated work."
+    },
+    {
+      "id": "pause",
+      "name": "Pause",
+      "category": "Signals",
+      "description": "Two evenly spaced, padded notes.",
+      "use": "Pausing a process."
+    },
+    {
+      "id": "resume",
+      "name": "Resume",
+      "category": "Signals",
+      "description": "A quiet repeated note steps forward.",
+      "use": "Resuming a process."
+    },
+    {
+      "id": "attention",
+      "name": "Attention",
+      "category": "Signals",
+      "description": "A soft, separated pair with a little lift.",
+      "use": "An update worth noticing."
+    },
+    {
+      "id": "found",
+      "name": "Found",
+      "category": "Signals",
+      "description": "A short search-like pickup resolves clearly.",
+      "use": "Finding a match."
+    },
+    {
+      "id": "finish",
+      "name": "Finish",
+      "category": "Signals",
+      "description": "A low tonic supports a final, gentle octave.",
+      "use": "Finishing a longer flow."
+    },
+    {
+      "id": "felt-tap",
+      "name": "Felt tap",
+      "category": "Materials",
+      "description": "A dense, padded contact.",
+      "use": "Soft surfaces and fabric objects."
+    },
+    {
+      "id": "wood-tap",
+      "name": "Wood tap",
+      "category": "Materials",
+      "description": "Two dry body resonances with a small edge.",
+      "use": "A warm wooden contact."
+    },
+    {
+      "id": "glass-touch",
+      "name": "Glass touch",
+      "category": "Materials",
+      "description": "A quiet glass body with a fine upper partial.",
+      "use": "Delicate rigid surfaces."
+    },
+    {
+      "id": "paper-slide",
+      "name": "Paper slide",
+      "category": "Materials",
+      "description": "A thin sheet brushing across a surface.",
+      "use": "Paper moving laterally."
+    },
+    {
+      "id": "cloth-brush",
+      "name": "Cloth brush",
+      "category": "Materials",
+      "description": "A low, diffuse swipe of fabric.",
+      "use": "Soft material transitions."
+    },
+    {
+      "id": "zip",
+      "name": "Zip",
+      "category": "Materials",
+      "description": "A fast row of tiny catches, gently fading.",
+      "use": "A short closure or reveal."
+    },
+    {
+      "id": "focus",
+      "name": "Focus",
+      "category": "Interface",
+      "description": "A soft wooden point of focus.",
+      "use": "Moving deliberately between items."
+    },
+    {
+      "id": "snap",
+      "name": "Magnetic snap",
+      "category": "Interface",
+      "description": "A low body and a crisp contact.",
+      "use": "A dragged object finding its anchor."
+    },
+    {
+      "id": "detent",
+      "name": "Dial step",
+      "category": "Interface",
+      "description": "A dry, precise tactile increment.",
+      "use": "Stepping through a dial or slider."
+    },
+    {
+      "id": "toggle-on",
+      "name": "Switch on",
+      "category": "Interface",
+      "description": "Two contacts that open upward.",
+      "use": "Enabling a setting."
+    },
+    {
+      "id": "toggle-off",
+      "name": "Switch off",
+      "category": "Interface",
+      "description": "A short contact that settles lower.",
+      "use": "Disabling a setting."
+    },
+    {
+      "id": "lock",
+      "name": "Lock",
+      "category": "Interface",
+      "description": "Two close clicks and a low seat.",
+      "use": "Locking a selection or constraint."
+    },
+    {
+      "id": "unlock",
+      "name": "Unlock",
+      "category": "Interface",
+      "description": "A small latch releasing upward.",
+      "use": "Removing a constraint."
+    },
+    {
+      "id": "undo",
+      "name": "Undo",
+      "category": "Signals",
+      "description": "A compact descending pair.",
+      "use": "Stepping back one action."
+    },
+    {
+      "id": "notify",
+      "name": "Soft notice",
+      "category": "Signals",
+      "description": "A bell with a quiet harmonic halo.",
+      "use": "A useful, nonurgent update."
+    },
+    {
+      "id": "complete",
+      "name": "Resolve",
+      "category": "Signals",
+      "description": "A suspended fourth resolves to the root.",
+      "use": "Completion after a longer operation."
+    },
+    {
+      "id": "connect",
+      "name": "Connect",
+      "category": "Signals",
+      "description": "Two voices converge into a fifth.",
+      "use": "A device or workspace connecting."
+    },
+    {
+      "id": "disconnect",
+      "name": "Disconnect",
+      "category": "Signals",
+      "description": "A fifth retracts into a low root.",
+      "use": "A connection closing without an error."
+    },
+    {
+      "id": "whoosh-in",
+      "name": "Whoosh in",
+      "category": "Motion",
+      "description": "Air opens, travels, then comes to rest.",
+      "use": "A panel entering the scene."
+    },
+    {
+      "id": "whoosh-out",
+      "name": "Whoosh out",
+      "category": "Motion",
+      "description": "A shrinking breath of filtered air.",
+      "use": "A panel leaving the scene."
+    },
+    {
+      "id": "card-flip",
+      "name": "Card flip",
+      "category": "Motion",
+      "description": "Air through rotation, then a fine contact.",
+      "use": "One card turning over."
+    },
+    {
+      "id": "card-place",
+      "name": "Card place",
+      "category": "Motion",
+      "description": "A soft edge and a muted surface knock.",
+      "use": "A card landing on a table."
+    },
+    {
+      "id": "deck-riffle",
+      "name": "Deck riffle",
+      "category": "Motion",
+      "description": "Ten separate edges in a cascading rhythm.",
+      "use": "Releasing a small deck of cards."
+    },
+    {
+      "id": "deck-fan",
+      "name": "Deck fan",
+      "category": "Motion",
+      "description": "Six overlapping edges spread into air.",
+      "use": "Fanning cards across a surface."
+    },
+    {
+      "id": "page-turn",
+      "name": "Page turn",
+      "category": "Motion",
+      "description": "A page bends, brushes, and settles.",
+      "use": "Turning a page in a book."
+    },
+    {
+      "id": "page-stack",
+      "name": "Page flutter",
+      "category": "Motion",
+      "description": "Seven light page edges, individually heard.",
+      "use": "Scrubbing through a stack of pages."
+    },
+    {
+      "id": "book-close",
+      "name": "Book close",
+      "category": "Motion",
+      "description": "An air cushion ending in a padded thump.",
+      "use": "A book or folio coming to rest."
+    },
+    {
+      "id": "soft-impact",
+      "name": "Soft impact",
+      "category": "Motion",
+      "description": "A rounded, low contact with a tiny edge.",
+      "use": "An object gently meeting a surface."
+    },
+    {
+      "id": "swipe",
+      "name": "Swipe",
+      "category": "Motion",
+      "description": "A thin lateral brush, light and quick.",
+      "use": "A fast horizontal transition."
+    },
+    {
+      "id": "fold",
+      "name": "Paper fold",
+      "category": "Motion",
+      "description": "Friction rises into a crisp crease.",
+      "use": "Folding or unfolding a panel."
+    },
+    {
+      "id": "chat-new-conversation",
+      "name": "Conversation",
+      "category": "Sequences",
+      "description": "A little air opens into a warm fifth.",
+      "use": "Opening a new conversation."
+    },
+    {
+      "id": "chat-receive-message",
+      "name": "Message arrival",
+      "category": "Sequences",
+      "description": "A tiny contact settles into a rounded note.",
+      "use": "An incoming message becoming visible."
+    },
+    {
+      "id": "chat-send-message",
+      "name": "Message lift",
+      "category": "Sequences",
+      "description": "A padded press followed by a brief rising breath.",
+      "use": "Sending a message."
+    },
+    {
+      "id": "chat-insert-cards",
+      "name": "Card cascade",
+      "category": "Sequences",
+      "description": "Three paper edges with a small body at each end.",
+      "use": "Cards arriving in a conversation."
+    },
+    {
+      "id": "chat-insert-voice-note",
+      "name": "Voice capsule",
+      "category": "Sequences",
+      "description": "A felt contact grows into an open interval.",
+      "use": "A voice note forming."
+    },
+    {
+      "id": "chat-upload-attachment",
+      "name": "Attachment",
+      "category": "Sequences",
+      "description": "A latch and air trail, then a two-note completion.",
+      "use": "An attachment uploading and finishing."
+    },
+    {
+      "id": "chat-delivery-failure",
+      "name": "Delivery pause",
+      "category": "Sequences",
+      "description": "Two muted contacts and a gentle unresolved fall.",
+      "use": "A message failing to send."
+    },
+    {
+      "id": "chat-retry-delivery",
+      "name": "Delivery return",
+      "category": "Sequences",
+      "description": "A returning breath with a small forward step.",
+      "use": "Retrying delivery."
+    }
+  ]
+}

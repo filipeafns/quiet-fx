@@ -11,10 +11,23 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
+          "key": "Link",
+          "value": "<https://quiefx.dev/llms.txt>; rel=\"describedby\"; type=\"text/plain\""
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "quiet-fx.vercel.app"
+        }
+      ],
+      "destination": "https://quiefx.dev/:path*",
+      "permanent": true
     }
   ]
 }

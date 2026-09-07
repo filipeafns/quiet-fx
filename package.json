@@ -13,9 +13,11 @@
     "test:audio": "node scripts/test-audio.mjs",
     "test:sequences": "node scripts/test-sequences.mjs",
     "build:package": "node scripts/build-runtime.mjs",
-    "build:static": "npm run build:package && npm run build:studio",
+    "build:static": "npm run build:package && npm run build:discovery && npm run build:studio",
     "test": "npm run test:audio && npm run test:sequences",
-    "build:studio": "vinext build"
+    "build:studio": "vinext build",
+    "build:discovery": "node scripts/build-discovery.mjs",
+    "test:discovery": "node scripts/test-discovery.mjs"
   },
   "devDependencies": {
     "@base-ui/react": "1.7.0",
@@ -79,7 +81,7 @@
     "type": "git",
     "url": "git+https://github.com/filipeafns/quiet-fx.git"
   },
-  "homepage": "https://quiet-fx.vercel.app",
+  "homepage": "https://quiefx.dev",
   "bugs": {
     "url": "https://github.com/filipeafns/quiet-fx/issues"
   }

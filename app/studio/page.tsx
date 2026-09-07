@@ -42,6 +42,7 @@ import {
 import { soundStyle } from '@/lib/audio/color';
 import type { CSSProperties } from 'react';
 import { mp3Bytes } from '@/lib/audio/export';
+import { captureAnalytics } from '@/lib/analytics';
 import { zipSync, strToU8 } from 'fflate';
 const CACHE = new Map<string, Rendered>();
 function renderCached(p: Patch) {
@@ -53,7 +54,12 @@ function renderCached(p: Patch) {
   CACHE.set(key, result);
   return result;
 }
-function download(data: Uint8Array | string, name: string, type: string) {
+function download(
+  data: Uint8Array | string,
+  name: string,
+  type: string,
+  analytics: Record<string, string | number | boolean>,
+) {
   const url = URL.createObjectURL(
     new Blob([typeof data === 'string' ? data : new Uint8Array(data)], {
       type,
@@ -63,6 +69,7 @@ function download(data: Uint8Array | string, name: string, type: string) {
   a.href = url;
   a.download = name;
   a.click();
+  captureAnalytics('qfx_download_started', analytics);
   setTimeout(() => URL.revokeObjectURL(url), 20000);
 }
 export default function Home() {
@@ -337,6 +344,15 @@ export default function Home() {
         format === 'MP3' ? await mp3Bytes(rendered) : wavBytes(rendered),
         `quiet-${selected}-${settings.variant.toLowerCase()}.${format.toLowerCase()}`,
         format === 'MP3' ? 'audio/mpeg' : 'audio/wav',
+        {
+          kind: 'sound',
+          format: format.toLowerCase(),
+          sound_id: selected,
+          key: settings.key,
+          mode: settings.mode,
+          voice: settings.voice,
+          variant: settings.variant,
+        },
       );
       toast(`${cue.name} exported`);
     } catch {
@@ -412,6 +428,15 @@ export default function Home() {
         zipSync(files, { level: 6 }),
         variants ? `quiet-${selected}-variations.zip` : 'quiet-palette.zip',
         'application/zip',
+        {
+          kind: variants ? 'variations' : 'library',
+          format: format.toLowerCase(),
+          sound_count: patches.length,
+          key: palette.key,
+          mode: palette.mode,
+          voice: palette.voice,
+          ...(variants ? { sound_id: selected } : {}),
+        },
       );
       toast(`${patches.length} sounds and a reusable package exported`);
     } catch (e) {
@@ -506,7 +531,7 @@ export default function Home() {
   return (
     <Tabs
       value={view}
-      onValueChange={(v) => {
+      onValueChange={(v, details) => {
         stop();
         setView(String(v));
         window.history.replaceState(
@@ -514,6 +539,9 @@ export default function Home() {
           '',
           `${window.location.pathname}${window.location.search}${v === 'sandbox' ? '#sandbox' : ''}`,
         );
+        if (details.reason === 'none' && v !== view) {
+          captureAnalytics('qfx_studio_view_changed', { view: String(v) });
+        }
       }}
       className={`quiet-app${view === 'sandbox' ? ' sandbox-open' : ''}`}
     >

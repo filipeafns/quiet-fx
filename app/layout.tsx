@@ -6,6 +6,7 @@ import {
 } from '@/lib/site';
 import './globals.css';
 import './install-kit.css';
+import { Analytics } from '@/components/analytics';
 export const metadata = pageMetadata(SITE_TITLE, SITE_DESCRIPTION);
 export default function RootLayout({
   children,
@@ -35,6 +36,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );

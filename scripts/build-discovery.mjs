@@ -107,7 +107,7 @@ Key and scale changes affect tonal layers. Pure friction and noise are unpitched
 
 ## Motion and export
 
-The studio includes eight conversation actions (new, receive, send, cards, voice, upload, failure and retry), a 17.6-second full flow, and six tactile motion studies. Speed, audio offset and replacement cues can be adjusted in the sandbox.
+The studio includes a full-width motion playground with nine draggable components: a simulated conversation, card flip, deck riffle, page turn, panel reveal, book close, switch, button and video player. The conversation supports eight actions (new, receive, send, cards, voice, upload, failure and retry) and a 17.6-second full flow. Components use dedicated procedural cues controlled by shared key, scale, voice and six sound variants. Free placement, a grid view, reset and keyboard removal are available. Messages and video playback are local simulations.
 
 \`\`\`js
 import { buildConversation, conversationPose, DEFAULTS } from 'quiet-fx';

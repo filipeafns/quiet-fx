@@ -8,7 +8,7 @@ An open-source library of gentle sounds for interfaces and motion. Explore the s
 
 - **72 original cues**, with six variations each: Light, Normal, Deep, Short, Long and Airy.
 - **12 keys, three scales and four voices**, plus five envelope shapes and editable duration, softness and texture.
-- **Motion with sound:** eight conversation sequences and six tactile studies, with adjustable speed, offset and cue replacement.
+- **Motion with sound:** a full-width playground with nine draggable components, including a simulated conversation, tactile card and book studies, a switch, button and video player. Arrange them freely or in a grid, then explore shared keys, scales, voices and six sound variants.
 - **WAV and MP3 export** from the studio, including downloadable variation packs.
 - **No runtime dependencies in the engine.** Sounds are synthesized locally; no recordings or network calls are needed for playback.
 
@@ -84,7 +84,7 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed by the server. `/` is the homepage; `/studio` is the library and motion sandbox. Hover to audition, click to edit, and press Escape to stop. On the sound field, touch users can tap and keyboard users can explore with arrow keys and Enter. Reduced-motion preferences simplify visual animation.
+Open the local address printed by the server. `/` is the homepage; `/studio` is the library and motion sandbox. Hover to audition, click to edit, and press Escape to stop. On the sound field, touch users can tap and keyboard users can explore with arrow keys and Enter. In Motion sandbox, drag or click a shelf component to add it. Drag its name to move it, or focus the name and use arrow keys (Shift for larger steps). Select a piece and press Delete, or use its remove button. Grid view preserves the free-canvas positions; Reset restores the starting arrangement. Phone messages and video playback are simulations. Reduced-motion preferences simplify visual animation.
 
 ```sh
 npm run typecheck

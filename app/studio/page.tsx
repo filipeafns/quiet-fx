@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Segments, Range } from '@/components/studio-controls';
 import { Wave, Spectrum } from '@/components/signal';
 import { MotionSandbox } from '@/components/motion-sandbox';
+import { StudioSetup } from '@/components/install-kit';
 import { OrbitLogo } from '@/components/orbit-logo';
 import { SoundField } from '@/components/sound-field';
 import {
@@ -102,6 +103,17 @@ export default function Home() {
   const sandboxSettings = useMemo<Settings>(
     () => ({ ...DEFAULTS, ...palette, variant: sandboxVariant }),
     [palette, sandboxVariant],
+  );
+  const libraryEntries = useMemo(
+    () =>
+      CUES.map((c) => ({
+        cueId: c.id,
+        settings:
+          view === 'sandbox'
+            ? { ...DEFAULTS, ...palette, variant: sandboxVariant }
+            : { ...DEFAULTS, ...palette, ...edits[c.id] },
+      })),
+    [view, palette, sandboxVariant, edits],
   );
   const patch = useMemo(() => makePatch(cue, settings), [cue, settings]);
   const rendered = useMemo(() => renderCached(patch), [patch]);
@@ -415,7 +427,12 @@ export default function Home() {
         return;
       }
       const target = e.target as HTMLElement;
-      if (target.closest('input,button,[role=slider],[role=combobox]')) return;
+      if (
+        target.closest(
+          'input,textarea,button,a,pre,[contenteditable=true],[role=slider],[role=combobox]',
+        )
+      )
+        return;
       if (e.key === '/') {
         e.preventDefault();
         document
@@ -831,6 +848,11 @@ export default function Home() {
           />
         </TabsContent>
       </div>
+      <StudioSetup
+        cueId={selected}
+        settings={view === 'sandbox' ? sandboxSettings : settings}
+        libraryEntries={libraryEntries}
+      />
       {blocked && (
         <output className="unlock-hint">
           Click anywhere once to start hover previews.

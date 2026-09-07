@@ -127,7 +127,7 @@ export function OrbitLogo({
       }
       if (!media.matches && previous) {
         phase.current =
-          (phase.current + Math.min(now - previous, 64) / 14400) % 1;
+          (phase.current + Math.min(now - previous, 64) / 12000) % 1;
       }
       previous = now;
       const bounds = pointer ? svg!.getBoundingClientRect() : null;

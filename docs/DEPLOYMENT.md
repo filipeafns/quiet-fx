@@ -8,18 +8,18 @@ Use `quietfx.dev` for the production environment of the `quiet-fx` Vercel projec
 
 DNS is managed at GoDaddy. Use Vercel's current recommended records for each hostname, preserve unrelated mail and verification records, and verify DNS plus trusted public HTTPS for the apex and `www` before promoting the migration. Confirm `/` and `/studio` return 200 on the canonical hostname, and check each alias redirects without a loop.
 
-### Previous-domain record
+### Verified DNS, September 7, 2026
 
-Verified September 6, 2026, before the domain correction: `quiefx.dev` was attached to the production environment of the `quiet-fx` Vercel project. `www.quiefx.dev` permanently redirected to the old apex with status 308, with Vercel-managed HTTPS for both hostnames.
+`quietfx.dev` and `www.quietfx.dev` are attached to the production environment of the `quiet-fx` Vercel project. The apex serves the site, and `www` redirects permanently to the apex with status 308. Vercel manages HTTPS certificates for both hostnames.
 
-That previous domain used GoDaddy nameservers `ns35.domaincontrol.com` and `ns36.domaincontrol.com`. These records already matched Vercel's project configuration, so connecting that domain required no DNS edits:
+GoDaddy retains the existing nameservers, `ns35.domaincontrol.com` and `ns36.domaincontrol.com`. The parking records were replaced with Vercel's recommended values:
 
-| Type | Name | Value |
-| --- | --- | --- |
-| A | `@` | `216.198.79.1` |
-| CNAME | `www` | `3da4a081662cf48e.vercel-dns-017.com` |
+| Type | Name | Value | TTL |
+| --- | --- | --- | --- |
+| A | `@` | `216.198.79.1` | 600 seconds |
+| CNAME | `www` | `3da4a081662cf48e.vercel-dns-017.com` | 1 hour |
 
-Both previous names passed `vercel domains verify` for this project at that time. Trusted public HTTPS returned 200 for `/` and `/studio`, and 308 from `www` to the old apex. These values are a dated historical record, not the DNS specification for `quietfx.dev`.
+Both authoritative nameservers and public resolvers at Cloudflare and Google returned the new records. Trusted public HTTPS returned 200 from the apex and 308 from `www`, preserving paths and query strings. Recheck Vercel's current recommendations before future DNS changes. Other DNS records were preserved.
 
 ## Vercel
 

@@ -1,0 +1,349 @@
+.playground-phone {
+  --phone-color: #aab5bf;
+  --phone-level: 0;
+  width: 264px;
+  height: 488px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e4e4e7;
+  border-radius: 30px;
+  box-shadow:
+    0 2px 3px #18181b03,
+    0 14px 32px -18px #18181b22;
+  padding: 14px 12px 9px;
+  color: #303034;
+  text-align: left;
+  cursor: default;
+}
+.playground-phone button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.playground-phone button:focus-visible,
+.playground-phone input:focus-visible {
+  outline: 2px solid #8a8a90;
+  outline-offset: 3px;
+}
+.pg-phone-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 37px;
+  padding: 0 4px 10px;
+}
+.pg-phone-top strong {
+  font-size: 11px;
+  font-weight: 560;
+  flex: 1;
+}
+.pg-phone-top button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: #8b8b93;
+}
+.pg-phone-top button:hover {
+  color: #303034;
+  background: #f3f3f5;
+}
+.pg-phone-avatar {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #f1f1f3;
+  color: #73737d;
+  transition:
+    color 160ms,
+    background 160ms;
+}
+.playground-phone[data-sounding] .pg-phone-avatar {
+  color: var(--phone-color);
+  background: color-mix(in srgb, var(--phone-color) 13%, #fff);
+}
+.pg-phone-thread {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: 15px 4px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.pg-phone-thread::-webkit-scrollbar {
+  display: none;
+}
+.pg-phone-empty {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  color: #bcbcc2;
+  font-size: 11px;
+}
+.pg-phone-empty svg {
+  color: #d6d6db;
+}
+.pg-phone-message {
+  --message-progress: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 94%;
+  flex-shrink: 0;
+}
+.pg-phone-message.pg-phone-state-pending {
+  --message-progress: 0;
+}
+.pg-phone-message.pg-phone-outgoing {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.pg-phone-message.pg-phone-incoming {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+.pg-phone-bubble,
+.pg-phone-voice,
+.pg-phone-attachment,
+.pg-phone-cards {
+  opacity: calc(0.25 + var(--message-progress) * 0.75);
+  transform: translateY(calc((1 - var(--message-progress)) * 13px))
+    scale(calc(0.97 + var(--message-progress) * 0.03));
+  transform-origin: bottom right;
+}
+.pg-phone-bubble {
+  padding: 10px 12px;
+  border-radius: 15px 15px 5px 15px;
+  background: #efeff2;
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.pg-phone-incoming .pg-phone-bubble {
+  background: #f7f7f8;
+  border-radius: 15px 15px 15px 5px;
+}
+.pg-phone-delivery {
+  font-size: 8px;
+  color: #a1a1a8;
+  padding-right: 3px;
+}
+.pg-phone-retry {
+  font-size: 8px;
+  color: #83838c;
+  gap: 4px;
+  padding: 2px;
+}
+.pg-phone-retry:hover {
+  color: #303034;
+}
+.pg-phone-voice {
+  height: 43px;
+  padding: 0 10px;
+  border-radius: 17px 17px 5px 17px;
+  gap: 9px;
+  background: #efeff2;
+  color: #777780;
+}
+.pg-phone-voice > span:last-child {
+  font-size: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.pg-phone-wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 26px;
+}
+.pg-phone-wave i {
+  display: block;
+  width: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+.playground-phone[data-sounding] .pg-phone-wave {
+  color: var(--phone-color);
+}
+.pg-phone-attachment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f4f6;
+  padding: 12px;
+  border-radius: 14px 14px 5px 14px;
+}
+.pg-phone-attachment > svg {
+  color: #8d8d96;
+}
+.pg-phone-attachment > span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pg-phone-attachment strong {
+  font-size: 10px;
+  font-weight: 500;
+}
+.pg-phone-attachment small {
+  font-size: 8px;
+  color: #96969e;
+}
+.pg-phone-message.pg-phone-kind-cards {
+  max-width: 100%;
+  width: 100%;
+}
+.pg-phone-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  width: 100%;
+}
+.playground-phone .pg-phone-cards button {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+  gap: 9px;
+  background: #f5f5f7;
+  border-radius: 12px;
+  color: #9b9ba4;
+}
+.pg-phone-cards button > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 25px;
+}
+.pg-phone-cards button i {
+  display: block;
+  width: 3px;
+  border-radius: 3px;
+  background: currentColor;
+}
+.pg-phone-cards button strong {
+  font-size: 9px;
+  font-weight: 500;
+  color: #73737d;
+}
+.pg-phone-cards button:hover {
+  color: var(--sound-color);
+}
+.pg-phone-typing {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 25px;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+.pg-phone-typing i {
+  height: 3px;
+  width: 3px;
+  border-radius: 50%;
+  background: #c1c1c7;
+  transform: translateY(calc(var(--phone-level) * -3px));
+}
+.pg-phone-typing i:nth-child(2) {
+  transform: translateY(calc(var(--phone-level) * -5px));
+}
+.pg-phone-composer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 5px 5px 12px;
+  margin: 0 2px;
+  min-height: 36px;
+  border: 1px solid #e9e9ec;
+  border-radius: 21px;
+}
+.pg-phone-composer input {
+  width: 100%;
+  min-width: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+}
+.pg-phone-composer input::placeholder {
+  color: #a8a8b0;
+}
+.playground-phone .pg-phone-send {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #fff;
+  background: #343438;
+  transition:
+    background 150ms,
+    transform 150ms;
+}
+.playground-phone .pg-phone-send:hover:not(:disabled) {
+  background: #111;
+}
+.playground-phone .pg-phone-send:active:not(:disabled) {
+  transform: scale(0.9);
+}
+.playground-phone .pg-phone-send:disabled {
+  color: #a8a8af;
+  background: #f1f1f3;
+  cursor: default;
+}
+.pg-phone-tools {
+  display: flex;
+  align-items: center;
+  padding: 8px 3px 4px;
+  gap: 1px;
+}
+.pg-phone-tools > button {
+  width: 29px;
+  height: 27px;
+  color: #94949d;
+  border-radius: 7px;
+}
+.pg-phone-tools > button:hover {
+  color: #414147;
+  background: #f5f5f7;
+}
+.playground-phone .pg-phone-sequence {
+  width: auto;
+  height: 27px;
+  margin-left: auto;
+  padding: 0 7px;
+  gap: 5px;
+  font-size: 9px;
+  color: #73737c;
+}
+.pg-phone-home {
+  height: 3px;
+  width: 67px;
+  margin: 8px auto 0;
+  background: #dedee3;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pg-phone-bubble,
+  .pg-phone-voice,
+  .pg-phone-attachment,
+  .pg-phone-cards {
+    transform: none;
+  }
+  .pg-phone-typing i {
+    transform: none !important;
+  }
+  .playground-phone * {
+    transition-duration: 0s !important;
+  }
+}

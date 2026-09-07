@@ -66,6 +66,7 @@ function download(data: Uint8Array | string, name: string, type: string) {
 }
 export default function Home() {
   const [view, setView] = useState('library'),
+    [sandboxVariant, setSandboxVariant] = useState('Normal'),
     [selected, setSelected] = useState('sparkle'),
     [category, setCategory] = useState('All'),
     [query, setQuery] = useState(''),
@@ -97,6 +98,10 @@ export default function Home() {
   const settings = useMemo<Settings>(
     () => ({ ...DEFAULTS, ...palette, ...edits[selected] }),
     [palette, edits, selected],
+  );
+  const sandboxSettings = useMemo<Settings>(
+    () => ({ ...DEFAULTS, ...palette, variant: sandboxVariant }),
+    [palette, sandboxVariant],
   );
   const patch = useMemo(() => makePatch(cue, settings), [cue, settings]);
   const rendered = useMemo(() => renderCached(patch), [patch]);
@@ -200,6 +205,7 @@ export default function Home() {
   // Hydrate browser-only editing preferences after SSR.
   /* oxlint-disable react/react-compiler -- Browser preferences have no server snapshot. */
   useEffect(() => {
+    if (window.location.hash === '#sandbox') setView('sandbox');
     try {
       const p = JSON.parse(localStorage.getItem('quiet-v2') || '{}');
       if (
@@ -486,8 +492,13 @@ export default function Home() {
       onValueChange={(v) => {
         stop();
         setView(String(v));
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}${v === 'sandbox' ? '#sandbox' : ''}`,
+        );
       }}
-      className="quiet-app"
+      className={`quiet-app${view === 'sandbox' ? ' sandbox-open' : ''}`}
     >
       <header className="app-header">
         <a className="brand" href="/" aria-label="Quiet">
@@ -509,7 +520,9 @@ export default function Home() {
           <span>Export library</span>
         </button>
       </header>
-      <SoundField player={engine} onAudition={auditionField} onStop={stop} />
+      {view === 'library' && (
+        <SoundField player={engine} onAudition={auditionField} onStop={stop} />
+      )}
       <div className="app-body">
         <div className="palette-bar">
           <div className="palette-group key-group">
@@ -798,15 +811,9 @@ export default function Home() {
         </TabsContent>
         <TabsContent value="sandbox">
           <MotionSandbox
-            settings={settings}
+            settings={sandboxSettings}
             player={engine}
-            selectedId={selected}
-            onSelectSound={(id) => {
-              stop();
-              setSelected(id);
-              setView('library');
-            }}
-            onVariant={(variant) => edit('variant', variant)}
+            onVariant={setSandboxVariant}
             onEnable={async () => {
               unlock();
               if (engine.context?.state === 'running') return true;

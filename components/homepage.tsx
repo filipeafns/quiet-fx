@@ -1,15 +1,9 @@
 'use client';
 /* oxlint-disable next/no-html-link-for-pages -- Static vinext exports use document navigation. */
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  AudioLines,
-  ArrowUpRight,
-  ArrowRight,
-  Check,
-  Copy,
-  CodeXml,
-} from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Check, Copy, CodeXml } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { OrbitLogo } from '@/components/orbit-logo';
 import { SoundField } from '@/components/sound-field';
 import { CUES, DEFAULTS, makePatch } from '@/lib/audio/catalog';
 import { SoundPlayer, renderPatch, type Rendered } from '@/lib/audio/engine';
@@ -123,10 +117,8 @@ export function Homepage() {
     <div className="landing">
       <header className="landing-nav">
         <a className="brand" href="/" aria-label="Quiet FX home">
-          <AudioLines size={27} />
-          <span>
-            quiet<span className="brand-dot">.</span>
-          </span>
+          <OrbitLogo player={player} />
+          <span>quiet</span>
         </a>
         <nav aria-label="Main navigation">
           <a href={REPO}>
@@ -141,28 +133,8 @@ export function Homepage() {
       <main>
         <section className="landing-intro">
           <div className="landing-wordmark" aria-label="Quiet FX">
-            <svg
-              className="living-mark"
-              viewBox="0 0 74 66"
-              fill="none"
-              aria-hidden="true"
-            >
-              {[18, 42, 60, 34, 14].map((h, i) => (
-                <rect
-                  key={h}
-                  x={i * 15}
-                  y={(66 - h) / 2}
-                  width="5"
-                  height={h}
-                  rx="2.5"
-                  style={{ animationDelay: `${i * -0.37}s` }}
-                />
-              ))}
-            </svg>
-            <span>
-              quiet<span className="wordmark-period">.</span>
-            </span>
-            <span className="wordmark-fx">FX</span>
+            <OrbitLogo player={player} className="hero-orbit" interactive />
+            <span>quiet</span>
           </div>
           <div className="landing-intro-copy">
             <h1>Sound, with a lighter touch.</h1>
@@ -194,9 +166,25 @@ export function Homepage() {
               72 original sounds, each with six variations. Change the key,
               soften the texture, stretch the moment. Then hear it with motion.
             </p>
-            <a className="landing-text-link" href="/studio">
-              Explore the library <ArrowRight size={16} />
-            </a>
+            <div className="landing-actions">
+              <a className="landing-studio-link" href="/studio">
+                Open studio <ArrowRight size={17} />
+              </a>
+              <button
+                className="landing-tap"
+                onClick={() => {
+                  void player
+                    .enable()
+                    .then((ready) => {
+                      if (ready) audition('tap', true, true);
+                    })
+                    .catch(() => {});
+                }}
+                aria-label="Tap to hear a Quiet sound"
+              >
+                Tap
+              </button>
+            </div>
             <div className="landing-facts">
               <span>432 variations</span>
               <span>WAV + MP3</span>

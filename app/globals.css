@@ -92,12 +92,11 @@ p {
   align-items: center;
   gap: 10px;
   font-size: 30px;
-  font-weight: 650;
-  letter-spacing: -1.7px;
+  font-family: Jost, Futura, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: #000;
   width: fit-content;
-}
-.brand-dot {
-  color: #777777;
 }
 .brand > svg {
   stroke-width: 1.6;
@@ -1262,9 +1261,6 @@ p {
   --sound-wash: #f5f5f5;
   --sound-hover: #f9f9f9;
 }
-.brand-dot {
-  color: #9b9b9b;
-}
 .key-segments .segment[data-pressed],
 .key-segments .segment[aria-pressed='true'] {
   color: #6f6f6f;
@@ -2185,9 +2181,6 @@ p {
   accent-color: var(--ui-accent);
   --color-ring: #9b9b9b;
 }
-.brand-dot {
-  color: var(--ui-accent);
-}
 .segments .segment {
   color: #777;
 }
@@ -2517,11 +2510,56 @@ a:focus-visible {
 .landing-nav nav a:hover {
   color: #333;
 }
+.landing-studio-link,
 .landing-nav .landing-studio-link {
-  background: #f3f3f3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  background: #000;
+  border-radius: 11px;
+  padding: 13px 21px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background 180ms,
+    transform 180ms;
+}
+.landing-studio-link:hover,
+.landing-nav .landing-studio-link:hover {
+  background: #202020;
+  color: #fff;
+}
+.landing-studio-link:active {
+  transform: scale(0.97);
+}
+.landing-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 25px;
+}
+.landing-tap {
+  border: 0;
   border-radius: 9px;
-  padding: 11px 15px;
-  color: #555;
+  padding: 0 17px;
+  min-height: 40px;
+  background: #f5f5f5;
+  color: #626262;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 160ms,
+    background 160ms;
+}
+.landing-tap:hover {
+  background: #eee;
+}
+.landing-tap:active {
+  transform: scale(0.92);
 }
 .landing-intro {
   max-width: 1320px;
@@ -2536,36 +2574,41 @@ a:focus-visible {
   display: flex;
   align-items: center;
   position: relative;
-  gap: 23px;
+  gap: 25px;
+  flex-shrink: 0;
+  color: #000;
 }
 .landing-wordmark > span:first-of-type {
   font-size: clamp(92px, 10.2vw, 148px);
   line-height: 1;
-  font-weight: 640;
-  letter-spacing: -0.077em;
+  font-family: Jost, Futura, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.045em;
 }
-.wordmark-period {
-  color: #9b9b9b;
-}
-.living-mark {
-  width: 66px;
-  height: 66px;
+.orbit-logo {
+  display: block;
+  flex-shrink: 0;
+  width: 36px;
+  height: auto;
+  aspect-ratio: 480 / 350;
+  color: #000;
   overflow: visible;
 }
-.living-mark rect {
-  fill: #555;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: quiet-breathe 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+.orbit-logo ellipse {
+  fill: currentColor;
 }
-.wordmark-fx {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: #a0a0a0;
-  position: absolute;
-  right: -30px;
-  top: 13px;
+.orbit-logo[role='button'] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 50%;
+  touch-action: manipulation;
+}
+.orbit-logo:focus-visible {
+  outline: 2px solid #999;
+  outline-offset: 9px;
+}
+.hero-orbit {
+  width: clamp(110px, 13vw, 185px);
 }
 .landing-intro-copy {
   padding-top: 14px;
@@ -2725,24 +2768,11 @@ a:focus-visible {
 .landing-footer a:hover {
   color: #555;
 }
-@keyframes quiet-breathe {
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-  48% {
-    transform: scaleY(0.38);
-  }
-}
 @media (max-width: 900px) {
   .landing-intro {
     gap: 50px;
     padding-top: 66px;
     padding-bottom: 62px;
-  }
-  .living-mark {
-    width: 48px;
-    height: 56px;
   }
   .landing-wordmark {
     gap: 15px;
@@ -2774,6 +2804,12 @@ a:focus-visible {
   .landing-nav nav a:first-child span {
     display: none;
   }
+  .landing-nav .landing-studio-link {
+    font-size: 12px;
+    padding: 12px 15px;
+    min-height: 44px;
+    gap: 8px;
+  }
   .landing-intro {
     padding: 52px 24px 42px;
     display: block;
@@ -2783,7 +2819,10 @@ a:focus-visible {
     margin: 0 auto;
   }
   .landing-wordmark > span:first-of-type {
-    font-size: clamp(78px, 25vw, 114px);
+    font-size: clamp(76px, 23vw, 114px);
+  }
+  .hero-orbit {
+    width: clamp(86px, 26vw, 132px);
   }
   .landing-intro-copy {
     text-align: center;
@@ -2833,10 +2872,19 @@ a:focus-visible {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .living-mark rect {
-    animation: none;
+  .landing-studio-link,
+  .landing-tap {
+    transition: none;
   }
   .landing-text-link svg {
     transition: none;
   }
+}
+
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/jost-latin-variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
 }

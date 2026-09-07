@@ -138,7 +138,7 @@ try {
         'Prompt contains the entire live setup',
       );
       assert.ok(prompt.includes(INSTALL_COMMAND));
-      assert.ok(prompt.includes('https://quiefx.dev/docs/index.md'));
+      assert.ok(prompt.includes('https://quietfx.dev/docs/index.md'));
     }
     const count = contexts.length;
     const setupModule = await loadSetup(setup);
@@ -278,7 +278,7 @@ assert.equal(
 const library = JSON.parse(output);
 assert.equal(library.schemaVersion, 1);
 assert.equal(library.version, '0.4.1');
-assert.equal(library.source, 'https://quiefx.dev');
+assert.equal(library.source, 'https://quietfx.dev');
 assert.equal(library.selectedCueId, 'sparkle');
 assert.equal(library.install, INSTALL_COMMAND);
 assert.equal(library.patches.length, 72, 'The complete library is exported');

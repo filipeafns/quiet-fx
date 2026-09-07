@@ -12,12 +12,30 @@
       "headers": [
         {
           "key": "Link",
-          "value": "<https://quiefx.dev/llms.txt>; rel=\"describedby\"; type=\"text/plain\""
+          "value": "<https://quietfx.dev/llms.txt>; rel=\"describedby\"; type=\"text/plain\""
         }
       ]
     }
   ],
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.quietfx.dev" }],
+      "destination": "https://quietfx.dev/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "quiefx.dev" }],
+      "destination": "https://quietfx.dev/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.quiefx.dev" }],
+      "destination": "https://quietfx.dev/:path*",
+      "permanent": true
+    },
     {
       "source": "/:path*",
       "has": [
@@ -26,7 +44,7 @@
           "value": "quiet-fx.vercel.app"
         }
       ],
-      "destination": "https://quiefx.dev/:path*",
+      "destination": "https://quietfx.dev/:path*",
       "permanent": true
     }
   ]

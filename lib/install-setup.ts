@@ -1,7 +1,7 @@
 import { CUES, makePatch, type Settings } from './audio/catalog';
 
 const LIBRARY_VERSION = '0.4.1';
-const SOURCE = 'https://quiefx.dev';
+const SOURCE = 'https://quietfx.dev';
 export const INSTALL_COMMAND = 'npm install github:filipeafns/quiet-fx#v0.4.1';
 
 export type LibraryEntry = { cueId: string; settings: Settings };

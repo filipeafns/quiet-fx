@@ -63,7 +63,7 @@ writeFileSync(
         url: 'git+https://github.com/filipeafns/quiet-fx.git',
         directory: 'packages/quiet-sounds',
       },
-      homepage: 'https://quiefx.dev',
+      homepage: 'https://quietfx.dev',
       bugs: { url: 'https://github.com/filipeafns/quiet-fx/issues' },
     },
     null,

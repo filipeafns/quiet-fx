@@ -1,7 +1,7 @@
 # Quiet FX sound catalog
 
 72 original sounds, each available in Light, Normal, Deep, Short, Long, Airy variations.
-Audition and export: https://quiefx.dev/studio
+Audition and export: https://quietfx.dev/studio
 
 ## Sparkle
 

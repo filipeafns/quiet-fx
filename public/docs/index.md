@@ -1,7 +1,7 @@
 # Quiet FX: UI sound effects and JavaScript API
 
-Canonical website: https://quiefx.dev/
-Studio: https://quiefx.dev/studio
+Canonical website: https://quietfx.dev/
+Studio: https://quietfx.dev/studio
 Source: https://github.com/filipeafns/quiet-fx
 Library version: 0.4.1
 License: MIT for original engine, recipes and studio; separate third-party notices apply to the website's MP3 encoder.
@@ -78,12 +78,12 @@ const pose = conversationPose(Math.min(sequence.end, referenceTime));
 
 Play `sequence.rendered` with `SoundPlayer`. The value returned by `player.play()` is the scheduled AudioContext start time, or null when playback is unavailable. The default monitor level is 35%; `player.setVolume(0.35)` sets it explicitly. Ordinary `player.play(rendered)` interrupts previous voices. `player.play(rendered, 0, false, 0.55)` adds a quieter overlapping voice; the host should limit polyphony.
 
-The studio exports WAV and MP3, including variation packs. The installed engine provides WAV encoding. MP3 encoding is a separate LGPL-3.0 website dependency, `@breezystack/lamejs@1.2.7`, excluded from the engine package. MP3 has encoder delay and padding; prefer WAV for precise motion synchronization. Notices and corresponding encoder source are available at https://quiefx.dev/licenses/MP3-NOTICE.txt.
+The studio exports WAV and MP3, including variation packs. The installed engine provides WAV encoding. MP3 encoding is a separate LGPL-3.0 website dependency, `@breezystack/lamejs@1.2.7`, excluded from the engine package. MP3 has encoder delay and padding; prefer WAV for precise motion synchronization. Notices and corresponding encoder source are available at https://quietfx.dev/licenses/MP3-NOTICE.txt.
 
 ## Further reference
 
-- Complete cue inventory: https://quiefx.dev/docs/sounds.md
-- Structured inventory and defaults: https://quiefx.dev/sounds.json
+- Complete cue inventory: https://quietfx.dev/docs/sounds.md
+- Structured inventory and defaults: https://quietfx.dev/sounds.json
 - Contributing: https://github.com/filipeafns/quiet-fx/blob/main/CONTRIBUTING.md
-- License: https://quiefx.dev/licenses/QUIET-MIT.txt
+- License: https://quietfx.dev/licenses/QUIET-MIT.txt
 - Issues: https://github.com/filipeafns/quiet-fx/issues

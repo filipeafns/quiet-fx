@@ -20,7 +20,7 @@ export function pageMetadata(
   };
   return {
     metadataBase: new URL(SITE_URL),
-    title,
+    title: 'Quiet FX',
     description,
     applicationName: 'Quiet FX',
     authors: [{ name: 'Filipe Soares', url: 'https://github.com/filipeafns' }],

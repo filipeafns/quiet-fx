@@ -13,6 +13,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link
+          rel="preload"
+          href="/fonts/jost-latin-variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
           rel="describedby"
           href="/llms.txt"
           type="text/plain"

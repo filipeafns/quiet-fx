@@ -2,7 +2,6 @@
 /* oxlint-disable next/no-html-link-for-pages -- Static vinext exports use document navigation. */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  AudioLines,
   ArrowDownToLine,
   ArrowUpRight,
   Search,
@@ -18,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Segments, Range } from '@/components/studio-controls';
 import { Wave, Spectrum } from '@/components/signal';
 import { MotionSandbox } from '@/components/motion-sandbox';
+import { OrbitLogo } from '@/components/orbit-logo';
 import { SoundField } from '@/components/sound-field';
 import {
   CUES,
@@ -501,11 +501,14 @@ export default function Home() {
       className={`quiet-app${view === 'sandbox' ? ' sandbox-open' : ''}`}
     >
       <header className="app-header">
-        <a className="brand" href="/" aria-label="Quiet">
-          <AudioLines size={27} />
-          <span>
-            quiet<span className="brand-dot">.</span>
-          </span>
+        <a className="brand" href="/" aria-label="Quiet FX home">
+          <OrbitLogo
+            player={engine}
+            musicalKey={palette.key}
+            mode={palette.mode}
+            voice={palette.voice}
+          />
+          <span>quiet</span>
         </a>
         <TabsList className="main-nav" aria-label="Workspace">
           <TabsTrigger value="library">Library</TabsTrigger>

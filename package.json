@@ -14,11 +14,12 @@
     "test:sequences": "node scripts/test-sequences.mjs",
     "build:package": "node scripts/build-runtime.mjs",
     "build:static": "npm run build:package && npm run build:discovery && npm run build:studio",
-    "test": "npm run test:audio && npm run test:sequences && npm run test:playground",
+    "test": "npm run test:audio && npm run test:sequences && npm run test:playground && npm run test:orbit",
     "build:studio": "vinext build",
     "build:discovery": "node scripts/build-discovery.mjs",
     "test:discovery": "node scripts/test-discovery.mjs",
-    "test:playground": "node scripts/test-playground.mjs"
+    "test:playground": "node scripts/test-playground.mjs",
+    "test:orbit": "node scripts/test-orbit-logo.mjs"
   },
   "devDependencies": {
     "@base-ui/react": "1.7.0",

@@ -8,7 +8,7 @@ const attrs = (tag) =>
   Object.fromEntries(
     [...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map((m) => [m[1], m[2]]),
   );
-const titles = [];
+const descriptions = [];
 for (const [file, path] of [
   ['index.html', '/'],
   ['studio.html', '/studio'],
@@ -18,9 +18,7 @@ for (const [file, path] of [
     (m) => m[1],
   );
   assert.equal(titlesOnPage.length, 1, `${file}: exactly one title`);
-  assert.match(titlesOnPage[0], /Quiet FX/);
-  assert.match(titlesOnPage[0], /UI Sound/);
-  titles.push(titlesOnPage[0]);
+  assert.equal(titlesOnPage[0], 'Quiet FX');
   const meta = [...html.matchAll(/<meta\b[^>]*>/g)].map((m) => attrs(m[0]));
   const links = [...html.matchAll(/<link\b[^>]*>/g)].map((m) => attrs(m[0]));
   assert.deepEqual(
@@ -28,7 +26,13 @@ for (const [file, path] of [
     [`https://quiefx.dev${path}`],
   );
   assert.equal(meta.filter((a) => a.name === 'description').length, 1);
-  assert.ok(meta.find((a) => a.name === 'description')?.content.length > 80);
+  const description = meta.find((a) => a.name === 'description')?.content;
+  assert.ok(description.length > 80);
+  descriptions.push(description);
+  assert.match(
+    meta.find((a) => a.property === 'og:title')?.content,
+    /UI Sound/,
+  );
   assert.ok(
     meta.some(
       (a) =>
@@ -82,7 +86,11 @@ for (const [file, path] of [
     ),
   );
 }
-assert.equal(new Set(titles).size, 2, 'Routes need distinct titles');
+assert.equal(
+  new Set(descriptions).size,
+  2,
+  'Routes need distinct descriptions',
+);
 const robots = read('robots.txt');
 assert.doesNotMatch(robots, /Disallow:\s*\//i);
 assert.match(robots, /Sitemap: https:\/\/quiefx.dev\/sitemap.xml/);

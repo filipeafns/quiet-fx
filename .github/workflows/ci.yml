@@ -18,5 +18,4 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build:static
-      - name: Verify both exported routes
-        run: node -e "for (const f of ['dist/client/index.html', 'dist/client/studio.html']) require('node:fs').accessSync(f)"
+      - run: npm run test:discovery

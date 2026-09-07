@@ -1,17 +1,33 @@
-import type { Metadata } from 'next';
+import {
+  pageMetadata,
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  structuredData,
+} from '@/lib/site';
 import './globals.css';
-export const metadata: Metadata = {
-  title: 'Quiet FX — Sound, with a lighter touch',
-  description:
-    'An open-source library of 72 gentle interface sounds. Explore, shape and export 432 variations, or bring the JavaScript sound engine into your app.',
-  robots: { index: false, follow: false },
-};
+export const metadata = pageMetadata(SITE_TITLE, SITE_DESCRIPTION);
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <link
+          rel="describedby"
+          href="/llms.txt"
+          type="text/plain"
+          title="Quiet FX documentation index"
+        />
+      </head>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

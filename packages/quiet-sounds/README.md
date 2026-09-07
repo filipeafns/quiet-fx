@@ -29,7 +29,7 @@ const player = new SoundPlayer();
 button.addEventListener('pointerdown', async () => {
   if (await player.enable()) player.play(audio);
 });
-// wavBytes(audio) returns a Uint8Array for 48 kHz/16-bit mono WAV.
+// wavBytes(audio) returns a Uint8Array for 16-bit mono WAV, 48 kHz by default.
 // player.stop() cancels active sources; player.setVolume(0.35) sets monitor gain.
 ```
 

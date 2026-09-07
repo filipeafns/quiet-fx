@@ -1,6 +1,19 @@
 # Deploy Quiet FX
 
-The public website is [quiet-fx.vercel.app](https://quiet-fx.vercel.app), with the library and motion sandbox at `/studio`.
+The public website is [quiefx.dev](https://quiefx.dev), with the library and motion sandbox at `/studio`. The original `quiet-fx.vercel.app` address remains available.
+
+## Custom domain
+
+Verified September 6, 2026: `quiefx.dev` is attached to the production environment of the `quiet-fx` Vercel project. `www.quiefx.dev` permanently redirects to the apex with status 308. Vercel manages HTTPS certificates for both hostnames.
+
+DNS remains at GoDaddy, using `ns35.domaincontrol.com` and `ns36.domaincontrol.com`. These existing records already matched Vercel's project configuration, so connecting the domain required no DNS edits:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| A | `@` | `216.198.79.1` |
+| CNAME | `www` | `3da4a081662cf48e.vercel-dns-017.com` |
+
+Both names passed `vercel domains verify` for this project. Trusted public HTTPS returned 200 for `/` and `/studio`, and 308 from `www` to the apex. Recheck Vercel's current recommended records before future DNS changes; values above are a dated configuration record. Preserve unrelated mail and verification records.
 
 ## Vercel
 

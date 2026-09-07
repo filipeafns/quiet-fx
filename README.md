@@ -4,7 +4,7 @@
 
 An open-source library of gentle sounds for interfaces and motion. Explore the sound field, tune a cue in the studio, or bring the procedural engine into your own app.
 
-[Try Quiet FX](https://quiet-fx.vercel.app) · [Open the studio](https://quiet-fx.vercel.app/studio) · [Contribute](CONTRIBUTING.md)
+[Try Quiet FX](https://quiefx.dev) · [Open the studio](https://quiefx.dev/studio) · [Contribute](CONTRIBUTING.md)
 
 - **72 original cues**, with six variations each: Light, Normal, Deep, Short, Long and Airy.
 - **12 keys, three scales and four voices**, plus five envelope shapes and editable duration, softness and texture.

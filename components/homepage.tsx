@@ -92,9 +92,8 @@ export function Homepage() {
           <div className="landing-intro-copy">
             <h1>Sound, with a lighter touch.</h1>
             <p>
-              Gentle, open-source UI sound effects
-              <br className="wide-break" /> for interfaces that feel good to
-              use.
+              Gentle, open-source UI sound effects for interfaces that feel good
+              to use.
             </p>
             <nav className="landing-actions" aria-label="Main navigation">
               <a className="landing-github-link" href={REPO}>

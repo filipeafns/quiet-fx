@@ -7,8 +7,8 @@
 .qfx-install-surface {
   overflow: hidden;
   border-radius: 18px;
-  background: #171717;
-  color: #e4e4e4;
+  background: #f3f3f3;
+  color: #626262;
   text-align: left;
 }
 
@@ -18,7 +18,7 @@
   gap: 13px;
   min-height: 66px;
   padding: 14px 18px 14px 24px;
-  border-bottom: 1px solid #ffffff14;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .qfx-install-terminal code,
@@ -71,12 +71,12 @@
   padding: 0;
   border-radius: 8px;
   background: transparent;
-  color: #a3a3a3;
+  color: #777;
 }
 
 .qfx-install-copy:hover {
-  background: #ffffff12;
-  color: #fff;
+  background: #e7e7e7;
+  color: #333;
 }
 
 .qfx-install-code-header {
@@ -86,7 +86,7 @@
   padding: 12px 18px 0 24px;
   font-size: 11px;
   font-weight: 500;
-  color: #9d9d9d;
+  color: #666;
 }
 
 .qfx-install-code {
@@ -96,23 +96,23 @@
   overflow: auto;
   white-space: pre;
   tab-size: 2;
-  scrollbar-color: #555 #171717;
+  scrollbar-color: #bdbdbd #f3f3f3;
 }
 
 .qfx-install-token-comment {
-  color: #939393;
+  color: #666;
 }
 
 .qfx-install-token-keyword {
-  color: #fff;
+  color: #333;
 }
 
 .qfx-install-token-string {
-  color: #bbc9c2;
+  color: #686868;
 }
 
 .qfx-install-token-number {
-  color: #cfcdc6;
+  color: #555;
 }
 
 .qfx-install-actions {

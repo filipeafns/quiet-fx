@@ -2485,16 +2485,19 @@ a:focus-visible {
 
 /* The homepage keeps one brand gesture and a direct path into the studio. */
 .landing {
+  --landing-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  --landing-gap: 70px;
+  --landing-gutter: 42px;
   color: #353535;
 }
 .landing-intro {
   max-width: 1320px;
   margin: auto;
-  padding: 86px 42px 76px;
+  padding: 86px var(--landing-gutter) 76px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: var(--landing-columns);
   align-items: center;
-  gap: 100px;
+  gap: var(--landing-gap);
 }
 .landing-wordmark {
   display: flex;
@@ -2594,6 +2597,13 @@ a:focus-visible {
 .landing-field .sound-field {
   border-top: 1px solid #f6f6f6;
 }
+.landing-field .field-footer {
+  left: max(var(--landing-gutter), calc(50% - 660px + var(--landing-gutter)));
+  right: max(var(--landing-gutter), calc(50% - 660px + var(--landing-gutter)));
+}
+.landing-field .field-unlock-note {
+  left: max(var(--landing-gutter), calc(50% - 660px + var(--landing-gutter)));
+}
 .field-unlock-note {
   position: absolute;
   left: 42px;
@@ -2607,10 +2617,10 @@ a:focus-visible {
 .landing-section {
   max-width: 1320px;
   margin: auto;
-  padding: 78px 42px 84px;
+  padding: 78px var(--landing-gutter) 84px;
   display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
-  gap: 70px;
+  grid-template-columns: var(--landing-columns);
+  gap: var(--landing-gap);
   align-items: start;
 }
 .landing-section h2 {
@@ -2620,10 +2630,9 @@ a:focus-visible {
   letter-spacing: -1.2px;
 }
 .install-heading {
-  padding-top: 12px;
+  padding-top: 0;
 }
 .install-heading > p {
-  max-width: 250px;
   font-size: 15px;
   color: #909090;
   line-height: 1.7;
@@ -2641,12 +2650,14 @@ a:focus-visible {
   color: #111;
 }
 .landing-footer {
+  max-width: 1320px;
+  margin: auto;
   border-top: 1px solid #f1f1f1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 27px 42px 32px;
+  padding: 27px var(--landing-gutter) 32px;
   font-size: 12px;
   color: #999;
 }
@@ -2654,27 +2665,26 @@ a:focus-visible {
   color: #555;
 }
 @media (max-width: 900px) {
+  .landing {
+    --landing-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+    --landing-gap: 35px;
+    --landing-gutter: 32px;
+  }
   .landing-intro {
-    gap: 48px;
-    padding: 66px 32px;
-  }
-  .landing-section {
-    padding-right: 32px;
-    padding-left: 32px;
-    grid-template-columns: 0.6fr 1.4fr;
-    gap: 35px;
-  }
-  .wide-break {
-    display: none;
+    padding-top: 66px;
+    padding-bottom: 66px;
   }
 }
 @media (max-width: 640px) {
+  .landing {
+    --landing-gutter: 24px;
+  }
   .landing-intro {
     padding: 46px 24px 44px;
     display: block;
   }
   .landing-wordmark {
-    margin: 0 auto;
+    margin: 0;
     gap: 7.5px;
   }
   .landing-wordmark > span {
@@ -2684,7 +2694,7 @@ a:focus-visible {
     width: clamp(43px, 13vw, 66px);
   }
   .landing-intro-copy {
-    text-align: center;
+    text-align: left;
     margin-top: 34px;
   }
   .landing-intro-copy h1 {
@@ -2695,7 +2705,7 @@ a:focus-visible {
     margin-top: 13px;
   }
   .landing-actions {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8px;
     margin-top: 23px;
   }
@@ -2707,14 +2717,13 @@ a:focus-visible {
   }
   .landing-section {
     display: block;
-    padding: 44px 20px 50px;
+    padding: 44px var(--landing-gutter) 50px;
   }
   .install-heading {
     padding: 0;
-    margin: 0 4px 30px;
+    margin: 0 0 30px;
   }
   .install-heading > p {
-    max-width: 280px;
     margin-top: 14px;
   }
   .landing-footer {

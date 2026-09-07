@@ -7,6 +7,7 @@ import { OrbitLogo } from '@/components/orbit-logo';
 import { SoundField } from '@/components/sound-field';
 import { CUES, DEFAULTS, makePatch } from '@/lib/audio/catalog';
 import { SoundPlayer, renderPatch, type Rendered } from '@/lib/audio/engine';
+import { captureAnalytics } from '@/lib/analytics';
 
 const REPO = 'https://github.com/filipeafns/quiet-fx';
 export function Homepage() {
@@ -96,7 +97,15 @@ export function Homepage() {
               to use.
             </p>
             <nav className="landing-actions" aria-label="Main navigation">
-              <a className="landing-github-link" href={REPO}>
+              <a
+                className="landing-github-link"
+                href={REPO}
+                onClick={() =>
+                  captureAnalytics('qfx_github_clicked', {
+                    placement: 'homepage',
+                  })
+                }
+              >
                 <Star size={16} /> Star on GitHub
               </a>
               <a className="landing-studio-link" href="/studio">

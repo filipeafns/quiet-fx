@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Popover } from '@base-ui/react/popover';
 import { Check, Code2, Copy, X } from 'lucide-react';
 import { CUES, type Settings } from '@/lib/audio/catalog';
+import { captureAnalytics } from '@/lib/analytics';
 import {
   buildInstallSetup,
   buildLibraryJson,
@@ -135,6 +136,10 @@ function InstallKitContent({
       if (!navigator.clipboard?.writeText)
         throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText(value);
+      captureAnalytics('qfx_setup_copied', {
+        target,
+        placement: compact ? 'studio' : 'homepage',
+      });
       if (!mounted.current || token !== request.current) {
         return;
       }
@@ -241,7 +246,16 @@ export function StudioSetup({
 }: Omit<InstallKitProps, 'compact'>) {
   const cueName = CUES.find((cue) => cue.id === cueId)?.name ?? cueId;
   return (
-    <Popover.Root modal={false}>
+    <Popover.Root
+      modal={false}
+      onOpenChange={(open) => {
+        if (open) {
+          captureAnalytics('qfx_setup_opened', {
+            placement: 'studio',
+          });
+        }
+      }}
+    >
       <div className="qfx-setup-floating">
         <Popover.Trigger className="qfx-setup-trigger">
           <Code2 size={16} aria-hidden="true" />

@@ -6,6 +6,9 @@
   "outputDirectory": "dist/client",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/mcp", "destination": "/api/mcp" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

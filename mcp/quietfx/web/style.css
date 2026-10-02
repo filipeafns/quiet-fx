@@ -1,0 +1,740 @@
+/* A quiet dot field with sound revealed only through exploration. */
+.sound-field {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  flex-shrink: 0;
+  background: #fff;
+  border-bottom: 1px solid #f4f4f4;
+}
+.field-surface {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  display: block;
+  cursor: crosshair;
+  background: radial-gradient(circle, #ededed 1.8px, transparent 2px) 0 0 / 20px
+    20px;
+  touch-action: pan-y;
+}
+.field-surface:hover,
+.field-surface:active {
+  background-color: transparent;
+  translate: none;
+}
+.field-surface:focus-visible {
+  outline: 1px solid #aaa;
+  outline-offset: -8px;
+  box-shadow: none;
+}
+.field-surface canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.field-footer {
+  position: absolute;
+  inset: auto 42px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  pointer-events: none;
+}
+.field-cue {
+  opacity: 0;
+  color: #777;
+  font-size: 12px;
+  padding: 7px 10px;
+  margin-left: -10px;
+  border-radius: 6px;
+  background: #fffffff2;
+  transition: opacity 160ms;
+}
+.field-cue[data-visible='true'] {
+  opacity: 1;
+}
+.field-randomize {
+  pointer-events: auto;
+  font-size: 12px;
+  color: #666;
+  background: #fffffff2;
+  border-radius: 7px;
+  gap: 7px;
+  padding: 0 10px;
+  height: 32px;
+}
+.field-randomize:hover {
+  color: #111;
+  background: #f1f1f1;
+}
+@media (max-width: 640px) {
+  .field-footer {
+    left: 22px;
+    right: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .field-cue {
+    transition: none;
+  }
+}
+
+:root {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  color: #353535;
+  background: #fff;
+  font-synthesis: none;
+  color-scheme: light;
+  --muted: #666;
+  --line: #ececec;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+button:hover {
+  background: #f1f1f1;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #747474;
+  outline-offset: 3px;
+}
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+svg {
+  flex-shrink: 0;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+h2 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+.picker {
+  max-width: 1040px;
+  margin: auto;
+  padding: 0 40px;
+}
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding: 40px 0 32px;
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.wordmark > span {
+  font-size: 48px;
+  letter-spacing: -2.8px;
+  line-height: 1;
+}
+.hero-orbit {
+  width: 62px;
+  height: auto;
+  aspect-ratio: 480/350;
+  overflow: visible;
+  color: #000;
+}
+.orbit-logo ellipse {
+  fill: currentColor;
+}
+.orbit-logo[role='button'] {
+  cursor: pointer;
+  border-radius: 50%;
+  touch-action: manipulation;
+}
+.orbit-logo:focus-visible {
+  outline: 2px solid #777;
+  outline-offset: 6px;
+}
+h1 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+}
+.intro-copy p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.explore {
+  margin: 0 -40px;
+  border-top: 1px solid #f3f3f3;
+}
+.sound-field {
+  height: 240px;
+  border-bottom: 0;
+}
+.field-footer {
+  inset: auto 40px 12px;
+}
+.field-randomize {
+  height: 40px;
+}
+.field-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px 12px;
+  border-bottom: 1px solid var(--line);
+  gap: 6px;
+}
+.field-controls button {
+  color: #666;
+}
+.library {
+  padding-top: 28px;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.monitor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+}
+.monitor label {
+  display: flex;
+}
+.monitor input {
+  accent-color: #555;
+  width: 75px;
+  height: 24px;
+}
+.icon-button {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  padding: 8px;
+}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 4px 6px 4px 14px;
+}
+.search > svg {
+  color: #777;
+}
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 13px;
+  color: inherit;
+  outline-offset: -1px;
+}
+.search button[type='submit'] {
+  background: #eaeaea;
+}
+.search input::placeholder {
+  color: #747474;
+}
+.collections {
+  display: flex;
+  gap: 6px;
+  padding: 16px 0 10px;
+  flex-wrap: wrap;
+}
+.collections button {
+  border-radius: 7px;
+  color: #656565;
+  font-size: 12px;
+}
+.collections button[aria-pressed='true'] {
+  background: #ededed;
+  color: #292929;
+}
+.library-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 0 13px;
+}
+.tone-controls {
+  display: flex;
+  gap: 18px;
+}
+.tone-controls label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: #666;
+}
+.tone-controls select {
+  border: 0;
+  background: #f6f6f6;
+  border-radius: 6px;
+  color: #444;
+  padding: 8px 20px 8px 8px;
+  font-size: 12px;
+  max-width: 116px;
+  min-height: 36px;
+}
+.results-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #666;
+  padding: 0 0 4px;
+}
+.results-label button {
+  font-size: 11px;
+  padding: 4px 10px;
+  min-height: 32px;
+}
+.results-label button[aria-pressed='true'] {
+  background: #ededed;
+  color: #222;
+}
+.sound-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 22px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 406px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+.sound-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-bottom: 1px solid #efefef;
+  padding: 6px 0;
+  position: relative;
+}
+.audition {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  min-width: 0;
+  flex: 1;
+  padding: 12px 9px;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.audition:hover {
+  background: var(--sound-hover);
+}
+.sound-title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #353535;
+}
+.sound-use {
+  font-size: 11px;
+  line-height: 1.4;
+  min-height: 31px;
+  color: #686868;
+}
+.wave-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  height: 30px;
+}
+.wave-line svg.waveform {
+  flex: 1;
+  width: 100%;
+  min-width: 20px;
+  max-width: 144px;
+  height: 28px;
+  stroke: #c6c6c6;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.audition:hover .wave-line svg.waveform,
+.audition:focus-visible .wave-line svg.waveform {
+  stroke: var(--sound-color);
+}
+.duration {
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: #6a6a6a;
+}
+.select-sound {
+  align-self: flex-start;
+  margin-top: 5px;
+  color: #666;
+}
+.select-sound[aria-pressed='true'] {
+  background: #ededed;
+  color: #252525;
+}
+.sound-row[data-selected='true'] .sound-title {
+  font-weight: 600;
+}
+.selection-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0 12px;
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+.selection-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.selection-summary strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.selection-summary span {
+  font-size: 11px;
+  color: #666;
+}
+.selection-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.selection-actions > button {
+  background: #f1f1f1;
+  min-height: 44px;
+}
+.selection-actions .primary {
+  background: #222;
+  color: #fff;
+}
+.selection-actions .primary:hover {
+  background: #444;
+}
+.selection-actions .clear-selection {
+  background: transparent;
+  color: #666;
+  padding: 8px;
+}
+.status-message {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.5;
+  min-height: 30px;
+  padding-bottom: 14px;
+}
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: #8c3030;
+  background: #fff1f1;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.empty {
+  padding: 56px 20px;
+  text-align: center;
+}
+.empty p {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.empty span {
+  font-size: 12px;
+  color: #666;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #0004;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+}
+.copy-dialog {
+  background: #fff;
+  box-shadow: 0 12px 50px #0002;
+  max-width: 620px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 16px;
+}
+.copy-dialog > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.copy-dialog p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #555;
+  margin: 8px 0 16px;
+}
+.copy-dialog textarea {
+  width: 100%;
+  height: 220px;
+  resize: vertical;
+  font:
+    11px/1.5 ui-monospace,
+    monospace;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #444;
+  background: #fafafa;
+}
+.copy-dialog small {
+  display: block;
+  margin-top: 12px;
+  font-size: 11px;
+  color: #666;
+}
+.copy-dialog > button {
+  margin-top: 12px;
+  background: #eee;
+}
+@media (max-width: 760px) {
+  .picker {
+    padding: 0 24px;
+  }
+  .intro {
+    gap: 32px;
+    padding: 30px 0;
+  }
+  .wordmark > span {
+    font-size: 42px;
+  }
+  .hero-orbit {
+    width: 52px;
+  }
+  h1 {
+    font-size: 21px;
+  }
+  .explore {
+    margin: 0 -24px;
+  }
+  .field-controls {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .field-footer {
+    left: 24px;
+    right: 24px;
+  }
+  .sound-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+  .selection-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .selection-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .selection-summary {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+}
+@media (max-width: 460px) {
+  .picker {
+    padding: 0 18px;
+  }
+  .intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+  }
+  .intro-copy p {
+    margin-top: 8px;
+  }
+  .explore {
+    margin: 0 -18px;
+  }
+  .sound-field {
+    height: 200px;
+  }
+  .field-controls {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .field-controls button {
+    font-size: 11px;
+    gap: 5px;
+    padding: 8px;
+    min-height: 44px;
+  }
+  .sound-grid {
+    gap: 0 8px;
+    max-height: 420px;
+  }
+  .audition {
+    padding: 12px 4px;
+    gap: 7px;
+  }
+  .sound-use {
+    min-height: 46px;
+  }
+  .select-sound {
+    min-width: 32px;
+    width: 32px;
+    height: 40px;
+    padding: 4px;
+  }
+  .wave-line {
+    gap: 4px;
+  }
+  .wave-line svg.waveform {
+    max-width: 80px;
+  }
+  .collections {
+    gap: 2px;
+  }
+  .collections button {
+    font-size: 11px;
+    padding: 8px 10px;
+    min-height: 40px;
+  }
+  .library-tools {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .search {
+    padding-left: 10px;
+    gap: 6px;
+  }
+  .search input {
+    font-size: 12px;
+  }
+  .search input::placeholder {
+    font-size: 11px;
+  }
+  .selection-summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .selection-actions {
+    gap: 6px;
+    justify-content: flex-start;
+  }
+  .selection-actions > button {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  .selection-actions .clear-selection {
+    padding: 8px 4px;
+  }
+  .dialog-backdrop {
+    padding: 12px;
+  }
+  .copy-dialog {
+    padding: 18px;
+  }
+  .monitor {
+    gap: 4px;
+  }
+  .monitor input {
+    width: 56px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+.status-message {
+  display: block;
+}
+.copy-dialog {
+  border: 0;
+  margin: 0;
+  position: relative;
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+}

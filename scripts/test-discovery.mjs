@@ -108,6 +108,9 @@ const sitemap = [...read('sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(
 assert.deepEqual(sitemap, [
   'https://quietfx.dev/',
   'https://quietfx.dev/studio',
+  'https://quietfx.dev/support',
+  'https://quietfx.dev/privacy',
+  'https://quietfx.dev/terms',
 ]);
 assert.equal(read('llm.txt'), read('llms.txt'));
 for (const file of ['llms.txt', 'llms-full.txt', 'docs/index.md'])

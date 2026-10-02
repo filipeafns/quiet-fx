@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from '@modelcontextprotocol/ext-apps';
+import { App, applyDocumentTheme } from '@modelcontextprotocol/ext-apps';
 import {
   Play,
   Square,
@@ -40,6 +40,15 @@ const embedded = window.parent !== window;
 const host = embedded
   ? new App({ name: 'Quiet FX', version: '0.1.0' }, {}, { autoResize: true })
   : null;
+const themePreference = window.matchMedia('(prefers-color-scheme: dark)');
+const validTheme = value => value === 'light' || value === 'dark' ? value : undefined;
+let hostTheme = validTheme(window.openai?.theme);
+const syncTheme = () => applyDocumentTheme(hostTheme ?? (themePreference.matches ? 'dark' : 'light'));
+const receiveHostTheme = () => {
+  hostTheme = validTheme(host?.getHostContext()?.theme) ?? hostTheme;
+  syncTheme();
+};
+syncTheme();
 const validIds = new Set(SOUNDS.map((s) => s.id));
 function restore() {
   try {
@@ -179,6 +188,21 @@ function SoundRow({ sound, selected, onSelect, onPlay, voice, variant }) {
   );
 }
 function QuietPicker() {
+  useEffect(() => {
+    const compatibilityTheme = event => {
+      if (validTheme(host?.getHostContext()?.theme)) return;
+      hostTheme = validTheme(event.detail?.globals?.theme) ?? hostTheme;
+      syncTheme();
+    };
+    themePreference.addEventListener('change', syncTheme);
+    host?.addEventListener('hostcontextchanged', receiveHostTheme);
+    window.addEventListener('openai:set_globals', compatibilityTheme);
+    return () => {
+      themePreference.removeEventListener('change', syncTheme);
+      host?.removeEventListener('hostcontextchanged', receiveHostTheme);
+      window.removeEventListener('openai:set_globals', compatibilityTheme);
+    };
+  }, []);
   const [initial] = useState(restore);
   const [selected, setSelected] = useState(() => new Set(initial.ids));
   const [voice, setVoice] = useState(initial.voice),
@@ -280,7 +304,7 @@ function QuietPicker() {
     };
     host.addEventListener('toolresult', onToolResult);
     bridgeReady = host.connect(undefined, { timeout: 10_000 });
-    void bridgeReady.catch(() =>
+    void bridgeReady.then(receiveHostTheme).catch(() =>
       setError(
         'Chat host connection unavailable. Reopen the picker to try again.',
       ),

@@ -4,8 +4,8 @@
   width: 100%;
   height: 300px;
   flex-shrink: 0;
-  background: #fff;
-  border-bottom: 1px solid #f4f4f4;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border, #f4f4f4);
 }
 .field-surface {
   position: absolute;
@@ -17,7 +17,7 @@
   border-radius: 0;
   display: block;
   cursor: crosshair;
-  background: radial-gradient(circle, #ededed 1.8px, transparent 2px) 0 0 / 20px
+  background: radial-gradient(circle, var(--field-dot, #ededed) 1.8px, transparent 2px) 0 0 / 20px
     20px;
   touch-action: pan-y;
 }
@@ -27,7 +27,7 @@
   translate: none;
 }
 .field-surface:focus-visible {
-  outline: 1px solid #aaa;
+  outline: 1px solid var(--focus, #aaa);
   outline-offset: -8px;
   box-shadow: none;
 }
@@ -48,12 +48,12 @@
 }
 .field-cue {
   opacity: 0;
-  color: #777;
+  color: var(--secondary, #777);
   font-size: 12px;
   padding: 7px 10px;
   margin-left: -10px;
   border-radius: 6px;
-  background: #fffffff2;
+  background: var(--field-overlay, #fffffff2);
   transition: opacity 160ms;
 }
 .field-cue[data-visible='true'] {
@@ -62,16 +62,16 @@
 .field-randomize {
   pointer-events: auto;
   font-size: 12px;
-  color: #666;
-  background: #fffffff2;
+  color: var(--muted);
+  background: var(--field-overlay, #fffffff2);
   border-radius: 7px;
   gap: 7px;
   padding: 0 10px;
   height: 32px;
 }
 .field-randomize:hover {
-  color: #111;
-  background: #f1f1f1;
+  color: var(--contrast-foreground, #111);
+  background: var(--hover, #f1f1f1);
 }
 @media (max-width: 640px) {
   .field-footer {
@@ -88,12 +88,43 @@
 :root {
   font-family:
     -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  color: #353535;
-  background: #fff;
+  color: var(--foreground);
+  background: var(--surface);
   font-synthesis: none;
   color-scheme: light;
+  --surface: #fff;
+  --foreground: #353535;
   --muted: #666;
   --line: #ececec;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --surface: #212121;
+  --foreground: #e8e8e8;
+  --dialog-foreground: #e8e8e8;
+  --muted: #aaa;
+  --line: #393939;
+  --border: #393939;
+  --secondary: #aaa;
+  --contrast-foreground: #f5f5f5;
+  --focus: #bdbdbd;
+  --field-dot: #454545;
+  --field-overlay: #212121f2;
+  --hover: #303030;
+  --selected-background: #383838;
+  --control-background: #2d2d2d;
+  --control-foreground: #ddd;
+  --accent: #aaa;
+  --scrollbar: #606060;
+  --waveform: #777;
+  --primary-background: #e8e8e8;
+  --primary-foreground: #212121;
+  --primary-hover: #fff;
+  --danger-foreground: #f4a7a7;
+  --danger-background: #3b2424;
+  --backdrop: #0009;
+  --shadow: #0006;
 }
 * {
   box-sizing: border-box;
@@ -122,7 +153,7 @@ button {
   font-size: 12px;
 }
 button:hover {
-  background: #f1f1f1;
+  background: var(--hover, #f1f1f1);
 }
 button:disabled {
   cursor: default;
@@ -132,7 +163,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #747474;
+  outline: 2px solid var(--focus, #747474);
   outline-offset: 3px;
 }
 button:active:not(:disabled) {
@@ -178,7 +209,7 @@ h2 {
   height: auto;
   aspect-ratio: 480/350;
   overflow: visible;
-  color: #000;
+  color: var(--contrast-foreground, #000);
 }
 .orbit-logo ellipse {
   fill: currentColor;
@@ -189,7 +220,7 @@ h2 {
   touch-action: manipulation;
 }
 .orbit-logo:focus-visible {
-  outline: 2px solid #777;
+  outline: 2px solid var(--focus, #777);
   outline-offset: 6px;
 }
 h1 {
@@ -206,7 +237,7 @@ h1 {
 }
 .explore {
   margin: 0 -40px;
-  border-top: 1px solid #f3f3f3;
+  border-top: 1px solid var(--border, #f3f3f3);
 }
 .sound-field {
   height: 240px;
@@ -227,7 +258,7 @@ h1 {
   gap: 6px;
 }
 .field-controls button {
-  color: #666;
+  color: var(--muted);
 }
 .library {
   padding-top: 28px;
@@ -243,13 +274,13 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #666;
+  color: var(--muted);
 }
 .monitor label {
   display: flex;
 }
 .monitor input {
-  accent-color: #555;
+  accent-color: var(--accent, #555);
   width: 75px;
   height: 24px;
 }
@@ -263,12 +294,12 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #f5f5f5;
+  background: var(--control-background, #f5f5f5);
   border-radius: 10px;
   padding: 4px 6px 4px 14px;
 }
 .search > svg {
-  color: #777;
+  color: var(--secondary, #777);
 }
 .search input {
   flex: 1;
@@ -281,10 +312,10 @@ h1 {
   outline-offset: -1px;
 }
 .search button[type='submit'] {
-  background: #eaeaea;
+  background: var(--selected-background, #eaeaea);
 }
 .search input::placeholder {
-  color: #747474;
+  color: var(--secondary, #747474);
 }
 .collections {
   display: flex;
@@ -294,12 +325,12 @@ h1 {
 }
 .collections button {
   border-radius: 7px;
-  color: #656565;
+  color: var(--secondary, #656565);
   font-size: 12px;
 }
 .collections button[aria-pressed='true'] {
-  background: #ededed;
-  color: #292929;
+  background: var(--selected-background, #ededed);
+  color: var(--contrast-foreground, #292929);
 }
 .library-tools {
   display: flex;
@@ -317,13 +348,13 @@ h1 {
   align-items: center;
   gap: 7px;
   font-size: 11px;
-  color: #666;
+  color: var(--muted);
 }
 .tone-controls select {
   border: 0;
-  background: #f6f6f6;
+  background: var(--control-background, #f6f6f6);
   border-radius: 6px;
-  color: #444;
+  color: var(--control-foreground, #444);
   padding: 8px 20px 8px 8px;
   font-size: 12px;
   max-width: 116px;
@@ -334,7 +365,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   font-size: 11px;
-  color: #666;
+  color: var(--muted);
   padding: 0 0 4px;
 }
 .results-label button {
@@ -343,8 +374,8 @@ h1 {
   min-height: 32px;
 }
 .results-label button[aria-pressed='true'] {
-  background: #ededed;
-  color: #222;
+  background: var(--selected-background, #ededed);
+  color: var(--contrast-foreground, #222);
 }
 .sound-grid {
   display: grid;
@@ -356,13 +387,13 @@ h1 {
   max-height: 406px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #ddd transparent;
+  scrollbar-color: var(--scrollbar, #ddd) transparent;
 }
 .sound-row {
   display: flex;
   align-items: center;
   min-width: 0;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid var(--border, #efefef);
   padding: 6px 0;
   position: relative;
 }
@@ -379,25 +410,25 @@ h1 {
   overflow: hidden;
 }
 .audition:hover {
-  background: var(--sound-hover);
+  background: color-mix(in srgb, var(--sound-color) 8%, var(--surface));
 }
 .sound-title {
   font-size: 13px;
   font-weight: 500;
   line-height: 1.2;
-  color: #353535;
+  color: var(--foreground);
 }
 .sound-use {
   font-size: 11px;
   line-height: 1.4;
   min-height: 31px;
-  color: #686868;
+  color: var(--secondary, #686868);
 }
 .wave-line {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #666;
+  color: var(--muted);
   height: 30px;
 }
 .wave-line svg.waveform {
@@ -406,7 +437,7 @@ h1 {
   min-width: 20px;
   max-width: 144px;
   height: 28px;
-  stroke: #c6c6c6;
+  stroke: var(--waveform, #c6c6c6);
   stroke-width: 2;
   stroke-linecap: round;
 }
@@ -417,16 +448,16 @@ h1 {
 .duration {
   font-size: 10px;
   font-variant-numeric: tabular-nums;
-  color: #6a6a6a;
+  color: var(--secondary, #6a6a6a);
 }
 .select-sound {
   align-self: flex-start;
   margin-top: 5px;
-  color: #666;
+  color: var(--muted);
 }
 .select-sound[aria-pressed='true'] {
-  background: #ededed;
-  color: #252525;
+  background: var(--selected-background, #ededed);
+  color: var(--contrast-foreground, #252525);
 }
 .sound-row[data-selected='true'] .sound-title {
   font-weight: 600;
@@ -439,7 +470,7 @@ h1 {
   padding: 20px 0 12px;
   margin-top: 20px;
   border-top: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
 }
 .selection-summary {
   display: flex;
@@ -453,7 +484,7 @@ h1 {
 }
 .selection-summary span {
   font-size: 11px;
-  color: #666;
+  color: var(--muted);
 }
 .selection-actions {
   display: flex;
@@ -462,24 +493,24 @@ h1 {
   flex-shrink: 0;
 }
 .selection-actions > button {
-  background: #f1f1f1;
+  background: var(--hover, #f1f1f1);
   min-height: 44px;
 }
 .selection-actions .primary {
-  background: #222;
-  color: #fff;
+  background: var(--primary-background, #222);
+  color: var(--primary-foreground, #fff);
 }
 .selection-actions .primary:hover {
-  background: #444;
+  background: var(--primary-hover, #444);
 }
 .selection-actions .clear-selection {
   background: transparent;
-  color: #666;
+  color: var(--muted);
   padding: 8px;
 }
 .status-message {
   font-size: 11px;
-  color: #666;
+  color: var(--muted);
   line-height: 1.5;
   min-height: 30px;
   padding-bottom: 14px;
@@ -490,8 +521,8 @@ h1 {
   justify-content: space-between;
   gap: 12px;
   font-size: 12px;
-  color: #8c3030;
-  background: #fff1f1;
+  color: var(--danger-foreground, #8c3030);
+  background: var(--danger-background, #fff1f1);
   padding: 10px 12px;
   border-radius: 8px;
 }
@@ -505,7 +536,7 @@ h1 {
 }
 .empty span {
   font-size: 12px;
-  color: #666;
+  color: var(--muted);
 }
 .sr-only {
   position: absolute;
@@ -522,14 +553,15 @@ h1 {
   position: fixed;
   inset: 0;
   z-index: 20;
-  background: #0004;
+  background: var(--backdrop, #0004);
   padding: 24px;
   display: grid;
   place-items: center;
 }
 .copy-dialog {
-  background: #fff;
-  box-shadow: 0 12px 50px #0002;
+  color: var(--dialog-foreground, CanvasText);
+  background: var(--surface);
+  box-shadow: 0 12px 50px var(--shadow, #0002);
   max-width: 620px;
   width: 100%;
   padding: 24px;
@@ -544,7 +576,7 @@ h1 {
 .copy-dialog p {
   font-size: 13px;
   line-height: 1.6;
-  color: #555;
+  color: var(--secondary, #555);
   margin: 8px 0 16px;
 }
 .copy-dialog textarea {
@@ -555,20 +587,20 @@ h1 {
     11px/1.5 ui-monospace,
     monospace;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border, #ddd);
   border-radius: 8px;
-  color: #444;
-  background: #fafafa;
+  color: var(--control-foreground, #444);
+  background: var(--control-background, #fafafa);
 }
 .copy-dialog small {
   display: block;
   margin-top: 12px;
   font-size: 11px;
-  color: #666;
+  color: var(--muted);
 }
 .copy-dialog > button {
   margin-top: 12px;
-  background: #eee;
+  background: var(--selected-background, #eee);
 }
 @media (max-width: 760px) {
   .picker {

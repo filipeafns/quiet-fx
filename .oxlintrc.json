@@ -28,6 +28,7 @@
     "out/**",
     "build/**",
     "dist/**",
+    "mcp/quietfx/vendor/**",
     "coverage/**",
     "next-env.d.ts"
   ],

@@ -138,7 +138,12 @@ export function Homepage() {
           Quiet FX · Made by{' '}
           <a href="https://github.com/filipeafns">Filipe Soares</a>
         </span>
-        <a href={`${REPO}/blob/main/LICENSE`}>MIT License</a>
+        <nav className="landing-policy-links" aria-label="Support and policies">
+          <a href="/support">Support</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href={`${REPO}/blob/main/LICENSE`}>MIT License</a>
+        </nav>
       </footer>
     </div>
   );

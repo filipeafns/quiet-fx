@@ -16,6 +16,8 @@ An open-source library of gentle sounds for interfaces and motion. Explore the s
 
 At `/create`, choose Calm, Focused, Playful or Expressive, then shuffle a coordinated eight-role kit. Lock individual sounds, material or key; customize a role; audition Workspace, Messages and Checkout examples; and save up to 24 kits locally. The current draft also survives reload. No accounts or server storage are involved.
 
+The builder shares the library's open white layout and centered navigation: direction controls in one toolbar, full sound rows with waveforms and durations, and an adjacent interactive app preview. Use **Get the kit** in the header to export; on smaller screens the sound list and preview stack.
+
 Three new families add 24 cues: Felt / Wood, Porcelain and Elastic. The original 72 cues remain unchanged and free. The full current library, kit creation and exports remain MIT licensed.
 
 **Get the kit** downloads `quiet-fx-kit.zip`: eight WAVs, editable `kit.json`, role-keyed patches and a dependency-free player. Import the extracted `kit.json` through My kits to continue editing. The shadcn option downloads `quiet-kit.json`, an editable registry item containing the exact kit and engine:

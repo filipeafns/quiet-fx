@@ -3,19 +3,22 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowDownToLine,
-  ArrowUpRight,
   Check,
   ChevronDown,
-  Code2,
   Copy,
   FolderOpen,
+  CircleDashed,
+  Code2,
+  Focus,
+  Info,
+  Waves,
+  Sparkles,
   LockKeyhole,
   Play,
   Plus,
   RotateCcw,
   Save,
   Shuffle,
-  SlidersHorizontal,
   Square,
   Trash2,
   UnlockKeyhole,
@@ -69,6 +72,12 @@ const MOOD_COPY: Record<
     description: 'Bright, with personality.',
     mark: '✳',
   },
+};
+const MOOD_ICONS = {
+  calm: CircleDashed,
+  focused: Focus,
+  playful: Waves,
+  expressive: Sparkles,
 };
 const ROLE_LABELS: Record<KitRole, string> = {
   press: 'Press',
@@ -221,7 +230,11 @@ export function SoundKitStudio() {
       if (noticeTimer.current) clearTimeout(noticeTimer.current);
       if (copyTimer.current) clearTimeout(copyTimer.current);
       player.stop();
-      void player.context?.close();
+      if (player.context && player.context.state !== 'closed') {
+        void player.context.close().catch(() => {
+          // A repeated cleanup may finish closing the same context first.
+        });
+      }
     };
   }, [player, stop]);
   useEffect(() => {
@@ -355,7 +368,7 @@ export function SoundKitStudio() {
   return (
     <div className="kit-app" data-mood={kit.mood}>
       <header className="kit-header">
-        <a className="kit-brand" href="/" aria-label="Quiet FX home">
+        <a className="brand kit-brand" href="/" aria-label="Quiet FX home">
           <OrbitLogo player={player} interactive={false} />
           <span>quiet</span>
         </a>
@@ -363,56 +376,66 @@ export function SoundKitStudio() {
           <a href="/create" aria-current="page">
             Create a kit
           </a>
-          <a href="/studio">
-            Library <span>{CUES.length}</span>
-          </a>
+          <a href="/studio">Library</a>
           <a href="/studio#sandbox">Sandbox</a>
         </nav>
-        <a className="kit-github" href="https://github.com/filipeafns/quiet-fx">
-          Open source <ArrowUpRight size={14} />
-        </a>
+        <button
+          className="kit-primary kit-header-export"
+          onClick={() => setPanel('export')}
+        >
+          <ArrowDownToLine size={15} /> Get the kit
+        </button>
       </header>
       <main className="kit-main">
         <div className="kit-intro">
           <div>
-            <p className="kit-eyebrow">
-              A little character. In every interaction.
-            </p>
-            <h1>What does your app feel like?</h1>
-            <p>Find its sound. Make it yours. Take the code.</p>
+            <h1>Create a sound kit.</h1>
+            <p>A little character for every interaction.</p>
           </div>
           <button className="kit-text-button" onClick={() => setPanel('saved')}>
             <FolderOpen size={16} />
             My kits{saved.length > 0 && <span>{saved.length}</span>}
           </button>
         </div>
-        <div className="kit-workbench">
-          <aside className="kit-direction" aria-label="Sound direction">
-            <div className="kit-section-label">
-              <span>Mood</span>
-              <span className="kit-subtle">Start with a feeling</span>
-            </div>
+        <section className="kit-direction" aria-label="Sound direction">
+          <div className="kit-control-group kit-mood-group">
+            <span className="kit-control-label">Mood</span>
             <fieldset className="kit-moods" aria-label="App mood">
-              {KIT_MOODS.map((mood) => (
-                <button
-                  key={mood}
-                  className={kit.mood === mood ? 'is-selected' : ''}
-                  aria-pressed={kit.mood === mood}
-                  onClick={() => change(retuneKit(kit, { mood }))}
-                >
-                  <span className="kit-mood-mark" aria-hidden="true">
-                    {MOOD_COPY[mood].mark}
-                  </span>
-                  <span>
-                    <strong>{MOOD_COPY[mood].title}</strong>
-                    <small>{MOOD_COPY[mood].description}</small>
-                  </span>
-                  {kit.mood === mood && <Check size={14} />}
-                </button>
-              ))}
+              {KIT_MOODS.map((mood) => {
+                const MoodIcon = MOOD_ICONS[mood];
+                return (
+                  <button
+                    key={mood}
+                    className={kit.mood === mood ? 'is-selected' : ''}
+                    aria-pressed={kit.mood === mood}
+                    aria-label={`${MOOD_COPY[mood].title} ${MOOD_COPY[mood].description}`}
+                    title={MOOD_COPY[mood].description}
+                    onClick={() => change(retuneKit(kit, { mood }))}
+                  >
+                    <MoodIcon size={15} aria-hidden="true" />
+                    {MOOD_COPY[mood].title}
+                  </button>
+                );
+              })}
             </fieldset>
-            <div className="kit-section-label kit-material-label">
-              <label htmlFor="kit-material">Material</label>
+          </div>
+          <div className="kit-control-group kit-material-group">
+            <div className="kit-control-label">
+              <div className="kit-material-title">
+                <label htmlFor="kit-material">Material</label>
+                <details className="kit-material-help">
+                  <summary aria-label="About this material">
+                    <Info size={13} />
+                  </summary>
+                  <p>
+                    {
+                      MATERIAL_FAMILIES.find(
+                        (family) => family.id === kit.family,
+                      )?.description
+                    }
+                  </p>
+                </details>
+              </div>
               <button
                 className="kit-icon-button"
                 aria-label={
@@ -427,9 +450,9 @@ export function SoundKitStudio() {
                 }
               >
                 {kit.locks.family ? (
-                  <LockKeyhole size={14} />
+                  <LockKeyhole size={13} />
                 ) : (
-                  <UnlockKeyhole size={14} />
+                  <UnlockKeyhole size={13} />
                 )}
               </button>
             </div>
@@ -437,24 +460,27 @@ export function SoundKitStudio() {
               <select
                 id="kit-material"
                 value={kit.family}
-                onChange={(e) =>
+                title={
+                  MATERIAL_FAMILIES.find((family) => family.id === kit.family)
+                    ?.description
+                }
+                onChange={(event) =>
                   change(
-                    retuneKit(kit, { family: e.target.value as KitFamily }),
+                    retuneKit(kit, { family: event.target.value as KitFamily }),
                   )
                 }
               >
-                {MATERIAL_FAMILIES.map((f) => (
-                  <option key={f.id} value={f.id}>
-                    {f.name}
+                {MATERIAL_FAMILIES.map((family) => (
+                  <option key={family.id} value={family.id}>
+                    {family.name}
                   </option>
                 ))}
               </select>
-              <ChevronDown size={14} />
+              <ChevronDown size={13} />
             </div>
-            <p className="kit-material-description">
-              {MATERIAL_FAMILIES.find((f) => f.id === kit.family)?.description}
-            </p>
-            <div className="kit-section-label kit-key-label">
+          </div>
+          <div className="kit-control-group kit-key-group">
+            <div className="kit-control-label">
               <label htmlFor="kit-key">Musical key</label>
               <button
                 className="kit-icon-button"
@@ -468,9 +494,9 @@ export function SoundKitStudio() {
                 }
               >
                 {kit.locks.key ? (
-                  <LockKeyhole size={14} />
+                  <LockKeyhole size={13} />
                 ) : (
-                  <UnlockKeyhole size={14} />
+                  <UnlockKeyhole size={13} />
                 )}
               </button>
             </div>
@@ -479,18 +505,20 @@ export function SoundKitStudio() {
                 <select
                   id="kit-key"
                   value={kit.key}
-                  onChange={(e) =>
-                    change(retuneKit(kit, { key: e.target.value }))
+                  onChange={(event) =>
+                    change(retuneKit(kit, { key: event.target.value }))
                   }
                 >
                   {KEYS.map((key) => (
                     <option key={key}>{key}</option>
                   ))}
                 </select>
-                <ChevronDown size={14} />
+                <ChevronDown size={13} />
               </div>
               <span>{kit.mode}</span>
             </div>
+          </div>
+          <div className="kit-shuffle-actions">
             <button
               className="kit-shuffle"
               onClick={() => {
@@ -498,78 +526,29 @@ export function SoundKitStudio() {
                 toast('A new set. Your locked sounds stayed.');
               }}
             >
-              <Shuffle size={16} />
-              Shuffle kit
+              <Shuffle size={15} /> Shuffle kit
             </button>
-            <div className="kit-shuffle-note">
-              <span>Keep what you love. Lock any sound.</span>
-              <button
-                className="kit-icon-button"
-                aria-label="Undo last kit change"
-                disabled={!undo}
-                onClick={() => {
-                  if (undo) {
-                    setKit(undo);
-                    setUndo(null);
-                  }
-                }}
-              >
-                <RotateCcw size={14} />
-              </button>
-            </div>
-          </aside>
-          <section
-            className="kit-stage"
-            aria-label="Interactive sound examples"
-          >
-            <KitExamples
-              mood={kit.mood}
-              activeRole={activeRole}
-              onSound={(role) => void playRole(role)}
-            />
-            <div className="kit-monitor">
-              <span>
-                <span
-                  className={
-                    activeRole
-                      ? 'kit-status-light is-playing'
-                      : 'kit-status-light'
-                  }
-                />
-                {activeRole
-                  ? ROLE_HELP[activeRole]
-                  : 'Try an interaction to hear your kit.'}
-              </span>
-              <div>
-                <button
-                  className="kit-icon-button"
-                  aria-label={muted ? 'Unmute sound' : 'Mute sound'}
-                  aria-pressed={muted}
-                  onClick={() => {
-                    stop();
-                    setMuted(!muted);
-                    if (!muted) player.mute();
-                  }}
-                >
-                  {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                </button>
-                <input
-                  type="range"
-                  aria-label="Monitor volume"
-                  min="0"
-                  max="70"
-                  value={volume}
-                  onChange={(e) => setVolume(Number(e.target.value))}
-                />
-                <output>{volume}%</output>
-              </div>
-            </div>
-          </section>
+            <button
+              className="kit-icon-button"
+              aria-label="Undo last kit change"
+              disabled={!undo}
+              onClick={() => {
+                if (undo) {
+                  setKit(undo);
+                  setUndo(null);
+                }
+              }}
+            >
+              <RotateCcw size={15} />
+            </button>
+          </div>
+        </section>
+        <div className="kit-workbench">
           <aside className="kit-palette" aria-label="Kit sounds">
             <div className="kit-section-label">
-              <span>
+              <h2>
                 Your sounds <span className="kit-count">8</span>
-              </span>
+              </h2>
               <button
                 className="kit-text-button"
                 onClick={() => void playSet()}
@@ -608,6 +587,12 @@ export function SoundKitStudio() {
                       <div className="kit-wave">
                         <Wave rendered={rendered[role]} />
                       </div>
+                      <span
+                        className="kit-cue-duration"
+                        aria-label={`${ROLE_LABELS[role]} duration`}
+                      >
+                        {rendered[role].duration.toFixed(2)}s
+                      </span>
                       <button
                         className={`kit-icon-button ${slot.locked ? 'is-locked' : ''}`}
                         aria-label={`${slot.locked ? 'Unlock' : 'Lock'} ${ROLE_LABELS[role]}`}
@@ -688,11 +673,54 @@ export function SoundKitStudio() {
                 );
               })}
             </div>
-            <p className="kit-palette-help">
-              <SlidersHorizontal size={13} />
-              Select a sound to make it your own.
-            </p>
           </aside>
+          <section
+            className="kit-stage"
+            aria-label="Interactive sound examples"
+          >
+            <KitExamples
+              mood={kit.mood}
+              activeRole={activeRole}
+              onSound={(role) => void playRole(role)}
+            />
+            <div className="kit-monitor">
+              <span>
+                <span
+                  className={
+                    activeRole
+                      ? 'kit-status-light is-playing'
+                      : 'kit-status-light'
+                  }
+                />
+                {activeRole
+                  ? ROLE_HELP[activeRole]
+                  : 'Try an interaction to hear your kit.'}
+              </span>
+              <div>
+                <button
+                  className="kit-icon-button"
+                  aria-label={muted ? 'Unmute sound' : 'Mute sound'}
+                  aria-pressed={muted}
+                  onClick={() => {
+                    stop();
+                    setMuted(!muted);
+                    if (!muted) player.mute();
+                  }}
+                >
+                  {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                </button>
+                <input
+                  type="range"
+                  aria-label="Monitor volume"
+                  min="0"
+                  max="70"
+                  value={volume}
+                  onChange={(e) => setVolume(Number(e.target.value))}
+                />
+                <output>{volume}%</output>
+              </div>
+            </div>
+          </section>
         </div>
         <footer className="kit-footer">
           <div className="kit-name">
@@ -726,14 +754,10 @@ export function SoundKitStudio() {
               {isSaved ? <Check size={15} /> : <Save size={15} />}{' '}
               {isSaved ? 'Saved' : 'Save kit'}
             </button>
-            <button className="kit-primary" onClick={() => setPanel('export')}>
-              <Code2 size={16} />
-              Get the kit <ArrowUpRight size={14} />
-            </button>
           </div>
         </footer>
         <p className="kit-bottom-note">
-          Free to use. Yours to change.{' '}
+          Free and open source.{' '}
           <a href="https://github.com/filipeafns/quiet-fx/blob/main/LICENSE">
             MIT licensed.
           </a>

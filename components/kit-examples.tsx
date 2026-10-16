@@ -20,7 +20,6 @@ import {
   Minus,
   Plus,
   ShoppingBag,
-  Volume2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { KitSegments } from '@/components/ui/kit-controls';
@@ -546,28 +545,18 @@ export function KitExamples({ onSound, mood, activeRole }: KitExamplesProps) {
       data-active-role={activeRole}
     >
       <div className="kit-demo-toolbar">
+        <h2 className="kit-demo-heading">Try it in an app</h2>
         <KitSegments
           label="Choose an interactive demo"
           options={EXAMPLES}
           value={example}
           onValueChange={selectExample}
         />
-        <span className="kit-demo-caption">Interactive demo</span>
       </div>
       <div className="kit-demo-frame">
         {example === 'workspace' && <WorkspaceDemo onSound={onSound} />}
         {example === 'messages' && <MessagesDemo onSound={onSound} />}
         {example === 'checkout' && <CheckoutDemo onSound={onSound} />}
-      </div>
-      <div className="kit-demo-footer">
-        <span>
-          <Volume2 size={13} aria-hidden="true" /> {mood} set
-        </span>
-        <span>
-          {activeRole
-            ? `${activeRole.charAt(0).toUpperCase()}${activeRole.slice(1)}`
-            : 'Try the controls'}
-        </span>
       </div>
     </section>
   );

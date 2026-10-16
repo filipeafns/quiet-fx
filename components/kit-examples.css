@@ -1,9 +1,8 @@
 .kit-examples {
-  --demo-ink: #313735;
-  --demo-muted: #687060;
-  --demo-line: #e9ece8;
-  --demo-tint: #edf1eb;
-  --demo-accent: #596c56;
+  --demo-ink: #353535;
+  --demo-muted: #686868;
+  --demo-line: #ececec;
+  --demo-accent: #555;
   width: 100%;
   max-width: 650px;
   min-width: 0;
@@ -18,15 +17,18 @@
   gap: 14px;
   margin-bottom: 20px;
 }
-.kit-demo-caption {
-  color: var(--demo-muted);
-  font-size: 11px;
+.kit-demo-heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
   white-space: nowrap;
 }
 .kit-demo-frame {
   overflow: hidden;
-  border: 1px solid #e5e8e3;
-  border-radius: 16px;
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
   background: #fff;
 }
 .kit-demo-appbar {
@@ -46,7 +48,7 @@
   letter-spacing: -0.025em;
 }
 .kit-demo-app-name svg {
-  color: #727c70;
+  color: #767676;
   stroke-width: 1.7;
 }
 .kit-demo-app-location {
@@ -95,10 +97,10 @@
   overflow-y: auto;
   list-style: none;
   scrollbar-width: thin;
-  scrollbar-color: #d9dfd6 transparent;
+  scrollbar-color: #ddd transparent;
 }
 .kit-demo-tasks li + li {
-  border-top: 1px solid #f0f2ef;
+  border-top: 1px solid #f0f0f0;
 }
 .kit-demo-task {
   position: relative;
@@ -119,7 +121,7 @@
   flex: 0 0 18px;
   width: 18px;
   height: 18px;
-  border: 1px solid #cbd2c8;
+  border: 1px solid #cfcfcf;
   border-radius: 6px;
   color: #fff;
   transition:
@@ -132,17 +134,17 @@
   transition: color 0.15s;
 }
 .kit-demo-task-input:checked + .kit-demo-task-check {
-  border-color: #8c9b86;
-  background: #8c9b86;
+  border-color: #737373;
+  background: #737373;
 }
 .kit-demo-task-input:focus-visible + .kit-demo-task-check {
-  outline: 2px solid #91a585;
+  outline: 2px solid #777;
   outline-offset: 4px;
 }
 .is-done .kit-demo-task-title {
   color: var(--demo-muted);
   text-decoration: line-through;
-  text-decoration-color: #b9c1b6;
+  text-decoration-color: #aaa;
 }
 .kit-demo-add-task {
   display: flex;
@@ -150,16 +152,16 @@
   gap: 10px;
   margin-top: 17px;
   padding: 4px 5px 4px 13px;
-  background: #f7f8f6;
+  background: #f7f7f7;
   border: 1px solid transparent;
   border-radius: 9px;
-  color: #939b8e;
+  color: #8a8a8a;
 }
 .kit-demo-add-task:focus-within,
 .kit-demo-compose:focus-within,
 .kit-demo-promo-input:focus-within {
-  border-color: #a7b3a2;
-  outline: 2px solid #edf1eb;
+  border-color: #aaa;
+  outline: 2px solid #eee;
 }
 .kit-examples input {
   width: 100%;
@@ -187,26 +189,10 @@
 .kit-examples .kit-demo-add-button {
   height: 34px;
   padding: 0 10px;
-  color: #677261;
+  color: #626262;
   font-size: 12px;
   font-weight: 500;
   background: transparent;
-}
-.kit-demo-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 16px 3px 0;
-  color: var(--demo-muted);
-  font-size: 11px;
-}
-.kit-demo-footer > span:first-child {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.kit-demo-footer > span:last-child {
-  color: var(--demo-accent);
 }
 .kit-demo-chat-heading {
   display: flex;
@@ -221,7 +207,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #ecece5;
+  background: #eee;
   color: var(--demo-accent);
   font-size: 13px;
   font-weight: 600;
@@ -238,7 +224,7 @@
 }
 .kit-demo-heading-icon {
   margin-left: auto;
-  color: #969e8e;
+  color: #999;
   stroke-width: 1.6;
 }
 .kit-demo-conversation {
@@ -250,7 +236,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
-  scrollbar-color: #d9dfd6 transparent;
+  scrollbar-color: #ddd transparent;
 }
 .kit-demo-conversation-start {
   align-self: center;
@@ -273,7 +259,7 @@
   align-self: flex-start;
 }
 .kit-demo-message.is-mia p {
-  background: #f3f4f0;
+  background: #f4f4f4;
   border-bottom-left-radius: 3px;
 }
 .kit-demo-message.is-you {
@@ -281,15 +267,15 @@
   text-align: right;
 }
 .kit-demo-message.is-you p {
-  background: #eaf0e6;
-  color: #4f6247;
+  background: #ededed;
+  color: #424242;
   border-bottom-right-radius: 3px;
   text-align: left;
 }
 .kit-demo-message.is-you > svg {
   display: block;
   margin: 5px 1px 0 auto;
-  color: #a0af97;
+  color: #999;
 }
 .kit-demo-typing {
   display: flex;
@@ -321,7 +307,7 @@
   gap: 10px;
   margin: 4px 27px 24px;
   padding: 5px 7px 5px 14px;
-  border: 1px solid #e2e7de;
+  border: 1px solid #e3e3e3;
   border-radius: 10px;
 }
 .kit-examples .kit-demo-send {
@@ -329,12 +315,12 @@
   height: 31px;
   min-width: 31px;
   border-radius: 8px;
-  background: #64765c;
+  background: #333;
   color: #fff;
 }
 .kit-examples .kit-demo-send:disabled {
-  background: #e6ebe2;
-  color: #98a38f;
+  background: #e8e8e8;
+  color: #999;
   opacity: 1;
 }
 .kit-demo-checkout-body {
@@ -351,23 +337,23 @@
   flex: 0 0 76px;
   height: 88px;
   border-radius: 9px;
-  background: #f1f0ea;
+  background: #f2f2f2;
 }
 .kit-demo-notebook {
   position: relative;
   width: 41px;
   height: 57px;
   border-radius: 2px 4px 4px 2px;
-  border: 1px solid #b6b8ac;
-  background: #c8cbbb;
+  border: 1px solid #b8b8b8;
+  background: #cacaca;
   transform: rotate(-8deg);
-  box-shadow: 3px 4px 0 #deded5;
+  box-shadow: 3px 4px 0 #dedede;
 }
 .kit-demo-notebook > span {
   position: absolute;
   inset: 0 auto 0 4px;
   width: 1px;
-  background: #b4b7a7;
+  background: #b5b5b5;
 }
 .kit-demo-notebook > i {
   position: absolute;
@@ -375,7 +361,7 @@
   left: 18px;
   width: 9px;
   height: 9px;
-  border: 1px solid #9ca58f;
+  border: 1px solid #999;
   border-radius: 50%;
 }
 .kit-demo-product-details {
@@ -402,7 +388,7 @@
   align-items: center;
   flex: 0 0 auto;
   margin-left: auto;
-  border: 1px solid #e5e8e1;
+  border: 1px solid #e5e5e5;
   border-radius: 7px;
 }
 .kit-demo-quantity button {
@@ -411,7 +397,7 @@
   width: 29px;
   height: 31px;
   padding: 0;
-  color: #78846d;
+  color: #707070;
   background: transparent;
 }
 .kit-demo-quantity output {
@@ -428,7 +414,7 @@
   align-items: center;
   gap: 8px;
   padding: 3px 5px 3px 12px;
-  border: 1px solid #e4e8e0;
+  border: 1px solid #e4e4e4;
   border-radius: 8px;
 }
 .kit-demo-promo-input input {
@@ -445,7 +431,7 @@
   color: #a45442;
 }
 .kit-demo-promo-status.is-success {
-  color: #596f4e;
+  color: #555;
 }
 .kit-demo-order-totals {
   display: flex;
@@ -465,12 +451,12 @@
 }
 .kit-demo-order-totals dd {
   margin: 0;
-  color: #56624c;
+  color: #4f4f4f;
   font-variant-numeric: tabular-nums;
 }
 .kit-demo-order-totals .kit-demo-discount dt,
 .kit-demo-order-totals .kit-demo-discount dd {
-  color: #596f4e;
+  color: #555;
 }
 .kit-demo-order-totals .kit-demo-total {
   margin-top: 5px;
@@ -489,7 +475,7 @@
   height: 42px;
   padding: 0 15px;
   border-radius: 9px;
-  background: #63735a;
+  background: #333;
   color: #fff;
   font-size: 12px;
   font-weight: 500;
@@ -516,8 +502,8 @@
   height: 58px;
   margin-bottom: 22px;
   border-radius: 50%;
-  background: #edf2e9;
-  color: #7d936e;
+  background: #f2f2f2;
+  color: #777;
 }
 .kit-demo-order-success h3 {
   font-size: 21px;
@@ -530,7 +516,7 @@
 }
 .kit-demo-success-detail {
   margin-top: 16px;
-  color: #65745b;
+  color: #555;
   font-size: 12px;
 }
 .kit-examples .kit-demo-secondary-button {
@@ -538,13 +524,13 @@
   height: 36px;
   padding-inline: 17px;
   background: #fff;
-  border: 1px solid #e1e7db;
+  border: 1px solid #e3e3e3;
   color: var(--demo-muted);
   font-size: 12px;
   font-weight: 500;
 }
 .kit-examples button:focus-visible {
-  outline: 2px solid #91a585;
+  outline: 2px solid #777;
   outline-offset: 3px;
 }
 .kit-examples input:disabled {
@@ -563,17 +549,17 @@
 }
 @media (hover: hover) and (pointer: fine) {
   .kit-demo-task:hover .kit-demo-task-check {
-    border-color: #8c9b86;
+    border-color: #737373;
   }
   .kit-demo-task:hover .kit-demo-task-title {
-    color: #66745d;
+    color: #444;
   }
   .kit-examples .kit-demo-order-button:not(:disabled):hover,
   .kit-examples .kit-demo-send:not(:disabled):hover {
-    background: #53634b;
+    background: #171717;
   }
   .kit-demo-quantity button:not(:disabled):hover {
-    background: #f4f6f1;
+    background: #f4f4f4;
   }
 }
 @media (max-width: 600px) {
@@ -582,9 +568,8 @@
     gap: 12px;
     margin-bottom: 15px;
   }
-  .kit-demo-caption {
+  .kit-demo-heading {
     width: 100%;
-    padding-left: 2px;
   }
   .kit-demo-appbar {
     padding-inline: 20px;
@@ -614,8 +599,9 @@
     padding: 24px 21px 21px;
   }
   .kit-demo-product {
+    display: grid;
+    grid-template-columns: 65px minmax(0, 1fr);
     gap: 13px;
-    flex-wrap: wrap;
   }
   .kit-demo-product-image {
     flex-basis: 65px;
@@ -628,7 +614,9 @@
     font-size: 12px;
   }
   .kit-demo-quantity {
-    margin-left: 78px;
+    grid-column: 2;
+    justify-self: start;
+    margin-left: 0;
   }
   .kit-demo-quantity button {
     width: 34px;

@@ -51,6 +51,8 @@ All audio is generated locally. The engine does not depend on Arc, React, Motion
 
 The existing DialKit dependency remains available for authoring; it was not added to the consumer UI. Free Arc controls provide the kit sliders and example view switcher. `motion@14.3.0` is a website-only devDependency; its related package updates are in the lockfile. No Pro Arc code is copied or exported.
 
+The builder follows the homepage/library's white canvas, centered navigation and neutral controls. A horizontal mood/material/key toolbar sits above an open two-column sound list and example area; below 850px these stack in the same DOM order. Only the simulated app has a surrounding frame. Waveforms and durations come from the same rendered audio, and the header owns the export action. The refinement adds no dependencies or changes to audio, kit, storage or export contracts. [ElevenLabs Sound Effects on Mobbin](https://mobbin.com/screens/3021fc1f-5de7-4d01-b38a-3c518d8735b8) informed the use of open space, compact controls and audio rows; no reference assets were copied.
+
 ## Contracts and ownership
 
 A `SoundKit` has `type: quiet-fx-kit`, `schemaVersion: 1`, a name, uint32 seed, mood, family/key/mode/voice, global family/key locks and eight semantic slots. Roles are press, release, toggle, confirm, error, notify, transition and complete. Each slot has its cue ID, complete settings and its own lock.
@@ -111,6 +113,8 @@ A separate local consumer was installed using the actual shadcn 4.18.0 CLI and a
 These checks establish export and installation parity. They do not establish perceived loudness, material realism, listening comfort or approval.
 
 Local browser QA also covered mood/material selection, role locks across shuffle, keyboard sliders, save/reload, valid and invalid imports, safe normalization of pasted kit names, demo interactions and actual downloads. A sandbox Deep export retained Deep filenames and settings. The desktop and 390px mobile layouts were reviewed with no horizontal overflow or observed console errors. See the [desktop capture](images/kit-builder-desktop.jpg); hosted-preview evidence belongs in the PR.
+
+The open-layout refinement was additionally reviewed at 1280, 1024, 850 and 390px. Checks covered the relocated export action and actual ZIP download, locked shuffle, slider editing, playback/mute, saved-draft restoration and all example tabs. Material help supports Enter/tap, and control scroll margins account for the sticky header. A fresh-page playback check reported no console errors after guarding repeated audio-context cleanup during development refresh. No synthesis or exported-runtime code changed in this refinement.
 
 Before merging: run the commands above, then exercise all four moods, a locked role across shuffle, editing/import/save/reload, an actual ZIP and registry download, and Workspace/Messages/Checkout. Verify desktop/mobile layout, keyboard slider/segmented navigation, mute, repeated playback, Escape and reduced motion. Decode exported WAVs and confirm their settings match the manifest. Listen on headphones and small speakers before claiming audio approval. See the PR for performed checks and preview evidence.
 

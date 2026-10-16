@@ -6,18 +6,26 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const dir = path.resolve(process.env.QUIET_WORK_DIR || 'work', 'material-qa');
-mkdirSync(dir, { recursive: true });
-for (const name of ['engine', 'materials', 'catalog']) {
-  writeFileSync(
-    `${dir}/${name}.mjs`,
-    ts
-      .transpile(readFileSync(`lib/audio/${name}.ts`, 'utf8'), {
-        target: ts.ScriptTarget.ES2022,
-        module: ts.ModuleKind.ES2022,
-      })
-      .replace(/from '\.\/(engine|materials|catalog)'/g, "from './$1.mjs'"),
-  );
+function compileAudio(sourceDir, outputDir, names) {
+  mkdirSync(outputDir, { recursive: true });
+  for (const name of names) {
+    writeFileSync(
+      `${outputDir}/${name}.mjs`,
+      ts
+        .transpile(readFileSync(`${sourceDir}/${name}.ts`, 'utf8'), {
+          target: ts.ScriptTarget.ES2022,
+          module: ts.ModuleKind.ES2022,
+        })
+        .replace(/from '\.\/(engine|materials|catalog)'/g, "from './$1.mjs'"),
+    );
+  }
 }
+compileAudio('lib/audio', dir, ['engine', 'materials', 'catalog']);
+const baselineDir = path.join(dir, 'legacy-v0.4.1');
+compileAudio('scripts/fixtures/legacy-audio-v0.4.1', baselineDir, [
+  'engine',
+  'catalog',
+]);
 const {
   CUES,
   DEFAULTS,
@@ -34,6 +42,10 @@ const {
 const { renderPatch, validatePatch, wavBytes } = await import(
   pathToFileURL(`${dir}/engine.mjs`)
 );
+const baselineCatalog = await import(
+  pathToFileURL(`${baselineDir}/catalog.mjs`)
+);
+const baselineEngine = await import(pathToFileURL(`${baselineDir}/engine.mjs`));
 
 assert.equal(MATERIAL_CUES.length, 24);
 assert.deepEqual(
@@ -62,28 +74,55 @@ for (const family of MATERIAL_FAMILIES) {
   }
 }
 
-// Fixed before this expansion: all 72 original cues, six variants, four voices.
-// This covers the PCM contract rather than merely preserving labels or recipe JSON.
+// Render the frozen pre-expansion sources in this runtime: Math implementations
+// can differ between Node/platform versions, so a cross-platform PCM hash is not
+// a portable baseline. Every sample must still match exactly, without tolerance.
 const legacy = CUES.filter((cue) => !cue.family);
 assert.equal(legacy.length, 72);
-const legacyHash = createHash('sha256');
+assert.deepEqual(
+  legacy.map(({ id }) => id),
+  baselineCatalog.CUES.map(({ id }) => id),
+  'All original cue IDs and their order are preserved',
+);
+assert.deepEqual(DEFAULTS, baselineCatalog.DEFAULTS);
+assert.deepEqual(VARIANTS, baselineCatalog.VARIANTS);
+assert.deepEqual(VOICES, baselineCatalog.VOICES);
+const pcmBytes = ({ data }) =>
+  Buffer.from(data.buffer, data.byteOffset, data.byteLength);
 let legacyRenders = 0;
-for (const cue of legacy)
-  for (const variant of VARIANTS)
-    for (const voice of VOICES) {
-      legacyHash.update(`${cue.id}:${variant}:${voice}`);
-      legacyHash.update(
-        Buffer.from(
-          renderPatch(makePatch(cue, { ...DEFAULTS, variant, voice })).data
-            .buffer,
-        ),
+for (const baselineCue of baselineCatalog.CUES)
+  for (const variant of baselineCatalog.VARIANTS)
+    for (const voice of baselineCatalog.VOICES) {
+      const cue = legacy.find(({ id }) => id === baselineCue.id);
+      const label = `${baselineCue.id}:${variant}:${voice}`;
+      const expected = baselineEngine.renderPatch(
+        baselineCatalog.makePatch(baselineCue, {
+          ...baselineCatalog.DEFAULTS,
+          variant,
+          voice,
+        }),
+      );
+      const actual = renderPatch(
+        makePatch(cue, { ...DEFAULTS, variant, voice }),
+      );
+      assert.equal(
+        actual.sampleRate,
+        expected.sampleRate,
+        `${label}: sample rate`,
+      );
+      assert.equal(actual.duration, expected.duration, `${label}: duration`);
+      assert.equal(
+        actual.data.length,
+        expected.data.length,
+        `${label}: sample count`,
+      );
+      assert.ok(
+        pcmBytes(actual).equals(pcmBytes(expected)),
+        `${label}: legacy PCM must match the frozen v0.4.1 renderer byte for byte`,
       );
       legacyRenders++;
     }
-assert.equal(
-  legacyHash.digest('hex'),
-  'c7eca9e6ce15bbf213bc65302907c40ecbc87899d870edeb732223f294713ccd',
-);
+assert.equal(legacyRenders, 1728);
 
 let validated = 0;
 for (const cue of MATERIAL_CUES)
@@ -277,7 +316,7 @@ const report = {
   maxDuration,
   maxAbsMean,
   checks: [
-    'legacy PCM fingerprint',
+    'legacy PCM exact comparison with frozen source baseline',
     'family and role coverage',
     'all keys/modes/voices/variants',
     'shapes and parameter extremes',

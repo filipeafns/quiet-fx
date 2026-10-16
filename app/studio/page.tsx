@@ -370,11 +370,17 @@ export default function Home() {
       for (const c of list) {
         for (const variant of variants
           ? VARIANTS
-          : [edits[c.id]?.variant || 'Normal']) {
+          : [
+              view === 'sandbox'
+                ? sandboxVariant
+                : edits[c.id]?.variant || 'Normal',
+            ]) {
           const p = makePatch(c, {
             ...DEFAULTS,
             ...palette,
-            ...edits[c.id],
+            ...(view === 'sandbox' && !variants
+              ? sandboxSettings
+              : edits[c.id]),
             variant,
           });
           const r = renderCached(p);
@@ -556,6 +562,9 @@ export default function Home() {
           <span>quiet</span>
         </a>
         <TabsList className="main-nav" aria-label="Workspace">
+          <a className="studio-kit-link" href="/create">
+            Create a kit <ArrowUpRight size={12} />
+          </a>
           <TabsTrigger value="library">Library</TabsTrigger>
           <TabsTrigger value="sandbox">Motion sandbox</TabsTrigger>
         </TabsList>

@@ -1,4 +1,6 @@
 import { hash } from './engine.js';
+import { MATERIAL_CUES } from './materials.js';
+export { MATERIAL_CUES, MATERIAL_FAMILIES, MATERIAL_ROLES } from './materials.js';
 export const KEYS = [
     'C',
     'C♯',
@@ -346,7 +348,12 @@ const conversation = [
         { ...tone(n(7), 0.01, 0.1, 0.038, 0.105), event: 'complete' },
     ], 0.48),
 ];
-export const CUES = [...foundation, ...extension, ...conversation];
+export const CUES = [
+    ...foundation,
+    ...extension,
+    ...conversation,
+    ...MATERIAL_CUES,
+];
 export const CATEGORIES = [
     'All',
     'Interface',
@@ -393,6 +400,8 @@ export function makePatch(cue, s) {
                 r.glideTo = Math.min(17000, Math.max(25, (frequency * l.glideTo) / (l.frequency || 440)));
             if (l.glideTime)
                 r.glideTime = l.glideTime * time;
+            if (l.fm)
+                r.fm = { ...l.fm, decay: l.fm.decay * time };
             if (s.voice === 'Felt') {
                 r.peak *= 0.82;
                 r.decay *= 0.77;

@@ -108,8 +108,9 @@ export function Homepage() {
               >
                 <Star size={16} /> Star on GitHub
               </a>
-              <a className="landing-studio-link" href="/studio">
-                Open Studio <ArrowUpRight size={16} />
+              <a className="landing-text-link" href="/studio">Browse library</a>
+              <a className="landing-studio-link" href="/create">
+                Create a sound kit <ArrowUpRight size={16} />
               </a>
             </nav>
           </div>

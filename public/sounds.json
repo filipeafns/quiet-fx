@@ -3,12 +3,15 @@
   "name": "Quiet FX",
   "url": "https://quietfx.dev",
   "repository": "https://github.com/filipeafns/quiet-fx",
-  "version": "0.4.1",
+  "version": "unreleased",
+  "stableVersion": "0.4.1",
+  "runtimeSource": "studio-export",
+  "kitBuilder": "https://quietfx.dev/create",
   "license": "MIT",
   "licenseUrl": "https://quietfx.dev/licenses/QUIET-MIT.txt",
   "install": "npm install github:filipeafns/quiet-fx#v0.4.1",
-  "count": 72,
-  "variationCount": 432,
+  "count": 96,
+  "variationCount": 576,
   "runtimeDependencies": [],
   "options": {
     "keys": [
@@ -568,6 +571,174 @@
       "category": "Sequences",
       "description": "A returning breath with a small forward step.",
       "use": "Retrying delivery."
+    },
+    {
+      "id": "felt-press",
+      "name": "Felt / Wood press",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. A single grounded contact.",
+      "use": "Pressing a button or control."
+    },
+    {
+      "id": "felt-release",
+      "name": "Felt / Wood release",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. A lighter contact releases its weight.",
+      "use": "Releasing a pressed control."
+    },
+    {
+      "id": "felt-toggle",
+      "name": "Felt / Wood toggle",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. Two close contacts settle into a new position.",
+      "use": "Changing a setting or selection."
+    },
+    {
+      "id": "felt-confirm",
+      "name": "Felt / Wood confirm",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. A small contact opens into a fifth.",
+      "use": "Confirming a deliberate action."
+    },
+    {
+      "id": "felt-error",
+      "name": "Felt / Wood error",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. Two damped contacts step gently downward.",
+      "use": "A recoverable error that needs attention."
+    },
+    {
+      "id": "felt-notify",
+      "name": "Felt / Wood notify",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. One clear contact with a slightly longer ring.",
+      "use": "A useful, nonurgent notification."
+    },
+    {
+      "id": "felt-transition",
+      "name": "Felt / Wood transition",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. A short brush resolves into contact.",
+      "use": "A panel or object moving into place."
+    },
+    {
+      "id": "felt-complete",
+      "name": "Felt / Wood complete",
+      "category": "Materials",
+      "description": "Padded contacts and dry wooden body resonances. An opening fifth settles onto its root.",
+      "use": "Completion at the end of a longer flow."
+    },
+    {
+      "id": "porcelain-press",
+      "name": "Porcelain press",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. A single grounded contact.",
+      "use": "Pressing a button or control."
+    },
+    {
+      "id": "porcelain-release",
+      "name": "Porcelain release",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. A lighter contact releases its weight.",
+      "use": "Releasing a pressed control."
+    },
+    {
+      "id": "porcelain-toggle",
+      "name": "Porcelain toggle",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. Two close contacts settle into a new position.",
+      "use": "Changing a setting or selection."
+    },
+    {
+      "id": "porcelain-confirm",
+      "name": "Porcelain confirm",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. A small contact opens into a fifth.",
+      "use": "Confirming a deliberate action."
+    },
+    {
+      "id": "porcelain-error",
+      "name": "Porcelain error",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. Two damped contacts step gently downward.",
+      "use": "A recoverable error that needs attention."
+    },
+    {
+      "id": "porcelain-notify",
+      "name": "Porcelain notify",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. One clear contact with a slightly longer ring.",
+      "use": "A useful, nonurgent notification."
+    },
+    {
+      "id": "porcelain-transition",
+      "name": "Porcelain transition",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. A short brush resolves into contact.",
+      "use": "A panel or object moving into place."
+    },
+    {
+      "id": "porcelain-complete",
+      "name": "Porcelain complete",
+      "category": "Materials",
+      "description": "Fine contacts with a small, inharmonic ceramic ring. An opening fifth settles onto its root.",
+      "use": "Completion at the end of a longer flow."
+    },
+    {
+      "id": "elastic-press",
+      "name": "Elastic press",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. A single grounded contact.",
+      "use": "Pressing a button or control."
+    },
+    {
+      "id": "elastic-release",
+      "name": "Elastic release",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. A lighter contact releases its weight.",
+      "use": "Releasing a pressed control."
+    },
+    {
+      "id": "elastic-toggle",
+      "name": "Elastic toggle",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. Two close contacts settle into a new position.",
+      "use": "Changing a setting or selection."
+    },
+    {
+      "id": "elastic-confirm",
+      "name": "Elastic confirm",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. A small contact opens into a fifth.",
+      "use": "Confirming a deliberate action."
+    },
+    {
+      "id": "elastic-error",
+      "name": "Elastic error",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. Two damped contacts step gently downward.",
+      "use": "A recoverable error that needs attention."
+    },
+    {
+      "id": "elastic-notify",
+      "name": "Elastic notify",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. One clear contact with a slightly longer ring.",
+      "use": "A useful, nonurgent notification."
+    },
+    {
+      "id": "elastic-transition",
+      "name": "Elastic transition",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. A short brush resolves into contact.",
+      "use": "A panel or object moving into place."
+    },
+    {
+      "id": "elastic-complete",
+      "name": "Elastic complete",
+      "category": "Materials",
+      "description": "Soft tension, a rounded bend, and a controlled return. An opening fifth settles onto its root.",
+      "use": "Completion at the end of a longer flow."
     }
   ]
 }

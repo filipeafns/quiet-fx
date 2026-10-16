@@ -1,6 +1,6 @@
 # Quiet FX sound catalog
 
-72 original sounds, each available in Light, Normal, Deep, Short, Long, Airy variations.
+96 original sounds, each available in Light, Normal, Deep, Short, Long, Airy variations.
 Audition and export: https://quietfx.dev/studio
 
 ## Sparkle
@@ -506,3 +506,171 @@ Audition and export: https://quietfx.dev/studio
 - Category: Sequences
 - Sound: A returning breath with a small forward step.
 - Intended use: Retrying delivery.
+
+## Felt / Wood press
+
+- ID: `felt-press`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. A single grounded contact.
+- Intended use: Pressing a button or control.
+
+## Felt / Wood release
+
+- ID: `felt-release`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. A lighter contact releases its weight.
+- Intended use: Releasing a pressed control.
+
+## Felt / Wood toggle
+
+- ID: `felt-toggle`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. Two close contacts settle into a new position.
+- Intended use: Changing a setting or selection.
+
+## Felt / Wood confirm
+
+- ID: `felt-confirm`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. A small contact opens into a fifth.
+- Intended use: Confirming a deliberate action.
+
+## Felt / Wood error
+
+- ID: `felt-error`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. Two damped contacts step gently downward.
+- Intended use: A recoverable error that needs attention.
+
+## Felt / Wood notify
+
+- ID: `felt-notify`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. One clear contact with a slightly longer ring.
+- Intended use: A useful, nonurgent notification.
+
+## Felt / Wood transition
+
+- ID: `felt-transition`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. A short brush resolves into contact.
+- Intended use: A panel or object moving into place.
+
+## Felt / Wood complete
+
+- ID: `felt-complete`
+- Category: Materials
+- Sound: Padded contacts and dry wooden body resonances. An opening fifth settles onto its root.
+- Intended use: Completion at the end of a longer flow.
+
+## Porcelain press
+
+- ID: `porcelain-press`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. A single grounded contact.
+- Intended use: Pressing a button or control.
+
+## Porcelain release
+
+- ID: `porcelain-release`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. A lighter contact releases its weight.
+- Intended use: Releasing a pressed control.
+
+## Porcelain toggle
+
+- ID: `porcelain-toggle`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. Two close contacts settle into a new position.
+- Intended use: Changing a setting or selection.
+
+## Porcelain confirm
+
+- ID: `porcelain-confirm`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. A small contact opens into a fifth.
+- Intended use: Confirming a deliberate action.
+
+## Porcelain error
+
+- ID: `porcelain-error`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. Two damped contacts step gently downward.
+- Intended use: A recoverable error that needs attention.
+
+## Porcelain notify
+
+- ID: `porcelain-notify`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. One clear contact with a slightly longer ring.
+- Intended use: A useful, nonurgent notification.
+
+## Porcelain transition
+
+- ID: `porcelain-transition`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. A short brush resolves into contact.
+- Intended use: A panel or object moving into place.
+
+## Porcelain complete
+
+- ID: `porcelain-complete`
+- Category: Materials
+- Sound: Fine contacts with a small, inharmonic ceramic ring. An opening fifth settles onto its root.
+- Intended use: Completion at the end of a longer flow.
+
+## Elastic press
+
+- ID: `elastic-press`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. A single grounded contact.
+- Intended use: Pressing a button or control.
+
+## Elastic release
+
+- ID: `elastic-release`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. A lighter contact releases its weight.
+- Intended use: Releasing a pressed control.
+
+## Elastic toggle
+
+- ID: `elastic-toggle`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. Two close contacts settle into a new position.
+- Intended use: Changing a setting or selection.
+
+## Elastic confirm
+
+- ID: `elastic-confirm`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. A small contact opens into a fifth.
+- Intended use: Confirming a deliberate action.
+
+## Elastic error
+
+- ID: `elastic-error`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. Two damped contacts step gently downward.
+- Intended use: A recoverable error that needs attention.
+
+## Elastic notify
+
+- ID: `elastic-notify`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. One clear contact with a slightly longer ring.
+- Intended use: A useful, nonurgent notification.
+
+## Elastic transition
+
+- ID: `elastic-transition`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. A short brush resolves into contact.
+- Intended use: A panel or object moving into place.
+
+## Elastic complete
+
+- ID: `elastic-complete`
+- Category: Materials
+- Sound: Soft tension, a rounded bend, and a controlled return. An opening fifth settles onto its root.
+- Intended use: Completion at the end of a longer flow.

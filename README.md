@@ -4,13 +4,31 @@
 
 An open-source library of gentle sounds for interfaces and motion. Explore the sound field, tune a cue in the studio, or bring the procedural engine into your own app.
 
-[Try Quiet FX](https://quietfx.dev) · [Open the studio](https://quietfx.dev/studio) · [Contribute](CONTRIBUTING.md)
+[Try Quiet FX](https://quietfx.dev) · [Create a kit](https://quietfx.dev/create) · [Open the studio](https://quietfx.dev/studio) · [Contribute](CONTRIBUTING.md)
 
-- **72 original cues**, with six variations each: Light, Normal, Deep, Short, Long and Airy.
+- **96 original cues in this source tree**, with six variations each: Light, Normal, Deep, Short, Long and Airy.
 - **12 keys, three scales and four voices**, plus five envelope shapes and editable duration, softness and texture.
 - **Motion with sound:** a full-width playground with nine draggable components, including a simulated conversation, tactile card and book studies, a switch, button and video player. Arrange them freely or in a grid, then explore shared keys, scales, voices and six sound variants.
 - **WAV and MP3 export** from the studio, including downloadable variation packs.
 - **No runtime dependencies in the engine.** Sounds are synthesized locally; no recordings or network calls are needed for playback.
+
+## Create a sound kit (unreleased)
+
+At `/create`, choose Calm, Focused, Playful or Expressive, then shuffle a coordinated eight-role kit. Lock individual sounds, material or key; customize a role; audition Workspace, Messages and Checkout examples; and save up to 24 kits locally. The current draft also survives reload. No accounts or server storage are involved.
+
+Three new families add 24 cues: Felt / Wood, Porcelain and Elastic. The original 72 cues remain unchanged and free. The full current library, kit creation and exports remain MIT licensed.
+
+**Get the kit** downloads `quiet-fx-kit.zip`: eight WAVs, editable `kit.json`, role-keyed patches and a dependency-free player. Import the extracted `kit.json` through My kits to continue editing. The shadcn option downloads `quiet-kit.json`, an editable registry item containing the exact kit and engine:
+
+```sh
+npx shadcn@latest add ./quiet-kit.json
+```
+
+The generated files live at `lib/quiet-fx/engine.ts`, `lib/quiet-fx/kit.ts` and `lib/quiet-fx/LICENSE` relative to the consumer project root. Review changes before overwriting a previously installed kit. The export includes original Quiet FX code, not Arc interface components.
+
+The new material cues and kit API are **not in the existing v0.4.1 tag**. Use a kit download or a local build of this source tree for these features. The website's new-cue integration instructions use the matching exported engine. The install below remains valid for the original released catalog. No new npm package or immutable release tag was published by this change.
+
+See the [engineering handoff](docs/engineering-handoff.md) for architecture, exact validation, package contracts and planned Pro boundaries, and the [shadcn research](docs/SHADCN-RESEARCH.md) for the source-ownership and curated-shuffle model.
 
 ## Install
 
@@ -45,7 +63,7 @@ button.addEventListener('click', async () => {
 });
 ```
 
-The studio’s **Use in your app** panel copies runnable JavaScript or a Codex/Claude integration prompt using the selected sound and every current setting. **Copy library JSON** includes all 72 sounds with per-sound edits in `library.patches`, ready for `renderPatch(library.patches[0])`. In Motion sandbox, it uses the shared key, scale, voice and variant. The install command stays pinned to the release; the copied setup carries your configuration.
+The studio’s **Use in your app** panel copies runnable JavaScript or a Codex/Claude integration prompt using the selected sound and every current setting. **Copy library JSON** includes all 96 sounds with per-sound edits in `library.patches`, ready for `renderPatch(library.patches[0])`. In Motion sandbox, it uses the shared key, scale, voice and variant. For released cues the install command stays pinned to v0.4.1; new material cues use the matching exported library. The copied setup carries your configuration.
 
 Create one player per app. Render and cache sounds on demand. Call `player.stop()` when leaving an interaction, hiding the page or unmounting the host view. Close `player.context` when you no longer need the player. Browser audio requires an initial user gesture; discard blocked hover requests rather than replaying them later.
 
@@ -86,7 +104,7 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed by the server. `/` is the homepage; `/studio` is the library and motion sandbox. Hover to audition, click to edit, and press Escape to stop. On the sound field, touch users can tap and keyboard users can explore with arrow keys and Enter. In Motion sandbox, drag or click a shelf component to add it. Drag its name to move it, or focus the name and use arrow keys (Shift for larger steps). Select a piece and press Delete, or use its remove button. Grid view preserves the free-canvas positions; Reset restores the starting arrangement. Phone messages and video playback are simulations. Reduced-motion preferences simplify visual animation.
+Open the local address printed by the server. `/` is the homepage; `/create` is the sound-kit builder; `/studio` is the library and motion sandbox. Hover to audition, click to edit, and press Escape to stop. On the sound field, touch users can tap and keyboard users can explore with arrow keys and Enter. In Motion sandbox, drag or click a shelf component to add it. Drag its name to move it, or focus the name and use arrow keys (Shift for larger steps). Select a piece and press Delete, or use its remove button. Grid view preserves the free-canvas positions; Reset restores the starting arrangement. Phone messages and video playback are simulations. Reduced-motion preferences simplify visual animation.
 
 ```sh
 npm run typecheck

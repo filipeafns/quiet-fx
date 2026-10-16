@@ -28,8 +28,11 @@ export default function PrivacyPage() {
       <h2>The website and sound studio</h2>
       <p>
         Sound previews and audio exports are generated on your device. The
-        studio stores sound settings in browser local storage so they can be
-        restored. Quiet FX does not request microphone access, upload your
+        studio stores sound settings, your current kit, and named saved kits in
+        browser local storage so they can be restored. Imported kit files are
+        read on your device. Kit names and example messages are not sent to
+        analytics, and there is no account or cloud kit storage. Quiet FX does
+        not request microphone access, upload your
         audio, or inspect your project files.
       </p>
       <p>

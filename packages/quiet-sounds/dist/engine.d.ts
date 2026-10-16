@@ -14,6 +14,12 @@ export type Layer = {
     glideTo?: number;
     glideTime?: number;
     detune?: number;
+    /** Optional decaying phase modulation. Omitted for the original cue palette. */
+    fm?: {
+        ratio: number;
+        depth: number;
+        decay: number;
+    };
     filterType?: BiquadFilterType;
     filterFrequency?: number;
     filterTo?: number;

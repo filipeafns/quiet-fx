@@ -54,3 +54,7 @@ The website and the installable library share this repository. Consumers install
 Keep the root package free of `workspaces` and lifecycle scripts that cause npm to prepare Git dependencies: `build`, `prepare`, `prepack`, `preinstall`, `install` and `postinstall`. The explicit `build:package`, `build:studio` and `build:static` commands keep consumer installation lightweight. See [npm's Git dependency documentation](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#git-urls-as-dependencies).
 
 Registry publication is separate from GitHub installation and is not configured. Existing tags should never be moved; use a new version for a correction.
+
+## Sound-kit preview
+
+The unreleased kit workflow is at `/create` (`dist/client/create.html`). Deploy `quiet-engine.js`, `quiet-engine.ts` and the MIT license with the same build; kit downloads use these files. New material cues are not included in the immutable v0.4.1 tag. The PR provides a matching self-contained source export. See [engineering-handoff.md](engineering-handoff.md) for branches, checks, contracts and rollback.

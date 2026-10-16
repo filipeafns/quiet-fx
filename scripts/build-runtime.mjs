@@ -3,9 +3,16 @@ import { mkdirSync, readFileSync, writeFileSync, copyFileSync } from 'node:fs';
 const dir = 'packages/quiet-sounds';
 mkdirSync(`${dir}/src`, { recursive: true });
 mkdirSync(`${dir}/dist`, { recursive: true });
-for (const name of ['engine', 'catalog', 'color', 'sequences']) {
+for (const name of [
+  'engine',
+  'materials',
+  'catalog',
+  'color',
+  'sequences',
+  'kits',
+]) {
   const source = readFileSync(`lib/audio/${name}.ts`, 'utf8').replace(
-    /from '\.\/(engine|catalog)'/g,
+    /from '\.\/(engine|materials|catalog|kits)'/g,
     "from './$1.js'",
   );
   writeFileSync(`${dir}/src/${name}.ts`, source);
@@ -14,10 +21,13 @@ for (const name of ['engine', 'catalog', 'color', 'sequences']) {
     module: ts.ModuleKind.ES2022,
   });
   writeFileSync(`${dir}/dist/${name}.js`, js);
-  if (name === 'engine') writeFileSync('public/quiet-engine.js', js);
+  if (name === 'engine') {
+    writeFileSync('public/quiet-engine.js', js);
+    writeFileSync('public/quiet-engine.ts', source);
+  }
 }
 const program = ts.createProgram(
-  ['engine', 'catalog', 'color', 'sequences'].map(
+  ['engine', 'materials', 'catalog', 'color', 'sequences', 'kits'].map(
     (name) => `${dir}/src/${name}.ts`,
   ),
   {
@@ -35,11 +45,11 @@ const result = program.emit();
 if (result.emitSkipped) throw new Error('Declaration emit failed');
 writeFileSync(
   `${dir}/dist/index.js`,
-  "export * from './engine.js';\nexport * from './catalog.js';\nexport * from './color.js';\nexport * from './sequences.js';\n",
+  "export * from './engine.js';\nexport * from './catalog.js';\nexport * from './color.js';\nexport * from './sequences.js';\nexport * from './kits.js';\n",
 );
 writeFileSync(
   `${dir}/dist/index.d.ts`,
-  "export * from './engine.js';\nexport * from './catalog.js';\nexport * from './color.js';\nexport * from './sequences.js';\n",
+  "export * from './engine.js';\nexport * from './catalog.js';\nexport * from './color.js';\nexport * from './sequences.js';\nexport * from './kits.js';\n",
 );
 copyFileSync('public/licenses/QUIET-MIT.txt', `${dir}/LICENSE`);
 writeFileSync(

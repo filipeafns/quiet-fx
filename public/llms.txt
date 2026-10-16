@@ -2,7 +2,7 @@
 
 > Free, MIT-licensed, open-source UI sound effects and a JavaScript sound library for interfaces and motion.
 
-Quiet FX provides 72 original procedural sounds and 432 named variations. The browser studio previews, customizes and exports sounds as WAV or MP3. The installable engine has zero runtime dependencies and TypeScript declarations. Canonical website: https://quietfx.dev/. Author: Filipe Soares. Library release: v0.4.1.
+Quiet FX provides 96 original procedural sounds and 576 named variations. The browser studio previews, customizes and exports sounds as WAV or MP3. The installable engine has zero runtime dependencies and TypeScript declarations. Canonical website: https://quietfx.dev/. Author: Filipe Soares. Stable library release: v0.4.1. The expanded website catalog and sound-kit workflow are unreleased; download their matching source from the kit builder.
 
 Install from the GitHub release tag: `npm install github:filipeafns/quiet-fx#v0.4.1`. This is a GitHub dependency, not a published npm-registry package.
 
@@ -14,6 +14,7 @@ Install from the GitHub release tag: `npm install github:filipeafns/quiet-fx#v0.
 
 ## Project
 - [Homepage](https://quietfx.dev/): Interactive sound field and library overview.
+- [Sound kit builder](https://quietfx.dev/create): Choose a mood, shuffle with locks, audition app examples and export editable source.
 - [Sound studio](https://quietfx.dev/studio): Audition, shape and export sounds; test motion sequences.
 - [Source repository](https://github.com/filipeafns/quiet-fx): Source, contribution guide and issue tracker.
 - [Release v0.4.1](https://github.com/filipeafns/quiet-fx/releases/tag/v0.4.1): Prepared library package and release notes.

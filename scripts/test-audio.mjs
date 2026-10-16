@@ -6,14 +6,14 @@ import { pathToFileURL } from 'node:url';
 import path from 'node:path';
 const dir = path.resolve(process.env.QUIET_WORK_DIR || 'work', 'audio-qa');
 mkdirSync(dir, { recursive: true });
-for (const f of ['engine', 'catalog']) {
+for (const f of ['engine', 'materials', 'catalog']) {
   const source = readFileSync(`lib/audio/${f}.ts`, 'utf8');
   const js = ts
     .transpile(source, {
       target: ts.ScriptTarget.ES2022,
       module: ts.ModuleKind.ES2022,
     })
-    .replace(/from '\.\/(engine)'/g, "from './$1.mjs'");
+    .replace(/from '\.\/(engine|materials)'/g, "from './$1.mjs'");
   writeFileSync(`${dir}/${f}.mjs`, js);
 }
 const { CUES, DEFAULTS, KEYS, makePatch } = await import(
@@ -27,8 +27,8 @@ const {
   durationOf,
   SoundPlayer,
 } = await import(pathToFileURL(`${dir}/engine.mjs`));
-assert.equal(CUES.length, 72);
-assert.equal(new Set(CUES.map((c) => c.id)).size, 72);
+assert.equal(CUES.length, 96);
+assert.equal(new Set(CUES.map((c) => c.id)).size, CUES.length);
 let validated = 0,
   rendered = 0,
   peak = 0;

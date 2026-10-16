@@ -4,7 +4,7 @@ export const SITE_URL = 'https://quietfx.dev';
 export const REPOSITORY = 'https://github.com/filipeafns/quiet-fx';
 export const SITE_TITLE = 'Quiet FX | Free Open-Source UI Sound Effects';
 export const SITE_DESCRIPTION =
-  'Explore 72 gentle UI sound effects and 432 variations. Shape sounds, test them with motion, export WAV or MP3, or use the MIT-licensed JavaScript library.';
+  'Explore 96 gentle UI sound effects and 576 variations. Shape sounds, test them with motion, export WAV or MP3, or use the MIT-licensed JavaScript library.';
 
 export function pageMetadata(
   title: string,
@@ -103,8 +103,8 @@ export const structuredData = {
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       license: `${SITE_URL}/licenses/QUIET-MIT.txt`,
       featureList: [
-        '72 procedural sounds',
-        '432 named variations',
+        '96 procedural sounds',
+        '576 named variations',
         '12 musical keys',
         'Major, Minor and Pentatonic scales',
         'WAV and MP3 export',

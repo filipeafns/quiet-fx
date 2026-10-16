@@ -1,4 +1,6 @@
 import { type Layer, type Patch } from './engine.js';
+export { MATERIAL_CUES, MATERIAL_FAMILIES, MATERIAL_ROLES } from './materials.js';
+export type { MaterialFamilyId, MaterialRole } from './materials.js';
 export type Cue = {
     id: string;
     name: string;
@@ -7,6 +9,9 @@ export type Cue = {
     use: string;
     source: 'Quiet';
     root: number;
+    /** Optional material-set metadata; all catalog cues are currently free. */
+    family?: string;
+    role?: string;
     recipe: {
         layers: Layer[];
         masterGain: number;

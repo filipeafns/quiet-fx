@@ -12,6 +12,7 @@ const descriptions = [];
 for (const [file, path] of [
   ['index.html', '/'],
   ['studio.html', '/studio'],
+  ['create.html', '/create'],
 ]) {
   const html = read(file);
   const titlesOnPage = [...html.matchAll(/<title>(.*?)<\/title>/gs)].map(
@@ -31,7 +32,7 @@ for (const [file, path] of [
   descriptions.push(description);
   assert.match(
     meta.find((a) => a.property === 'og:title')?.content,
-    /UI Sound/,
+    path === '/create' ? /sound kit/i : /UI Sound/,
   );
   assert.ok(
     meta.some(
@@ -88,7 +89,7 @@ for (const [file, path] of [
 }
 assert.equal(
   new Set(descriptions).size,
-  2,
+  3,
   'Routes need distinct descriptions',
 );
 const robots = read('robots.txt');
@@ -111,6 +112,7 @@ assert.deepEqual(sitemap, [
   'https://quietfx.dev/support',
   'https://quietfx.dev/privacy',
   'https://quietfx.dev/terms',
+  'https://quietfx.dev/create',
 ]);
 assert.equal(read('llm.txt'), read('llms.txt'));
 for (const file of ['llms.txt', 'llms-full.txt', 'docs/index.md'])

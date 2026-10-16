@@ -20,8 +20,12 @@ const source = ts
   .replace("from './audio/catalog'", `from '${runtimeUrl}'`);
 const importCode = (code) =>
   import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
-const { INSTALL_COMMAND, buildInstallSetup, buildLibraryJson } =
-  await importCode(source);
+const {
+  INSTALL_COMMAND,
+  PALETTE_INSTALL_COMMAND,
+  buildInstallSetup,
+  buildLibraryJson,
+} = await importCode(source);
 assert.equal(INSTALL_COMMAND, 'npm install github:filipeafns/quiet-fx#v0.4.1');
 
 // Execute the generated module with the actual library. Only browser audio I/O is fake.
@@ -96,8 +100,10 @@ globalThis.AudioContext = AudioContextDouble;
 let moduleId = 0;
 const loadSetup = (setup) =>
   importCode(
-    setup.code.replace("from 'quiet-fx'", `from '${runtimeUrl}'`) +
-      `\n// Test module ${moduleId++}`,
+    setup.code.replace(
+      /from '(quiet-fx|quiet-sound-palette)'/,
+      `from '${runtimeUrl}'`,
+    ) + `\n// Test module ${moduleId++}`,
   );
 const custom = Object.freeze({
   ...DEFAULTS,
@@ -206,6 +212,35 @@ try {
     );
   }
 
+  // New material recipes must use the downloaded current engine, never a cue
+  // lookup against the stable v0.4.1 tag that does not contain these IDs or FM.
+  for (const cue of CUES.filter(({ family }) => family)) {
+    const setup = buildInstallSetup(cue.id, custom);
+    assert.equal(setup.install, PALETTE_INSTALL_COMMAND);
+    assert.match(setup.code, /from 'quiet-sound-palette'/);
+    assert.doesNotMatch(setup.code, /CUES\.find|makePatch\(/);
+    assert.doesNotMatch(setup.install, /github:/);
+    for (const prompt of [setup.codexPrompt, setup.claudePrompt]) {
+      assert.ok(prompt.includes(PALETTE_INSTALL_COMMAND));
+      assert.match(prompt, /not included in GitHub release v0\.4\.1/);
+      assert.doesNotMatch(prompt, /Install this exact GitHub release/);
+    }
+    const loaded = await loadSetup(setup);
+    assert.deepEqual(loaded.quietSettings, custom);
+    assert.ok(Object.isFrozen(loaded.quietPatch));
+    assert.ok(Object.isFrozen(loaded.quietPatch.layers));
+    assert.ok(loaded.quietPatch.layers.every(Object.isFrozen));
+    for (const layer of loaded.quietPatch.layers)
+      if (layer.fm) assert.ok(Object.isFrozen(layer.fm));
+    const owner = loaded.createQuietSound();
+    assert.equal(await owner.play(), true);
+    assert.deepEqual(
+      contexts.at(-1).starts[0].buffer.data,
+      renderPatch(makePatch(cue, custom)).data,
+    );
+    await owner.dispose();
+  }
+
   manualResume = true;
   const setupModule = await loadSetup(buildInstallSetup('sparkle', custom));
   const owner = setupModule.createQuietSound();
@@ -277,12 +312,22 @@ assert.equal(
 );
 const library = JSON.parse(output);
 assert.equal(library.schemaVersion, 1);
-assert.equal(library.version, '0.4.1');
+assert.equal(library.version, 'unreleased');
+assert.equal(library.stableVersion, '0.4.1');
+assert.equal(library.runtimeSource, 'studio-export');
+assert.match(
+  library.exportNote,
+  /does not include these cues or their FM parameters/,
+);
 assert.equal(library.source, 'https://quietfx.dev');
 assert.equal(library.selectedCueId, 'sparkle');
-assert.equal(library.install, INSTALL_COMMAND);
-assert.equal(library.patches.length, 72, 'The complete library is exported');
-assert.equal(new Set(library.patches.map(({ id }) => id)).size, 72);
+assert.equal(library.install, PALETTE_INSTALL_COMMAND);
+assert.equal(
+  library.patches.length,
+  CUES.length,
+  'The complete library is exported',
+);
+assert.equal(new Set(library.patches.map(({ id }) => id)).size, CUES.length);
 for (const [index, patch] of library.patches.entries()) {
   const entry = entries[index];
   assert.equal(patch.id, entry.cueId);
@@ -312,6 +357,14 @@ assert.equal(
   original,
   'Export does not mutate library inputs',
 );
+const legacyEntries = entries.filter(
+  ({ cueId }) => !CUES.find(({ id }) => id === cueId).family,
+);
+const legacyLibrary = JSON.parse(buildLibraryJson(legacyEntries, 'sparkle'));
+assert.equal(legacyLibrary.version, '0.4.1');
+assert.equal(legacyLibrary.install, INSTALL_COMMAND);
+assert.equal(legacyLibrary.runtimeSource, undefined);
+assert.equal(legacyLibrary.exportNote, undefined);
 assert.throws(
   () => buildInstallSetup('missing', DEFAULTS),
   /Unknown Quiet FX sound/,
@@ -325,5 +378,5 @@ assert.throws(
   /selected Quiet FX sound/,
 );
 console.log(
-  'Install setup: generated PCM, complete settings, gesture cancellation, disposal, assistant prompts and 72-patch library export passed.',
+  `Install setup: generated PCM, complete settings, gesture cancellation, disposal, assistant prompts and ${CUES.length}-patch library export passed.`,
 );

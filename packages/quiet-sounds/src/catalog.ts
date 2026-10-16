@@ -1,4 +1,7 @@
 import { hash, type Layer, type Patch } from './engine.js';
+import { MATERIAL_CUES } from './materials.js';
+export { MATERIAL_CUES, MATERIAL_FAMILIES, MATERIAL_ROLES } from './materials.js';
+export type { MaterialFamilyId, MaterialRole } from './materials.js';
 export type Cue = {
   id: string;
   name: string;
@@ -7,6 +10,9 @@ export type Cue = {
   use: string;
   source: 'Quiet';
   root: number;
+  /** Optional material-set metadata; all catalog cues are currently free. */
+  family?: string;
+  role?: string;
   recipe: { layers: Layer[]; masterGain: number; shimmer?: Patch['shimmer'] };
 };
 export type Settings = {
@@ -915,7 +921,12 @@ const conversation: Cue[] = [
     0.48,
   ),
 ];
-export const CUES = [...foundation, ...extension, ...conversation];
+export const CUES = [
+  ...foundation,
+  ...extension,
+  ...conversation,
+  ...MATERIAL_CUES,
+];
 export const CATEGORIES = [
   'All',
   'Interface',
@@ -991,6 +1002,7 @@ export function makePatch(cue: Cue, s: Settings): Patch {
           Math.max(25, (frequency * l.glideTo) / (l.frequency || 440)),
         );
       if (l.glideTime) r.glideTime = l.glideTime * time;
+      if (l.fm) r.fm = { ...l.fm, decay: l.fm.decay * time };
       if (s.voice === 'Felt') {
         r.peak *= 0.82;
         r.decay *= 0.77;

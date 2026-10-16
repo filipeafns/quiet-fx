@@ -25,7 +25,7 @@ Both authoritative nameservers and public resolvers at Cloudflare and Google ret
 
 Import this repository into Vercel. The checked-in `vercel.json` supplies the install command, static build command and output directory. Use Node.js 22.13 or newer; CI uses Node.js 24.
 
-The connected project publishes `main` to production. Pull requests receive separate preview deployments. The `deploy/vercel` branch provides a place to review deployment changes without changing the live site; merge only after the preview and CI have been reviewed.
+The connected project publishes `main` to production. Pull requests receive separate preview deployments. The `deploy/quiet-fx-sound-kits` branch mirrors the feature PR for this release; `deploy/vercel` is an older deployment-review branch. Neither changes the live site without a merge or explicit promotion; merge only after the preview and CI have been reviewed.
 
 For a local production build:
 
@@ -55,6 +55,6 @@ Keep the root package free of `workspaces` and lifecycle scripts that cause npm 
 
 Registry publication is separate from GitHub installation and is not configured. Existing tags should never be moved; use a new version for a correction.
 
-## Sound-kit preview
+## Sound-kit website deployment
 
-The unreleased kit workflow is at `/create` (`dist/client/create.html`). Deploy `quiet-engine.js`, `quiet-engine.ts` and the MIT license with the same build; kit downloads use these files. New material cues are not included in the immutable v0.4.1 tag. The PR provides a matching self-contained source export. See [engineering-handoff.md](engineering-handoff.md) for branches, checks, contracts and rollback.
+The kit workflow is at `/create` (`dist/client/create.html`). Deploy `quiet-engine.js`, `quiet-engine.ts` and the MIT license with the same build; kit downloads use these files. New material cues are not included in the immutable v0.4.1 tag. The builder provides a matching self-contained source export. See [engineering-handoff.md](engineering-handoff.md) for branches, checks, contracts and rollback.

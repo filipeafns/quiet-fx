@@ -4,7 +4,7 @@
 
 `/create` adds a complete local sound-kit workflow: choose a mood, shuffle a coherent set, lock choices, edit a role, audition realistic interfaces, save/import and export editable source. The catalog grows from 72 to 96 cues. The existing free library, studio, exports and original sound output are preserved. The sandbox ZIP export now uses its selected variant.
 
-This is an unreleased source change. It does not publish a new package/tag, merge production, create accounts, take payments or enforce Pro entitlements. The stable v0.4.1 installation continues to serve its original catalog. New cues use the current exported runtime.
+Website deployment is separate from publishing the library. This change does not publish a new package/tag, create accounts, take payments or enforce Pro entitlements. The stable v0.4.1 installation continues to serve its original catalog. New cues use the current exported runtime.
 
 ## Setup and commands
 
@@ -114,7 +114,7 @@ These checks establish export and installation parity. They do not establish per
 
 Local browser QA also covered mood/material selection, role locks across shuffle, keyboard sliders, save/reload, valid and invalid imports, safe normalization of pasted kit names, demo interactions and actual downloads. A sandbox Deep export retained Deep filenames and settings. The desktop and 390px mobile layouts were reviewed with no horizontal overflow or observed console errors. See the [desktop capture](images/kit-builder-desktop.jpg); hosted-preview evidence belongs in the PR.
 
-The open-layout refinement was additionally reviewed at 1280, 1024, 850 and 390px. Checks covered the relocated export action and actual ZIP download, locked shuffle, slider editing, playback/mute, saved-draft restoration and all example tabs. Material help supports Enter/tap, and control scroll margins account for the sticky header. A fresh-page playback check reported no console errors after guarding repeated audio-context cleanup during development refresh. No synthesis or exported-runtime code changed in this refinement.
+The open-layout refinement was additionally reviewed at 1280, 1024, 850 and 390px. Checks covered the relocated export action and actual ZIP download, locked shuffle, slider editing, playback/mute, saved-draft restoration and all example tabs. Material help supports Enter/tap, and control scroll margins account for the sticky header. A fresh-page playback check reported no console errors after guarding repeated audio-context cleanup during development refresh. No synthesis or exported-runtime code changed in this refinement. The homepage action row uses shared 46px control geometry; the library link no longer inherits the lower documentation link's top margin, and mobile places the kit action below the two secondary actions.
 
 Before merging: run the commands above, then exercise all four moods, a locked role across shuffle, editing/import/save/reload, an actual ZIP and registry download, and Workspace/Messages/Checkout. Verify desktop/mobile layout, keyboard slider/segmented navigation, mute, repeated playback, Escape and reduced motion. Decode exported WAVs and confirm their settings match the manifest. Listen on headphones and small speakers before claiming audio approval. See the PR for performed checks and preview evidence.
 
@@ -122,7 +122,7 @@ Before merging: run the commands above, then exercise all four moods, a locked r
 
 1. Create a feature PR plus `deploy/quiet-fx-sound-kits` at the same reviewed commit.
 2. Deploy that source to the existing project's preview environment, preserving project protection. Verify `/create`, `/studio`, downloads and the exact source SHA before review.
-3. Merge/promote only under release authorization. This work supplies a preview and PR, not an automatic production merge.
+3. After release authorization and passing checks on the final PR head, merge to `main`. Verify the production deployment matches the resulting merge SHA, then exercise the canonical website and wait for post-merge CI.
 4. Roll back via the previous Vercel deployment or revert the PR and redeploy. New local kit data is independent of legacy studio settings; preserve it so users can recover after a forward fix. No server migration needs reversing.
 5. A later library release needs an explicit new version/tag, regenerated packages and a clean consumer-install test per [DEPLOYMENT.md](DEPLOYMENT.md). Do not move v0.4.1.
 

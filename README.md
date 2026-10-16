@@ -12,7 +12,7 @@ An open-source library of gentle sounds for interfaces and motion. Explore the s
 - **WAV and MP3 export** from the studio, including downloadable variation packs.
 - **No runtime dependencies in the engine.** Sounds are synthesized locally; no recordings or network calls are needed for playback.
 
-## Create a sound kit (unreleased)
+## Create a sound kit
 
 At `/create`, choose Calm, Focused, Playful or Expressive, then shuffle a coordinated eight-role kit. Lock individual sounds, material or key; customize a role; audition Workspace, Messages and Checkout examples; and save up to 24 kits locally. The current draft also survives reload. No accounts or server storage are involved.
 

@@ -2557,8 +2557,7 @@ a:focus-visible {
   align-items: center;
   margin-top: 26px;
 }
-.landing-studio-link,
-.landing-github-link {
+.landing-actions > a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2568,9 +2567,13 @@ a:focus-visible {
   padding: 12px 18px;
   font-size: 13px;
   font-weight: 600;
+  line-height: 20px;
   transition:
     background 180ms,
     transform 180ms;
+}
+.landing-actions > .landing-text-link {
+  margin-top: 0;
 }
 .landing-studio-link {
   background: #000;
@@ -2587,8 +2590,7 @@ a:focus-visible {
   background: #ececec;
   color: #111;
 }
-.landing-studio-link:active,
-.landing-github-link:active {
+.landing-actions > a:active {
   transform: scale(0.97);
 }
 .landing-field {
@@ -2705,15 +2707,19 @@ a:focus-visible {
     margin-top: 13px;
   }
   .landing-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     justify-content: flex-start;
     gap: 8px;
     margin-top: 23px;
   }
-  .landing-studio-link,
-  .landing-github-link {
+  .landing-actions > a {
     padding: 12px 13px;
     gap: 7px;
     font-size: 12px;
+  }
+  .landing-actions > .landing-studio-link {
+    grid-column: 1 / -1;
   }
   .landing-section {
     display: block;

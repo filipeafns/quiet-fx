@@ -100,6 +100,10 @@ Browser export fetches public same-origin `/quiet-engine.js`, `/quiet-engine.ts`
 
 ## Services, configuration and secrets
 
+The release also carries forward the already-deployed MCP integration from `deploy/quietfx-review` at `7c75aa8`, which was not yet on `main`. `api/mcp.js` and `mcp/quietfx/` preserve the anonymous, stateless `/mcp` endpoint, its five read-only tools, host-themed picker, and public domain-verification file. The MCP catalog remains pinned to 72 cues and its existing schemas; the website has 96. Expanding MCP to the new materials is separate work requiring schema, limit, provenance and picker validation. See [MCP README](../mcp/quietfx/README.md) and [provenance](../mcp/quietfx/PROVENANCE.md).
+
+Preserved MCP build dependencies are `@modelcontextprotocol/ext-apps@2.0.3`, `@modelcontextprotocol/sdk@1.31.0`, `esbuild@0.28.2` and `zod@4.6.5`. `build:mcp` embeds the picker into the Node function before the static site is built; the function is bundled, with no new credentials. `typecheck` includes its original TypeScript configuration and `npm test` includes `test:mcp` alongside all new kit tests. Run `npm run lint:mcp` for the adapter/builder/picker wrapper. Preserve the `/mcp` rewrite and ownership-proof headers in `vercel.json` on release and rollback.
+
 No new environment variables, database, migration, credentials or external API are required for the builder. The website continues using the existing optional PostHog setup documented in [ANALYTICS.md](ANALYTICS.md). Kit names, imported JSON and demo message text are not added to analytics. Existing Vercel and GitHub credentials belong to deployment tooling, not browser bundles; never commit their values.
 
 The existing `quiet-fx` project belongs to `filipeafns-projects`. Repository `vercel.json` uses `npm run build:static`, output `dist/client`, clean URLs and canonical-domain redirects. `/create` maps to `create.html` on static hosting. Keep existing protection on preview deployments. The canonical public site intentionally permits indexing; Vercel controls preview indexing/protection.

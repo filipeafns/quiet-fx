@@ -9,12 +9,12 @@
     "dev": "vinext dev",
     "lint": "oxlint",
     "format": "oxfmt",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p mcp/quietfx/tsconfig.json",
     "test:audio": "node scripts/test-audio.mjs",
     "test:sequences": "node scripts/test-sequences.mjs",
     "build:package": "node scripts/build-runtime.mjs",
-    "build:static": "npm run build:package && npm run build:discovery && npm run build:studio",
-    "test": "npm run test:audio && npm run test:sequences && npm run test:playground && npm run test:orbit && npm run test:install-setup && npm run test:analytics && npm run test:materials && npm run test:kits && npm run test:kit-export",
+    "build:static": "npm run build:package && npm run build:discovery && npm run build:mcp && npm run build:studio",
+    "test": "npm run test:audio && npm run test:sequences && npm run test:playground && npm run test:orbit && npm run test:install-setup && npm run test:analytics && npm run test:materials && npm run test:kits && npm run test:kit-export && npm run test:mcp",
     "build:studio": "vinext build",
     "build:discovery": "node scripts/build-discovery.mjs",
     "test:discovery": "node scripts/test-discovery.mjs",
@@ -24,7 +24,10 @@
     "test:analytics": "node scripts/test-analytics.mjs",
     "test:materials": "node scripts/test-materials.mjs",
     "test:kits": "node scripts/test-kits.mjs",
-    "test:kit-export": "node scripts/test-kit-export.mjs"
+    "test:kit-export": "node scripts/test-kit-export.mjs",
+    "build:mcp": "node scripts/build-mcp.mjs",
+    "test:mcp": "npm run build:mcp && node --test mcp/quietfx/test/public.test.mjs",
+    "lint:mcp": "oxlint api/mcp.js mcp/quietfx scripts/build-mcp.mjs"
   },
   "devDependencies": {
     "@base-ui/react": "1.7.0",
@@ -66,7 +69,11 @@
     "typescript": "5.9.3",
     "vinext": "1.0.0-beta.5",
     "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "wrangler": "4.92.0",
+    "@modelcontextprotocol/ext-apps": "2.0.3",
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "esbuild": "0.28.2",
+    "zod": "4.6.5"
   },
   "type": "module",
   "description": "Gentle procedural sounds for interfaces and motion",

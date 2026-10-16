@@ -38,7 +38,7 @@ npm run build:static
 
 The exported files are in `dist/client`. The homepage is `index.html`; the studio is `studio.html`. Vercel's `cleanUrls` setting serves `/studio` without an extension. Other static hosts need the equivalent route mapping. The two pages use document navigation so a static host does not need an RSC response adapter.
 
-No application secrets or runtime services are needed. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quietfx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
+No application secrets are needed. The website is static; the existing anonymous `/mcp` endpoint is a bundled Node function, built by `build:mcp` and mapped through `api/mcp.js`. Keep its rewrite, pinned catalog and public domain-verification file when deploying the website. See the [MCP README](../mcp/quietfx/README.md) for protocol checks. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quietfx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
 
 ## Release the library
 

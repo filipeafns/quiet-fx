@@ -20,6 +20,8 @@ The builder shares the library's open white layout and centered navigation: dire
 
 Three new families add 24 cues: Felt / Wood, Porcelain and Elastic. The original 72 cues remain unchanged and free. The full current library, kit creation and exports remain MIT licensed.
 
+The existing public [MCP integration](mcp/quietfx/README.md) keeps its pinned 72-cue catalog and picker; the expanded 96-cue catalog is available through the website and current source exports.
+
 **Get the kit** downloads `quiet-fx-kit.zip`: eight WAVs, editable `kit.json`, role-keyed patches and a dependency-free player. Import the extracted `kit.json` through My kits to continue editing. The shadcn option downloads `quiet-kit.json`, an editable registry item containing the exact kit and engine:
 
 ```sh

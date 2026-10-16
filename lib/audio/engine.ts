@@ -14,6 +14,8 @@ export type Layer = {
   glideTo?: number;
   glideTime?: number;
   detune?: number;
+  /** Optional decaying phase modulation. Omitted for the original cue palette. */
+  fm?: { ratio: number; depth: number; decay: number };
   filterType?: BiquadFilterType;
   filterFrequency?: number;
   filterTo?: number;
@@ -99,7 +101,14 @@ export function renderPatch(p: Patch, sampleRate = 48000): Rendered {
             Math.min(1, t / (l.glideTime || l.attack + l.decay)),
           );
         phase += (hz * Math.pow(2, (l.detune || 0) / 1200)) / sampleRate;
-        const s = Math.sin(phase * 2 * Math.PI);
+        const s = l.fm
+          ? Math.sin(
+              phase * 2 * Math.PI +
+                l.fm.depth *
+                  Math.exp(-t / l.fm.decay) *
+                  Math.sin(phase * 2 * Math.PI * l.fm.ratio),
+            )
+          : Math.sin(phase * 2 * Math.PI);
         v =
           l.waveform === 'triangle'
             ? (2 / Math.PI) * Math.asin(s)
@@ -245,6 +254,12 @@ export function validatePatch(v: unknown): v is Patch {
         (l.detune === undefined || finite(l.detune, -1200, 1200)) &&
         (l.glideTime === undefined || finite(l.glideTime, 0.001, 5)) &&
         (l.filterQ === undefined || finite(l.filterQ, 0.1, 8)) &&
+        (l.fm === undefined ||
+          (!!l.fm &&
+            l.kind === 'tone' &&
+            finite(l.fm.ratio, 0.125, 4) &&
+            finite(l.fm.depth, 0, 2) &&
+            finite(l.fm.decay, 0.001, 1))) &&
         (l.kind === 'tone'
           ? finite(l.frequency, 20, 18000) &&
             ['sine', 'triangle', 'square', 'sawtooth'].includes(

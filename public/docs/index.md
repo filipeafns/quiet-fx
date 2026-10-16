@@ -8,7 +8,7 @@ License: MIT for original engine, recipes and studio; separate third-party notic
 
 ## What it does
 
-Quiet FX is a free, open-source library of gentle procedural sound effects for interfaces, microinteractions and motion design. It includes 72 cues with 6 named variants each (432 variations), 12 keys, 3 scales, 4 voices and 5 envelope shapes. Sounds are synthesized locally from deterministic recipes rather than downloaded recordings.
+Quiet FX is a free, open-source library of gentle procedural sound effects for interfaces, microinteractions and motion design. It includes 96 cues with 6 named variants each (576 variations), 12 keys, 3 scales, 4 voices and 5 envelope shapes. Sounds are synthesized locally from deterministic recipes rather than downloaded recordings.
 
 Useful contexts include button feedback, toggles, confirmations, notifications, loading, card flips, deck shuffles, page turns and short transitions. It suits projects that need subtle, customizable sounds or editable audio paired with UI motion. It is not a recorded foley collection, a music generator or a complete audio workstation. Audition and tune sounds for the context and output device.
 
@@ -17,6 +17,8 @@ Useful contexts include button feedback, toggles, confirmations, notifications, 
 ```sh
 npm install github:filipeafns/quiet-fx#v0.4.1
 ```
+
+The stable tag above contains the original 72 cues. New material families and sound-kit APIs in the current website source are not part of that tag. Use https://quietfx.dev/create to download a complete kit with its matching engine, or build this repository locally.
 
 The import name is `quiet-fx`. The published GitHub tag contains prepared ESM modules, TypeScript sources and declarations. There are no engine runtime dependencies. The full repository includes website dependencies for contributors. The package declares Node.js 22.13 or newer for tooling. Browser playback uses the Web Audio API.
 

@@ -5,7 +5,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 const dir = path.resolve(process.env.QUIET_WORK_DIR || 'work', 'sequence-qa');
 mkdirSync(dir, { recursive: true });
-for (const name of ['engine', 'catalog', 'color', 'sequences']) {
+for (const name of ['engine', 'materials', 'catalog', 'color', 'sequences']) {
   const source = readFileSync(`lib/audio/${name}.ts`, 'utf8');
   writeFileSync(
     `${dir}/${name}.mjs`,
@@ -14,7 +14,7 @@ for (const name of ['engine', 'catalog', 'color', 'sequences']) {
         target: ts.ScriptTarget.ES2022,
         module: ts.ModuleKind.ES2022,
       })
-      .replace(/from '\.\/(engine|catalog)'/g, "from './$1.mjs'"),
+      .replace(/from '\.\/(engine|materials|catalog)'/g, "from './$1.mjs'"),
   );
 }
 const { CUES, DEFAULTS, makePatch } = await import(

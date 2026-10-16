@@ -25,7 +25,7 @@ Both authoritative nameservers and public resolvers at Cloudflare and Google ret
 
 Import this repository into Vercel. The checked-in `vercel.json` supplies the install command, static build command and output directory. Use Node.js 22.13 or newer; CI uses Node.js 24.
 
-The connected project publishes `main` to production. Pull requests receive separate preview deployments. The `deploy/vercel` branch provides a place to review deployment changes without changing the live site; merge only after the preview and CI have been reviewed.
+The connected project publishes `main` to production. Pull requests receive separate preview deployments. The `deploy/quiet-fx-sound-kits` branch mirrors the feature PR for this release; `deploy/vercel` is an older deployment-review branch. Neither changes the live site without a merge or explicit promotion; merge only after the preview and CI have been reviewed.
 
 For a local production build:
 
@@ -38,7 +38,7 @@ npm run build:static
 
 The exported files are in `dist/client`. The homepage is `index.html`; the studio is `studio.html`. Vercel's `cleanUrls` setting serves `/studio` without an extension. Other static hosts need the equivalent route mapping. The two pages use document navigation so a static host does not need an RSC response adapter.
 
-No application secrets or runtime services are needed. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quietfx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
+No application secrets are needed. The website is static; the existing anonymous `/mcp` endpoint is a bundled Node function, built by `build:mcp` and mapped through `api/mcp.js`. Keep its rewrite, pinned catalog and public domain-verification file when deploying the website. See the [MCP README](../mcp/quietfx/README.md) for protocol checks. Keep local provider metadata, credentials, `.env` files and generated validation artifacts out of Git. Public indexing was explicitly enabled on September 6, 2026. Preserve the canonical `quietfx.dev` metadata, permissive robots file and sitemap; preview deployment protection remains managed by Vercel.
 
 ## Release the library
 
@@ -54,3 +54,7 @@ The website and the installable library share this repository. Consumers install
 Keep the root package free of `workspaces` and lifecycle scripts that cause npm to prepare Git dependencies: `build`, `prepare`, `prepack`, `preinstall`, `install` and `postinstall`. The explicit `build:package`, `build:studio` and `build:static` commands keep consumer installation lightweight. See [npm's Git dependency documentation](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#git-urls-as-dependencies).
 
 Registry publication is separate from GitHub installation and is not configured. Existing tags should never be moved; use a new version for a correction.
+
+## Sound-kit website deployment
+
+The kit workflow is at `/create` (`dist/client/create.html`). Deploy `quiet-engine.js`, `quiet-engine.ts` and the MIT license with the same build; kit downloads use these files. New material cues are not included in the immutable v0.4.1 tag. The builder provides a matching self-contained source export. See [engineering-handoff.md](engineering-handoff.md) for branches, checks, contracts and rollback.

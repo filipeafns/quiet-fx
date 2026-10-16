@@ -35,7 +35,7 @@ const index = `# Quiet FX
 
 > Free, MIT-licensed, open-source UI sound effects and a JavaScript sound library for interfaces and motion.
 
-Quiet FX provides ${count} original procedural sounds and ${variations} named variations. The browser studio previews, customizes and exports sounds as WAV or MP3. The installable engine has zero runtime dependencies and TypeScript declarations. Canonical website: ${site}/. Author: Filipe Soares. Library release: v${version}.
+Quiet FX provides ${count} original procedural sounds and ${variations} named variations. The browser studio previews, customizes and exports sounds as WAV or MP3. The installable engine has zero runtime dependencies and TypeScript declarations. Canonical website: ${site}/. Author: Filipe Soares. Stable library release: v${version}. The expanded website catalog and sound-kit workflow use the current source runtime, not the stable package tag; download their matching source from the kit builder.
 
 Install from the GitHub release tag: \`${install}\`. This is a GitHub dependency, not a published npm-registry package.
 
@@ -47,6 +47,7 @@ Install from the GitHub release tag: \`${install}\`. This is a GitHub dependency
 
 ## Project
 - [Homepage](${site}/): Interactive sound field and library overview.
+- [Sound kit builder](${site}/create): Choose a mood, shuffle with locks, audition app examples and export editable source.
 - [Sound studio](${site}/studio): Audition, shape and export sounds; test motion sequences.
 - [Source repository](${repo}): Source, contribution guide and issue tracker.
 - [Release v${version}](${repo}/releases/tag/v${version}): Prepared library package and release notes.
@@ -73,6 +74,8 @@ Useful contexts include button feedback, toggles, confirmations, notifications, 
 \`\`\`sh
 ${install}
 \`\`\`
+
+The stable tag above contains the original 72 cues. New material families and sound-kit APIs in the current website source are not part of that tag. Use ${site}/create to download a complete kit with its matching engine, or build this repository locally.
 
 The import name is \`quiet-fx\`. The published GitHub tag contains prepared ESM modules, TypeScript sources and declarations. There are no engine runtime dependencies. The full repository includes website dependencies for contributors. The package declares Node.js 22.13 or newer for tooling. Browser playback uses the Web Audio API.
 
@@ -162,7 +165,10 @@ writeFileSync(
       name: 'Quiet FX',
       url: site,
       repository: repo,
-      version,
+      version: 'unreleased',
+      stableVersion: version,
+      runtimeSource: 'studio-export',
+      kitBuilder: `${site}/create`,
       license: 'MIT',
       licenseUrl: `${site}/licenses/QUIET-MIT.txt`,
       install,
